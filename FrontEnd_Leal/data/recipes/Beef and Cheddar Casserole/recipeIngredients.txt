@@ -1,12 +1,12 @@
-1 tablespoon extra-virgin olive oil, plus more for the baking dish
-Kosher salt
-3 cups wide egg noodles (about 5 ounces)
-1 1/2 cups sour cream
-1/2 cup freshly grated Parmesan
-12 ounces ground beef
-1 red bell pepper, seeded and chopped
-1 bunch scallions (white and green parts), finely chopped
-1 tablespoon tomato paste
-1 teaspoon Italian seasoning
-One 14 1/2-ounce can petite diced tomatoes
-2 cups grated Cheddar
+<field name="ingredients">1 tablespoon extra-virgin olive oil, plus more for the baking dish</field>
+<field name="ingredients">Kosher salt</field>
+<field name="ingredients">3 cups wide egg noodles (about 5 ounces)</field>
+<field name="ingredients">1 1/2 cups sour cream</field>
+<field name="ingredients">1/2 cup freshly grated Parmesan</field>
+<field name="ingredients">12 ounces ground beef</field>
+<field name="ingredients">1 red bell pepper, seeded and chopped</field>
+<field name="ingredients">1 bunch scallions (white and green parts), finely chopped</field>
+<field name="ingredients">1 tablespoon tomato paste</field>
+<field name="ingredients">1 teaspoon Italian seasoning</field>
+<field name="ingredients">One 14 1/2-ounce can petite diced tomatoes</field>
+<field name="ingredients">2 cups grated Cheddar</field>

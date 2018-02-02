@@ -1,4 +1,4 @@
-1 tablespoon extra-virgin olive oil, plus more for the baking dish
+<field name="ingredients">1 tablespoon extra-virgin olive oil, plus more for the baking dish
 Kosher salt
 3 cups wide egg noodles (about 5 ounces)
 1 1/2 cups sour cream
@@ -9,4 +9,4 @@ Kosher salt
 1 tablespoon tomato paste
 1 teaspoon Italian seasoning
 One 14 1/2-ounce can petite diced tomatoes
-2 cups grated Cheddar
+2 cups grated Cheddar</field>

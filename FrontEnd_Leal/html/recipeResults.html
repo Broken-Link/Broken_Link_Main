@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name = "viewport" content = "width=device-width", intial-scale = 1>
         <meta http-equiv = "X-UA-Compatible" content = "IE=edge,chrome = 1">
-        <title>Profile Page Html</title>
+        <title>Recipe Result Html</title>
         <!--CSS--->
         <link rel = "stylesheet" href = "styles/recipeResults.css">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -15,24 +15,23 @@
             <div class="cont_central">
                 <div class="cont_modal cont_modal_active">
                     <div class="cont_photo">
-                        <div class="cont_img_back">
-                            <img src="images/Hawaiian.jpeg" alt="recipeImage" />
+                        <div class="cont_recipe_image">
+                            <img id= "recipeImage" src="images/Hawaiian.jpeg" alt="recipeImage" />
                         </div>
-                        <div class="cont_mins">
-                            <div class="sub_mins">
+                        <div class="cont_likes">
+                            <div class="sub_likes">
                                 <h3>50</h3>
-                                <span>MINS</span>
+                                <span>LIKES</span>
                             </div>
-                            <!---Change into a button maybe?--->
-                            <div class="cont_icon_right">
+                            <div class="cont_fav_icon">
                                 <a href="#e" onclick="addToFavorites()"><i id=bookmarkButton class="material-icons">bookmark_border</i></a>
                             </div>
                         </div>
-                        <div class="cont_servings">
+                        <div class="cont_times_made">
                             <h3>1</h3>
-                            <span>SERVING</span>
+                            <span>TIMES MADE</span>
                         </div>
-                        <div class="cont_detalles">
+                        <div class="cont_description">
                             <h3>Hawaiian Burger</h3>
                             <p>I heard you dont put pineapple on your pizzas? What about your burgers?</p>
                         </div>
@@ -41,26 +40,20 @@
                         <div class="cont_over_hidden">
                             <div class="cont_tabs">
                                 <ul>
-                                    <li><a href="#"><h4>INGREDIENTS</h4></a></li>
-                                    <li><a href="#"><h4>PREPARATION</h4></a></li>
+                                    <li><a class="highBar" id= "ingBar" href="#"><p onclick="openTab('ingTab','ingBar')">INGREDIENTS</p></a></li>
+                                    <li><a class = "highBar" id="prepBar" href="#"><p onclick="openTab('prepTab' , 'prepBar')">PREPARATION</p></a></li>
                                 </ul>  
                             </div>
-                        <div class="cont_text_det_preparation">
-                            <div class="cont_title_preparation">
-                                <p>STEP 1</p>
-                            </div>
-                            <div class="cont_info_preparation">
-                                <p>Heat oven to 375 degress</p>
-                            </div>  
-                            <div class="cont_text_det_preparation">
-                                <div class="cont_title_preparation">
-                                    <p>STEP 2</p>
-                                </div>
+                            <div id="prepTab" class="cont_text_det_preparation startTabs">
                                 <div class="cont_info_preparation">
-                                    <p>Heat oil in a large skillet over medium-low  head. Add onion and bell papper. Cook gently until very soft, about 20 minutes. Add garlic and cook until tender, 1 to 2 minutes; stir in cumin, paprika and cook 1 minute. Pour in tomatoes and season with 3/4 teaspoon salt and 1/4 teaspoon pepper;</p>
-                                </div> 
-                            </div>
-                        </div>  
+                                    <p>Heat oven to 375 degress</p>
+                                </div>  
+                            </div>  
+                            <div id="ingTab" class="cont_text_det_preparation ">
+                                <div class="cont_info_preparation">
+                                    <p>1 tbs Parsley</p>
+                                </div>
+                            </div>  
                             <div class="cont_btn_mas_dets">
                                 <a href="#"><i class="material-icons">arrow_drop_down</i></a>
                             </div>
@@ -83,10 +76,9 @@
                 src = "scripts/recipeResults.js">
         </script>
         <script>
-            function addToFavorites(){
-                 alert("Added to Favorites");
-                document.getElementById("bookmarkButton").innerHTML = "bookmark";
-            }
+            
+            
+            
             
                 
         </script>

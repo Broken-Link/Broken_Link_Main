@@ -14,7 +14,6 @@
   width: 100%;
   height: 100%;
   background: rgb(251, 250, 246); /* Old browsers */
-  
   background: linear-gradient(
     135deg,
     rgba(251, 250, 246, 1) 9%,
@@ -23,14 +22,12 @@
     rgba(212, 206, 191, 1) 100%
   ); 
 }
-
 .cont_central {
   position: absolute;
-  width: 100%;
+  width: 50%;
   top: 50%;
   margin-top: -200px;
 }
-
 .cont_modal {
   position: relative;
   width: 300px;
@@ -44,6 +41,7 @@
   transition-delay: 0.7s;
 }
 
+/*Recipe Image*/
 .cont_photo {
   position: relative;
   width: 300px;
@@ -60,15 +58,14 @@
   transition: all 0.5s;
   box-shadow: 1px 1px 20px -5px rgba(0, 0, 0, 0.5);
 }
-
-.cont_img_back {
+.cont_recipe_image {
   position: absolute;
   width: 100%;
   height: 100%;
   overflow: hidden;
   border-radius: 5px;
 }
-.cont_img_back > img {
+.cont_recipe_image > img {
   width: 100%;
   opacity: 0.7;
   -webkit-transition: all 0.5s;
@@ -76,8 +73,7 @@
   transition: all 0.5s;
   transition: all 1s;
 }
-
-.cont_img_back:hover > img {
+.cont_recipe_image:hover > img {
   transform: scale(1.5);
 }
 
@@ -120,13 +116,13 @@
   transition-delay: 0.7s;
 }
 
-.cont_mins {
+/*Likes Indicator*/
+.cont_likes {
   position: relative;
   float: left;
   width: 100%;
 }
-
-.sub_mins {
+.sub_likes {
   position: relative;
   float: left;
   width: 60px;
@@ -145,19 +141,18 @@
   -o-transition-delay: 1s;
   transition-delay: 1s;
 }
-
-.sub_mins > h3 {
+.sub_likes > h3 {
   font-size: 24px;
   margin-top: 10px;
   margin-bottom: -10px;
 }
-
-.sub_mins > span {
+.sub_likes > span {
   font-size: 9px;
   font-weight: 700;
 }
 
-.cont_servings {
+/*Times Made Indicator*/
+.cont_times_made {
   position: relative;
   float: left;
   width: 60px;
@@ -175,25 +170,25 @@
   -o-transition-delay: 0.7s;
   transition-delay: 0.7s;
 }
-
-.cont_servings > h3 {
+.cont_times_made > h3 {
   font-size: 24px;  
   margin-top: 10px;
   margin-bottom: -10px;
 }
-
-.cont_servings > span {
-  font-size: 9px;  
+.cont_times_made > span {
+  font-size: 7px;  
   font-weight: 700;
 }
-.cont_icon_right {
+
+/*Favorite this Recipe Icon*/
+.cont_fav_icon {
   content: '';
   position: relative;
   float: right;
   margin-top: 2px;
   margin-right: 2px;    
 }
-.cont_icon_right > a {
+.cont_fav_icon > a {
   display: block;
   margin-bottom: -15px;
   width: 30px;
@@ -207,15 +202,14 @@
   transition: all 0.5s;
   transition: all 0.5s;
 }
-
-.cont_icon_right > a > i{
+.cont_fav_icon > a > i{
   color: white;  
   margin-top: 3px;
   margin-right: -1px;
 }
 
-
-.cont_detalles {
+/*Recipe Description*/
+.cont_description {
   position: absolute;
   bottom: -185px;
   height: 200px;
@@ -252,14 +246,12 @@
   -o-transition-delay: 0.7s;
   transition-delay: 0.7s;
 }
-
-.cont_detalles > h3 {
+.cont_description > h3 {
   margin-top: 125px;
   color: #fff;
   font-size: 24px;
 }
-
-.cont_detalles > p {
+.cont_description > p {
   color: #fff;
   width: 80%;
   text-align: left;
@@ -303,7 +295,7 @@
 .cont_tabs > ul > li:first-child > a {
   border-top: 7px solid rgba(237, 52, 108, 0);
   margin-top: 0px;
-  color: #9a96a4;
+  color: #241c3e;
   -webkit-transition: all 0.5s;
   -o-transition: all 0.5s;
   transition: all 0.5s;
@@ -361,6 +353,7 @@
   position: relative;
   float: left;
 }
+
 .cont_info_preparation > p {
   margin: 5px 0px;
   margin-left: 50px;
@@ -395,7 +388,7 @@
 }
 
 .cont_btn_mas_dets > a > i {
-    color: black;  
+  color: black;  
   margin-top: 3px;
 }
 
@@ -410,6 +403,16 @@
 .cont_text_det_preparation {
   position: relative;
   width: 410px;
+  display: none;
+}
+
+.cont_text_det_ingredients{
+    position: relative;
+    width: 410px;
+    display: block;
+}
+.startTabs{
+    display:block;
 }
 
 .cont_modal_active > .cont_text_ingredients > .cont_btn_open_dets > a {
@@ -429,14 +432,14 @@
   box-shadow: 25px 10px 70px -5px rgba(0, 0, 0, 0.3);
 }
 
-.cont_modal_active > .cont_photo > .cont_mins > .sub_mins {
+.cont_modal_active > .cont_photo > .cont_likes > .sub_likes {
   opacity: 1;
 }
 
-.cont_modal_active > .cont_photo > .cont_servings {
+.cont_modal_active > .cont_photo > .cont_times_made {
   opacity: 1;
 }
 
-.cont_modal_active > .cont_photo > .cont_detalles {
+.cont_modal_active > .cont_photo > .cont_description {
   bottom: 0px;
 }

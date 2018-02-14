@@ -18,7 +18,7 @@
         </div>
         
         <!---Search Bar--->
-        <form class="search_bar small">
+        <form class="search_bar small" id="searchform">
             <div class="search_dropdown" style="width: 16px;">
                 <span>All</span>
                 <ul>
@@ -28,89 +28,13 @@
                     <li>Users</li>
             </ul>
             </div>
-            <input type="text" id="search" placeholder="Search..." />
+            <input type="text" id="search" placeholder="Search..." autocomplete="off" />
+            <ul class="output" style="display:none;"></ul>
+            
             <button type="submit" value="Search"    onclick=searchButtonClicked()></button>
             
         </form>
-        <!---Image Slider
-        <ul class="slides">
-    <input type="radio" name="radio-btn" id="img-1" checked />
-    <li class="slide-container">
-		<div class="slide">
-			<img src ="/html/images/chickenNuggets.jpeg" alt = "Recipe Image"/>
-        </div>
-		<div class="nav">
-			<label for="img-6" class="prev">&#x2039;</label>
-			<label for="img-2" class="next">&#x203a;</label>
-		</div>
-    </li>
-
-    <input type="radio" name="radio-btn" id="img-2" />
-    <li class="slide-container">
-        <div class="slide">
-          <img src="/html/images/Macaroni.jpeg" alt = "Macaroni" />
-        </div>
-		<div class="nav">
-			<label for="img-1" class="prev">&#x2039;</label>
-			<label for="img-3" class="next">&#x203a;</label>
-		</div>
-    </li>
-
-    <input type="radio" name="radio-btn" id="img-3" />
-    <li class="slide-container">
-        <div class="slide">
-          <img src="/html/images/Lasagna.jpeg" alt = "Lasagna" />
-        </div>
-		<div class="nav">
-			<label for="img-2" class="prev">&#x2039;</label>
-			<label for="img-4" class="next">&#x203a;</label>
-		</div>
-    </li>
-
-    <input type="radio" name="radio-btn" id="img-4" />
-    <li class="slide-container">
-        <div class="slide">
-          <img src="/html/images/Enchilada.jpeg" alt = "Enchiladas" />
-        </div>
-		<div class="nav">
-			<label for="img-3" class="prev">&#x2039;</label>
-			<label for="img-5" class="next">&#x203a;</label>
-		</div>
-    </li>
-
-    <input type="radio" name="radio-btn" id="img-5" />
-    <li class="slide-container">
-        <div class="slide">
-          <img src="/html/images/Hawaiian.jpeg" alt = "Hawaiian" />
-        </div>
-		<div class="nav">
-			<label for="img-4" class="prev">&#x2039;</label>
-			<label for="img-6" class="next">&#x203a;</label>
-		</div>
-    </li>
-
-    <input type="radio" name="radio-btn" id="img-6" />
-    <li class="slide-container">
-        <div class="slide">
-          <img src="/html/images/TunaSalad.jpeg" alt = "Tuna Salad" />
-        </div>
-		<div class="nav">
-			<label for="img-5" class="prev">&#x2039;</label>
-			<label for="img-1" class="next">&#x203a;</label>
-		</div>
-    </li>
-
-    <li class="nav-dots">
-      <label for="img-1" class="nav-dot" id="img-dot-1"></label>
-      <label for="img-2" class="nav-dot" id="img-dot-2"></label>
-      <label for="img-3" class="nav-dot" id="img-dot-3"></label>
-      <label for="img-4" class="nav-dot" id="img-dot-4"></label>
-      <label for="img-5" class="nav-dot" id="img-dot-5"></label>
-      <label for="img-6" class="nav-dot" id="img-dot-6"></label>
-    </li>
-</ul>
-        --->
-        
+     
         <!---Social Media--->
         <div>
             <div class="title">SOCIAL MEDIA</div>
@@ -129,9 +53,9 @@
         <script 
                 src= "http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js">
         </script>
-        <script 
-                src = "scripts/main.js">
-        </script>
+        <script src = "scripts/main.js"></script>
+        
+        <script src = "scripts/searchBar.js"></script>
         
         <!---DataBase Connection--->
         <script>
@@ -142,8 +66,7 @@
         <script>
             function searchButtonClicked(){
                 var searchInput = document.getElementById("search").value;
-                document.write(searchInput);
-            }
+            
             function dumpData(){
                 alert("Data will be Dumped");
             }

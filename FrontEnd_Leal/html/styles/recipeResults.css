@@ -8,30 +8,40 @@
   font-family: "Open Sans", sans-serif;
 }
 
+html{
+    width:100%;
+    height:100%;
+}
+
+body{
+    width: 100%;
+    background: #f7f5ee;
+    float:left; 
+}
+
+
+
 /* -------- ----------- */
 .cont_principal {
-  position: absolute;
-  width: 100%;
+  position:absolute;
+  width: 50%;
   height: 100%;
-  background: rgb(251, 250, 246); /* Old browsers */
-  background: linear-gradient(
-    135deg,
-    rgba(251, 250, 246, 1) 9%,
-    rgba(212, 206, 191, 1) 74%,
-    rgba(212, 206, 191, 1) 74%,
-    rgba(212, 206, 191, 1) 100%
-  ); 
+  margin-top: -500px;
+  
 }
 .cont_central {
-  position: absolute;
+  position:absolute;
   width: 50%;
   top: 50%;
-  margin-top: -200px;
+  margin-top: 0px;
+  
 }
 .cont_modal {
-  position: relative;
-  width: 300px;
-  height: 400px;
+  position:relative;
+  margin-left: 20%;
+  margin-top: 400px;
+  width: 50%;
+  height: 50%;
   -webkit-transition: all 0.5s;
   -o-transition: all 0.5s;
   transition: all 0.5s;
@@ -44,11 +54,11 @@
 /*Recipe Image*/
 .cont_photo {
   position: relative;
-  width: 300px;
-  height: 225px;
+  width: 400px;
+  height: 300px;
   overflow: hidden;
   background-color: #999;
-  border-radius: 5px;
+  border-radius: -5px;
   top: 10%;
   float: left;
   z-index: 2;
@@ -59,7 +69,7 @@
   box-shadow: 1px 1px 20px -5px rgba(0, 0, 0, 0.5);
 }
 .cont_recipe_image {
-  position: absolute;
+  position:absolute;
   width: 100%;
   height: 100%;
   overflow: hidden;
@@ -210,6 +220,7 @@
 
 /*Recipe Description*/
 .cont_description {
+  
   position: absolute;
   bottom: -185px;
   height: 200px;
@@ -266,6 +277,7 @@
   width: 410px;
   height: 60px;
   border-bottom: 3px solid #ededec;
+  
 }
 
 .cont_tabs > ul {
@@ -310,10 +322,12 @@
 }
 
 .cont_btn_open_dets {
-  position: absolute;
-  right: -15px;
-  top: 40%;
+  position:absolute;
+  top: 30%;
+  left: 85px;
 }
+
+
 .cont_btn_open_dets > a {
   display: block;
   padding-top: -5px;
@@ -327,7 +341,7 @@
   -o-transition: all 0.5s;
   transition: all 0.5s;
   transition: all 0.5s;
-  transform: rotate(90deg);
+  transform: rotate(180deg);
 }
 
 .cont_btn_open_dets > a > i {
@@ -351,25 +365,26 @@
 
 .cont_info_preparation {
   position: relative;
+  margin-left: -10px;
   float: left;
 }
 
 .cont_info_preparation > p {
   margin: 5px 0px;
-  margin-left: 50px;
+  margin-left: -15px;
   border-left: 2px solid #e3e3e3;
   font-size: 12px;
   padding: 20px 0px;
-  padding-left: 20px;
+  padding-left: 10px;
   text-align: left;
-  padding-right: 15px;
+  padding-right: 30px;
   color: #565656;
 }
 
 .cont_btn_mas_dets {
   position: absolute;
   bottom: 0px;
-  left: 50%;
+  left: 40%;
 }
 .cont_btn_mas_dets > a {
   display: block;
@@ -384,6 +399,7 @@
   -o-transition: all 0.5s;
   transition: all 0.5s;
   transition: all 0.5s;
+  transform: rotate(-90deg);
   overflow: hidden;
 }
 
@@ -398,6 +414,7 @@
   width: 100%;
   height: 400px;
   overflow: hidden;
+  margin-left: 40px;
 }
 
 .cont_text_det_preparation {
@@ -409,6 +426,7 @@
 .cont_text_det_ingredients{
     position: relative;
     width: 410px;
+    
     display: block;
 }
 .startTabs{
@@ -417,10 +435,13 @@
 
 .cont_modal_active > .cont_text_ingredients > .cont_btn_open_dets > a {
   transform: rotate(0deg);
+  transform: translateX(350px);
 }
+
 .cont_modal_active > .cont_text_ingredients {
-  width: 410px;
+  width: 450px;
   left: 285px;
+  margin-left:100px;
   z-index: 1;
   box-shadow: 15px 20px 70px -5px rgba(0, 0, 0, 0.2);
 }

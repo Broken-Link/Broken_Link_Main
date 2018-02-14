@@ -100,7 +100,4 @@ $(document).ready(function() {
   });
 });
     
-    
 })(jQuery);
-
-

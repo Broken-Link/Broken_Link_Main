@@ -35,7 +35,7 @@ body{
   @include center();
 }
 .title{
-    padding-top: 10px;
+  padding-top: 10px;
   font-weight: 800;
   color: transparent;
   font-size:120px;
@@ -55,96 +55,166 @@ body{
 }
 
 
-/*
-.slides {
-    padding: 0;
-    width: 50%;
-    height: 420px;
-    display: block;
-    margin: 0 auto;
-    position: relative;
+#searchform {
+  display: block;
+  transform: translateY(10%);
 }
-.slides * {
-    user-select: none;
-}
-.slides input { display: none; }
-.slide-container { display: block; }
-.slide {
-    top: 0;
-    opacity: 0;
-    width: 100%;
-    height: 100%;
-    display: block;
-    position: absolute;
 
-    transform: scale(0);
+.output {
+  list-style: none;
+  width: 100%;
+  min-height: 0px;
+  border-top: 0 !important;
+  color: #767676;
+  font-size: 0.75em;
+  transition: min-height 0.2s;
+  position: absolute;
+  z-index: 5;
+}
 
-    transition: all .7s ease-in-out;
+.prediction-item {
+  padding: 0.5em 0.75em;
+  transition: color 0.2s, background 0.2s;
 }
-.slide img {
-    width: 100%;
-    height: 100%;
-}
-.nav label {
-    width: 200px;
-    height: 100%;
-    display: none;
-    position: absolute;
 
-	  opacity: 0;
-    z-index: 9;
-    cursor: pointer;
+.output:hover .focus {
+  background: #fff;
+  color: #767676;
+}
 
-    transition: opacity .2s;
+.prediction-item:hover,.focus,.output:hover .focus:hover {
+  background: #ddd;
+  color: #333;
+}
 
-    color: #FFF;
-    font-size: 156pt;
-    text-align: center;
-    line-height: 380px;
-    font-family: "Varela Round", sans-serif;
-    background-color: rgba(255, 255, 255, .3);
-    text-shadow: 0px 0px 15px rgb(119, 119, 119);
+.prediction-item:hover {
+  cursor: pointer;
 }
-.slide:hover + .nav label { opacity: 0.5; }
-.nav label:hover { opacity: 1; }
-.nav .next { right: 0; }
-input:checked + .slide-container  .slide {
-    opacity: 1;
-    transform: scale(1);
-    transition: opacity 1s ease-in-out;
+
+.prediction-item strong {
+  color: #333;
 }
-input:checked + .slide-container .nav label { display: block; }
-.nav-dots {
-	width: 100%;
-	bottom: 9px;
-	height: 11px;
-	display: block;
-	position: absolute;
-	text-align: center;
+.prediction-item:hover strong {
+  color: #000;
 }
-.nav-dots .nav-dot {
-	top: -5px;
-	width: 11px;
-	height: 11px;
-	margin: 0 4px;
-	position: relative;
-	border-radius: 100%;
-	display: inline-block;
-	background-color: rgba(0, 0, 0, 0.6);
+
+*,
+*:before,
+*:after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
-.nav-dots .nav-dot:hover {
-	cursor: pointer;
-	background-color: rgba(0, 0, 0, 0.8);
+article, aside, details, figcaption,figure,footer,header,
+hgroup,main,nav,section,summary {
+  display: block;
 }
-input#img-1:checked ~ .nav-dots label#img-dot-1,
-input#img-2:checked ~ .nav-dots label#img-dot-2,
-input#img-3:checked ~ .nav-dots label#img-dot-3,
-input#img-4:checked ~ .nav-dots label#img-dot-4,
-input#img-5:checked ~ .nav-dots label#img-dot-5,
-input#img-6:checked ~ .nav-dots label#img-dot-6 {
-	background: rgba(0, 0, 0, 0.8);
+
+audio, canvas, video {
+  display: inline-block;
 }
-*/
+audio:not([controls]) {
+  display: none;
+  height: 0;
+}
+[hidden], template {
+  display: none;
+}
+html {
+  font-family: sans-serif;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+a {
+  background: 0 0;
+}
+a:focus {
+  outline: thin dotted;
+}
+a:active, a:hover {
+  outline: 0;
+}
+h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+abbr[title] {
+  border-bottom: 1px dotted;
+}
+b,strong {
+  font-weight: 700;
+}
+dfn {
+  font-style: italic;
+}
+hr {
+  height: 0;
+}
+mark {
+  background: #ff0;
+  color: #000;
+}
+code, kbd, pre, samp {
+  font-family: monospace, serif;
+  font-size: 1em;
+}
+pre {
+  white-space: pre-wrap;
+}
+q {
+  quotes: "\201C" "\201D" "\2018" "\2019";
+}
+small {
+  font-size: 80%;
+}
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+sup {
+  top: -0.5em;
+}
+sub {
+  bottom: -0.25em;
+}
+img {
+  border: 0;
+}
+svg:not(:root) {
+  overflow: hidden;
+}
+figure {
+  margin: 0;
+}
+fieldset {
+  border: 1px solid silver;
+  margin: 0 2px;
+  padding: 0.35em 0.625em 0.75em;
+}
+legend {
+  border: 0;
+  padding: 0;
+}
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+  font-size: 100%;
+  margin: 0;
+}
+button,
+input {
+  line-height: normal;
+}
+
+
+
 
 
 .search_bar {
@@ -164,6 +234,7 @@ input#img-6:checked ~ .nav-dots label#img-dot-6 {
     width: 80%;
     padding: .5em;
     margin: 0;
+    margin-left:55px;
     overflow: hidden;
 }
 .search_bar input[type=text]:focus {

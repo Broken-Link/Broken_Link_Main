@@ -12,7 +12,7 @@
     </head>
 
 </html>
-<body onload="load()">
+<body>
     <!---HEADER--->
     <div class="header">
         <div class="header_text">Open-Fridge</div>
@@ -35,7 +35,6 @@
         </div>
         
     </div>
-    
     <!---UTILITY BAR--->
     <div class="header_utilBar">
         
@@ -55,7 +54,6 @@
         </button>
         
     </div>
-    
     <!---INGREDIENT SEARCH
         not displayed until ingredient search is clicked
     --->
@@ -68,44 +66,10 @@
         </button>
         
     </div>
-    
-    <!---SLIDESHOW--->
-    <div class="slideshow">
-        <div class="slideshow_divider">
-            <div class="divider_title">Todays Featured Recipes</div>
-        </div>
-        
-        
-        <image class="slideshow_image" id="image0" src="images/Hawaiian.jpeg">
-            <div class="image_title" id="title0">Hawaiian Burger</div>
-            <div class="image_desc" id="desc0">Looking for a tropical Vacation? Look no further!</div>
-        </image>
-        <image class="slideshow_image" id="image1" src="images/Lasagna.jpeg">
-            <div class="image_title" id="title1">Lasagna</div>
-            <div class="image_desc" id="desc1">Better than Granny used to make!</div>
-        </image>
-        <image class="slideshow_image" id="image2" src="images/Enchilada.jpeg">
-            <div class="image_title" id="title2">Chicken Enchilada</div>
-            <div class="image_desc" id="desc2">Spice up your dinner plans with this entree!</div>
-        </image>
-        <button class="slideshow_next slideshow_button" onclick="next_prev(1)">
-            <i class="slideshow_icon material-icons">navigate_next</i>
-        </button>
-        <button class="slideshow_prev slideshow_button" onclick="next_prev(-1)">
-            <i class="slideshow_icon material-icons">navigate_before</i>
-        </button>
-        
-        
-    </div>
 
 </body>
 
 <script>
-    
-    function load(){
-        next_prev(0);
-    }
-    
     function openItem(idOfItem){
         document.getElementById(idOfItem).style.display = "block";
     }
@@ -113,30 +77,5 @@
     function closeItem(idOfItem){
         document.getElementById(idOfItem).style.display = "none";
     }
-    
-    //for slideshow
-    var c = 0;
-    function next_prev(np){        
-        c = c + np;
-        if(c >= 3){
-            c = 0;
-        }
-        if(c < 0){
-            c = 2;
-        }
-        display("slideshow_image","image"+c);
-        display("image_title", "title"+c);
-        display("image_desc", "desc"+c)
-        
-    }
-    function display(item,id){
-        var x = document.getElementsByClassName(item);
-        for (i = 0; i < x.length; i++) {
-            x[i].style.display = "none";
-        }
-        
-        document.getElementById(id).style.display = "block";
-    }
-    //end slideshow functions    
     
 </script>

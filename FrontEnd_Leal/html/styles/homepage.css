@@ -13,7 +13,7 @@
 .header{
     position: absolute;
     width:100%;
-    height: 160px;
+    height: 180px;
     background: #ff0055;
     margin: 0;
 }
@@ -34,17 +34,36 @@
     margin-top: -35;
     margin-right: -15;
 }
-/*END HEADER
-START UTILITY BAR*/
+
 .header_utilBar{
     width: 100%;
     position: absolute;
-    margin-top: 160px;
+    margin-top: 180px;
+    
 }
 
-.utilBar_socialIcons{
+.header_utilButtons{
+    position: relative;
+}
+
+.utilButton_signUp{
+    margin-top: -20px;
+    float:right;
+    margin-right: 10px;
+    margin-left:10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.utilButton_logIn{
+    margin-top: -20px;
+    float: right;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.utilButton_socialIcons{
     position: absolute;
-    margin-left: 10%
+    margin-top: -20px;
+    margin-left: 120px;
 }
 
 .FB_icon{
@@ -71,11 +90,11 @@ START UTILITY BAR*/
     background: #cd211f;
 }
 
-.utilBar_socialText{
+.utilButton_socialText{
     margin-left: 10px;
     position: absolute;
     color: #b3b3b3;
-    top: 20px;
+    top: 0px;
 }
 
 /*
@@ -90,27 +109,34 @@ START UTILITY BAR*/
     margin-top: 14px;
 }
 */
+
+/*END HEADER
+START UTILITY BAR*/
+
 .utilBar_ingredientSearch{
-    position:fixed;
-    margin-left:53%;
+    position:absolute;
+    margin-left:63%;
     margin-top: 6px;
     font-size: 12px;
     background-color: #f2f2f2;
     border:0;
     padding:0 15px;
     line-height: 40px;
-    
+}
+
+.utilBar_ingredientSearch:hover{
+    background-color: #f3dae2;
 }
 
 .utilBar_search{
-    width:40%;
+    width:60%;
     height: 50px;
-    margin-left:25%;
+    margin-left:15%;
     
 }
 
 .utilBar_submit{
-
+    
 }
 
 .utilBar_home:hover{
@@ -121,25 +147,20 @@ START UTILITY BAR*/
     background-color: #ff0055;
 }
 
-.utilBar_signUp{
-    margin-left:0;
-}
-
-.utilBar_logIn{
-    
-}
 /*END UTILITY BAR
 START INGREDIENT SEARCH*/
+
 .ingredientSearch{
     position: absolute;
     left:10%;
     width: 80%;
     height: 100px;
-    background-color: #ffffff;
+    background-color: #fffafa;
     z-index: 1;
     display:none;
     margin-top:160;
     z-index: 1;
+    box-shadow: 0 4px 8px 1px rgba(0, 0, 0, 0.2), 0 6px 20px 1px rgba(0, 0, 0, 0.19);
     
 }
 
@@ -174,6 +195,97 @@ START INGREDIENT SEARCH*/
     margin-top: 5px;
 }
 
+/*END INGREDIENT SEARCH
+START SLIDESHOW*/
+
+.slideshow_divider{
+    position: absolute;
+    margin-top:250px;
+    float: left;
+    width:80%;
+    border-bottom: 3px solid #ff0055;
+}
+
+.divider_title{
+    font-weight: 700;
+    font-size: 30px;
+    padding:0px;
+}
+
+.slideshow{
+    position: relative;
+    margin:auto;
+    width:50%;
+    padding: 10px;
+    
+}
+
+.slideshow_image{
+    position: absolute;
+    width: 100%;
+    height: 400px;
+    margin-top: 300px;
+    background-color:#999;
+    overflow: hidden;
+    border-radius: 0px;
+    display: none;
+    box-shadow: 0 6px 10px 2px rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.image_title{
+    position: absolute;
+    margin-top: 550px;
+    font-weight: 700;
+    color: white;
+    font-size: 70px;
+    text-align: center;
+    padding: 10px;
+    display:none;
+    
+}
+
+.image_desc{
+    position: absolute;
+    margin-top: 625px;
+    margin-left: 30px;
+    color: white;
+    font-size: 30;
+    padding: 10px;
+    display:none;
+}
+
+.slideshow_button{
+    position: absolute;
+    height: 400px;
+    width: 60px;
+    border: 0;
+    background-color: #000000;
+    opacity: 0.3;
+    margin-top: 300px;
+}
+
+.slideshow_button:hover{
+    opacity: 0.6;
+}
+
+.slideshow_next{
+    position: relative;
+    float: right;
+    left: 20px;
+}
+
+.slideshow_prev{
+    position:relative;
+    float: left;
+    
+}
+
+.slideshow_icon{
+    opacity: 1;
+    color: white;
+}
+
+/*MULTIPLE OBJ EFFECTING*/
 .button{
 	font-size:14px;
 	font-weight: bold;

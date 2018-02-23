@@ -3,16 +3,17 @@
         <meta charset="utf-8">
         <meta name = "viewport" content = "width=device-width", intial-scale = 1>
         <meta http-equiv = "X-UA-Compatible" content = "IE=edge,chrome = 1">
-        <title>Homepage html</title>
+        <title>Results html</title>
         <!---CSS--->
         <link rel = "stylesheet" href = "styles/homepage.css">
+        <link rel = "stylesheet" href = "styles/results.css">
         
         <!---Utilities--->
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     </head>
 
 </html>
-<body onload="load()">
+<body>
     <!---HEADER--->
     <div class="header">
         <div class="header_text">Open-Fridge</div>
@@ -35,7 +36,6 @@
         </div>
         
     </div>
-    
     <!---UTILITY BAR--->
     <div class="header_utilBar">
         
@@ -55,7 +55,6 @@
         </button>
         
     </div>
-    
     <!---INGREDIENT SEARCH
         not displayed until ingredient search is clicked
     --->
@@ -68,44 +67,74 @@
         </button>
         
     </div>
-    
-    <!---SLIDESHOW--->
-    <div class="slideshow">
-        <div class="slideshow_divider">
-            <div class="divider_title">Todays Featured Recipes</div>
+
+    <div class="recipeDisplay">
+        <image class="recipeDisplay_image" src="images/Hawaiian.jpeg">
+            <div class ="RD_title">
+                <div class="RDimage_title">Hawaiian Burger</div>
+                <div class="RDimage_info">A classic burger with a tropical twist.</div>
+            </div>
+        </image>
+        <button class="recipeDisplay_like" onclick="">
+            <i class="material-icons">favorite_border</i>
+            <!---change to favorite on click--->
+        </button>
+        <div class="recipeDisplay_likes">
+            <h3 class="likes">Likes</h3>
+            <h6 class="likes_num">10</h6>
+        </div>
+        <button class="recipeDisplay_openDetails">
+            <i class="material-icons" onclick="">keyboard_arrow_right</i>
+        </button>
+        
+        <div class="recipeDisplay_details">
+            <div class="details_tabs">
+                <div class="tabs_ingredients" onclick="">Ingredients</div>
+                <div class="tabs_directions" onclick="">Directions</div>
+                <div class="ingredients_text">1lb meat<br>1tbs salt</div>
+                <div class="directions_text">Cook that shit</div>
+                
+            </div>
         </div>
         
-        
-        <image class="slideshow_image" id="image0" src="images/Hawaiian.jpeg">
-            <div class="image_title" id="title0">Hawaiian Burger</div>
-            <div class="image_desc" id="desc0">Looking for a tropical Vacation? Look no further!</div>
+    </div>
+    
+    <div class="recipeDisplay">
+        <image class="recipeDisplay_image" src="images/Hawaiian.jpeg">
+            <div class ="RD_title">
+                <div class="RDimage_title">Hawaiian Burger</div>
+                <div class="RDimage_info">A classic burger with a tropical twist.</div>
+            </div>
         </image>
-        <image class="slideshow_image" id="image1" src="images/Lasagna.jpeg">
-            <div class="image_title" id="title1">Lasagna</div>
-            <div class="image_desc" id="desc1">Better than Granny used to make!</div>
-        </image>
-        <image class="slideshow_image" id="image2" src="images/Enchilada.jpeg">
-            <div class="image_title" id="title2">Chicken Enchilada</div>
-            <div class="image_desc" id="desc2">Spice up your dinner plans with this entree!</div>
-        </image>
-        <button class="slideshow_next slideshow_button" onclick="next_prev(1)">
-            <i class="slideshow_icon material-icons">navigate_next</i>
+            
+        <button class="recipeDisplay_like" onclick="">
+            <i class="material-icons">favorite_border</i>
+            <!---change to favorite on click--->
         </button>
-        <button class="slideshow_prev slideshow_button" onclick="next_prev(-1)">
-            <i class="slideshow_icon material-icons">navigate_before</i>
+        <div class="recipeDisplay_likes">
+            <h3 class="likes">Likes</h3>
+            <h6 class="likes_num">10</h6>
+        </div>
+        <button class="recipeDisplay_openDetails">
+            <i class="material-icons" onclick="">keyboard_arrow_right</i>
         </button>
         
+        <div class="recipeDisplay_details">
+            <div class="details_tabs">
+                <div class="tabs_ingredients" onclick="">Ingredients</div>
+                <div class="tabs_directions" onclick="">Directions</div>
+                <div class="ingredients_text">1lb meat<br>1tbs salt</div>
+                <div class="directions_text">Cook that shit</div>
+                
+            </div>
+        </div>
         
     </div>
-
+    
+    
 </body>
 
 <script>
-    
-    function load(){
-        next_prev(0);
-    }
-    
     function openItem(idOfItem){
         document.getElementById(idOfItem).style.display = "block";
     }
@@ -113,30 +142,5 @@
     function closeItem(idOfItem){
         document.getElementById(idOfItem).style.display = "none";
     }
-    
-    //for slideshow
-    var c = 0;
-    function next_prev(np){        
-        c = c + np;
-        if(c >= 3){
-            c = 0;
-        }
-        if(c < 0){
-            c = 2;
-        }
-        display("slideshow_image","image"+c);
-        display("image_title", "title"+c);
-        display("image_desc", "desc"+c)
-        
-    }
-    function display(item,id){
-        var x = document.getElementsByClassName(item);
-        for (i = 0; i < x.length; i++) {
-            x[i].style.display = "none";
-        }
-        
-        document.getElementById(id).style.display = "block";
-    }
-    //end slideshow functions    
     
 </script>

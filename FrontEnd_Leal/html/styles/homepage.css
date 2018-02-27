@@ -10,12 +10,22 @@
   height: 100%;
 }
 
+/*_________________________________________________________________
+END OVERALL
+
+INCLUDES: search bar & social media icons
+CLASSES: header, utilBar, socialIcons, ingSearch
+FEATURED IN (.html): homepage , results
+
+START WEBSITE HEADER
+___________________________________________________________________*/
 .header{
     position: absolute;
     width:100%;
     height: 180px;
     background: #ff0055;
     margin: 0;
+    
 }
 
 .header_text{
@@ -25,6 +35,7 @@
     font-weight: 700;
     text-align: center;
     margin-top:-25;
+    text-shadow: 1px 3px 4px #000000;
 }
 
 .header_subtitle{
@@ -52,6 +63,7 @@
     margin-right: 10px;
     margin-left:10px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    z-index: 1;
 }
 
 .utilButton_logIn{
@@ -129,10 +141,15 @@ START UTILITY BAR*/
 }
 
 .utilBar_search{
+    border:0px;
     width:60%;
     height: 50px;
     margin-left:15%;
-    
+    box-shadow: 0 3px 15px 1px rgba(0, 0, 0, 0.1), 0 3px 1px 0 rgba(0, 0, 0, 0.09);
+}
+
+.utilBar_search:hover{
+    box-shadow: 0 3px 15px 1px rgba(0, 0, 0, 0.2), 0 3px 1px 0 rgba(0, 0, 0, 0.19);
 }
 
 .utilBar_submit{
@@ -194,9 +211,52 @@ START INGREDIENT SEARCH*/
     margin-right: 5px;
     margin-top: 5px;
 }
+/*END INGREDIENT SEARCH*/
 
-/*END INGREDIENT SEARCH
-START SLIDESHOW*/
+/*MULTIPLE OBJ EFFECTING*/
+.button{
+	font-size:14px;
+	font-weight: bold;
+	padding:0 15px;
+	line-height: 50px;
+	height: auto;
+	display:inline-block;
+	text-align: center;
+	background-color:#f2f2f2;
+    border: 0;
+    z-index: 1;
+}
+
+.button:hover{
+    background-color: #f3dae2;
+}
+
+.socialButton{
+    width: 50px;
+    height: 50px;
+    display: inline-block;
+    position: relative;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    text-align: center;
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+    z-index: 1;
+    color: #333;
+}
+
+/*_________________________________________________________________
+END WEBSITE HEADER
+
+INCLUDES: slideshow and divider
+CLASSES: slideshow, divider
+FEATURED IN(.html): homepage
+
+START HOMEPAGE BODY
+___________________________________________________________________*/
+
 
 .slideshow_divider{
     position: absolute;
@@ -285,37 +345,106 @@ START SLIDESHOW*/
     color: white;
 }
 
-/*MULTIPLE OBJ EFFECTING*/
-.button{
-	font-size:14px;
-	font-weight: bold;
-	padding:0 15px;
-	line-height: 50px;
-	height: auto;
-	display:inline-block;
-	text-align: center;
-	background-color:#f2f2f2;
-    border: 0;
-}
 
-.button:hover{
-    background-color: #f3dae2;
-}
+/*_________________________________________________________________
+END HOMEPAGE BODY
 
-.socialButton{
-    width: 50px;
-    height: 50px;
-    display: inline-block;
+INCLUDES: recipe display
+CLASSES: recipeDisplay, RDimage
+FEATURED IN(.html): results
+
+START RESULTS BODY
+___________________________________________________________________*/
+
+.recipeDisplay{
     position: relative;
-    -moz-border-radius: 50%;
-    -webkit-border-radius: 50%;
+}
+
+.recipeDisplay_image{
+    position: relative;
+    overflow: hidden;
+    border-radius: 5px;
+    margin-top: 350px;
+    margin-bottom: 50px;
+    width: 400px;
+    box-shadow: 0 6px 10px 2px rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
+
+}
+
+.recipeDisplay_image:hover{
+
+}
+
+.RD_title{
+    position: absolute;
+    background-color: black;
+    border-radius: 5px;
+    height: 70px;
+    width: 400px;
+    opacity: .4;
+    margin-top: -120px;
+}
+
+.RDimage_title{
+    position: absolute;
+    color: white;
+    font-size: 40;
+    font-weight: 300;
+}
+
+.RDimage_info{
+    position: absolute;
+    color:white;
+    padding: 10px;
+    margin-top: 30;
+}
+
+.recipeDisplay_like{
+    position: absolute;
+    margin-top:350px;
+    margin-left:-50px;
     border-radius: 50%;
-    text-align: center;
-    display: inline-block;
-    vertical-align: middle;
+    background-color: #ff0055;
+    color:white;
+    height: 50px;
+    width: 50px;
+}
+
+.recipeDisplay_likes{
+    position: absolute;
+    margin-top: -350px;
+    margin-left: 5px;
+    width:75px;
+    height:75px;
+    background-color: #ff0055;
+    border-radius: 50%;
+    color:white;
+    box-shadow: 0 6px 10px 2px rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.likes{
     position: relative;
-    z-index: 0;
-    color: #333;
+    text-align: center;
+    font-weight: 100;
+    margin-top: 10px;
+}
+
+.likes_num{
+    position: relative;
+    text-align: center;
+    font-size: 30;
+    margin-top: -20px;
+}
+
+.recipeDisplay_openDetails{
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #ff0055;
+    color: white;
+    margin-top: 480px;
+    margin-left: -20px;
 }
 
 

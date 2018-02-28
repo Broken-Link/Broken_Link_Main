@@ -69,41 +69,6 @@
     </div>
     
     <!------------------------------------------------------>
-
-    <div class="recipeDisplay">
-        <image class="recipeDisplay_image" src="images/Hawaiian.jpeg">
-            <div class ="RD_title">
-                <div class="RDimage_title">Hawaiian Burger</div>
-                <div class="RDimage_info">A classic burger with a tropical twist.</div>
-            </div>
-        </image>
-        <button class="recipeDisplay_like" onclick="">
-            <i class="material-icons">favorite_border</i>
-            <!---change to favorite on click--->
-        </button>
-        <div class="recipeDisplay_likes">
-            <h3 class="likes">Likes</h3>
-            <h6 class="likes_num">10</h6>
-        </div>
-        <button class="recipeDisplay_openDetails" onclick="">
-            <i class="material-icons" onclick="">keyboard_arrow_right</i>
-        </button>
-        
-        <div class="recipeDisplay_details">
-            <div class="details_tabs">
-                <div class="tabs_ingredients" onclick="">Ingredients</div>
-                <div class="tabs_directions" onclick="">Directions</div>
-                <div class="">
-                
-                </div>
-                <div class="ingredients_text">1lb meat<br>1tbs salt</div>
-                <div class="directions_text">Cook that shit</div>
-                
-            </div>
-        </div>
-        
-    </div>
-    
     <div class="recipeDisplay">
         <image class="recipeDisplay_image" src="images/Hawaiian.jpeg">
             <div class ="RD_title">
@@ -121,20 +86,23 @@
             <h6 class="likes_num">10</h6>
         </div>
         <button class="recipeDisplay_openDetails">
-            <i class="material-icons" onclick="">keyboard_arrow_right</i>
+            <i class="material-icons" onclick="open_close('RDdetails')">keyboard_arrow_right</i>
         </button>
-        
-        <div class="recipeDisplay_details">
-            <div class="details_tabs">
-                <div class="tabs_ingredients" onclick="">Ingredients</div>
-                <div class="tabs_directions" onclick="">Directions</div>
-                <div class="ingredients_text">1lb meat<br>1tbs salt</div>
-                <div class="directions_text">Cook that shit</div>
+        <div class="recipeDisplay_details" id="RDdetails">
+            <div class="details_tabs" >
+                <button class="tabs tabs_ingredients" id="ingredients" onclick="show('tabs','ingredients'); show2('tabs_text','ingredientsT');">Ingredients</button>
+                <button class=" tabs tabs_directions" id="directions" onclick="show('tabs','directions'); show2('tabs_text','directionsT');">Directions</button>
+                <div class="tabs_divider"></div>
+                <div class="tabs_text ingredients_text" id="ingredientsT">1lb meat<br>1tbs salt</div>
+                <div class="tabs_text directions_text" id="directionsT">Cook that shit</div>
                 
+            
             </div>
         </div>
         
     </div>
+    
+    
     
     
 </body>
@@ -150,6 +118,34 @@ function load(){
     
     function closeItem(idOfItem){
         document.getElementById(idOfItem).style.display = "none";
+    }
+    
+    
+    
+    //for recipeReults
+    function open_close(idOfItem){
+        
+        if(document.getElementById(idOfItem).style.display == "block"){
+            
+            document.getElementById(idOfItem).style.display = "none";
+        } else {
+            document.getElementById(idOfItem).style.display ="block";
+        }
+    }
+    
+    function show(classOfItem, id1){
+        var x = document.getElementsByClassName(classOfItem);
+        for (i = 0; i < x.length; i++) {
+            x[i].style.borderTop = "5px solid #f2f2f2" ;
+        }
+            document.getElementById(id1).style.borderTop= "5px solid #ff0055";
+    }
+    function show2(classOfItem, id1){
+        var x = document.getElementsByClassName(classOfItem);
+        for (i = 0; i < x.length; i++) {
+            x[i].style.display = "none" ;
+        }
+            document.getElementById(id1).style.display="block";
     }
     
     //for slideshow

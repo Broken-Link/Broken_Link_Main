@@ -1,0 +1,10 @@
+
+
+{% block content %}
+    <div>
+        {% if user.is_superuser == 0 %}
+        <h1>{{ user.username }}</h1>
+        <p>{{ user.email }}</p>
+        {% endif %}
+    </div>
+{% endblock %}

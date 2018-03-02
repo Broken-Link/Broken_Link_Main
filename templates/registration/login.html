@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+
+<html>
+{% load static %}
+{% block content %}
+{% if form.errors %}
+<p>Your username and password didn't match. Please try again.</p>
+{% endif %}
+
+{% if next %}
+    {% if user.is_authenticated %}
+    <p>Your account doesn't have access to this page. To proceed,
+    please login with an account that has access.</p>
+    {% else %}
+    <p>Please login to see this page.</p>
+    {% endif %}
+{% endif %}
+ 
+
+<head>
+	<!--StyleSheet-->
+    <link rel = "stylesheet" href = "{% static 'styles/loginSignUP.css' %}">
+	<link rel="stylesheet"  href= "{% static 'styles/loginSignUp(2).css' %}">
+    <link rel = "stylesheet" href = "{% static '/styles/homepage.css' %}">
+    
+    <h1 class="header_text">Open Fridge</h1>
+</head>
+<body class ="page">
+    
+            
+<div class="forms">
+    
+	<form id = "login" action="{% url 'login' %}" method="post" >
+    <h1>Login</h1>
+    <div class="input-field">
+    {% csrf_token %}	    
+	
+    {{ form.username.label_tag }}
+  	{{ form.username }}
+  	{{ form.password.label_tag }}
+    {{ form.password }}
+  	<input class = "button" type="submit" value="login" />
+  	<input type="hidden" name="next" value="{{ next }}" />
+    <p><a href="{% url 'password_reset' %}">Lost password?</a></p>   
+    <p><a href="{% url 'register_page' %}">Sign Up</a></p> 
+	</div>
+	{# Assumes you setup the password_reset view in your URLconf #}
+    </form>
+    
+
+</div>
+
+</body>
+  {% endblock %}
+
+</html>

@@ -12,7 +12,7 @@
     </head>
 
 </html>
-<body onload = "openResource('user_home','uH')">
+<body onload = "load()">
     <!---HEADER--->
     <div class="header">
         <div class="header_text">Open-Fridge</div>
@@ -82,9 +82,24 @@
         <button class = "user_buttons" onclick="openResource('user_resource','uff')">My Favs</button>
         
     </div>
-    
+    <div class="user_taskBar">
+        <div class="user_info">
+            <image class="user_profilePic" src="images/profilePic.jpg"></image>
+            <div class="user_name">Nusret Gokce</div>
+            <div class="user_userName">aka: "Salt-Bae"</div>
+            <div class="user_followerInfo">
+                <div class="follower_text">Followers: </div>
+                <div class="follower_count">17</div>
+                
+                <div class="following_text">Following: </div>
+                <div class="following_count">25</div>
+            </div>
+        </div>
+    </div>
     <div class="user_container">
-        <div class="user_resource user_home" id="uH"></div>
+        <div class="user_resource user_home" id="uH">
+            <h2 class="user_welcome" id="userWelcome">Welcome</h2>
+        </div>
         <div class="user_resource user_recipes" id="uR"></div>
         <div class="user_resource user_following" id="uF"></div>
         <div class="user_resource user_favs" id="uff"></div>
@@ -92,6 +107,11 @@
 </body>
 
 <script>
+    function load(){
+        openResource('user_home','uH');
+    }
+    
+    
     function openItem(idOfItem){
         document.getElementById(idOfItem).style.display = "block";
         //this is here to remove the open side nav button from screen when open

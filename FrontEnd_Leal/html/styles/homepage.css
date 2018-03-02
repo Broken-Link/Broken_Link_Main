@@ -358,13 +358,14 @@ ___________________________________________________________________*/
 .recipeDisplay{
     position: relative;
     z-index: 0;
+    margin-left: 35%;
 }
 
 .recipeDisplay_image{
     position: relative;
     overflow: hidden;
     border-radius: 5px;
-    margin-top: 350px;
+    /* margin-top: 350px;*/
     margin-bottom: 50px;
     width: 400px;
     box-shadow: 0 6px 10px 2px rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
@@ -401,7 +402,7 @@ ___________________________________________________________________*/
 
 .recipeDisplay_like{
     position: absolute;
-    margin-top:350px;
+    /* margin-top: 350px; */
     margin-left:-50px;
     border-radius: 50%;
     background-color: #ff0055;
@@ -443,7 +444,7 @@ ___________________________________________________________________*/
     border-radius: 50%;
     background-color: #ff0055;
     color: white;
-    margin-top: 480px;
+    /* margin-top: 480px;*/
     margin-left: -20px;
     z-index: auto;
 }
@@ -506,6 +507,7 @@ ___________________________________________________________________*/
     font-weight: 300;
     margin-left: 55%;
     margin-top: -45px;
+    
 }
 
 .tabs_divider{
@@ -517,7 +519,8 @@ ___________________________________________________________________*/
 
 .tabs_text{
     position: relative;
-    font-size: 14px;
+    font-size: 16px;
+    font-weight: 100;
     margin-top:60px;
     margin-left: 10%;
     margin-right: 10%;
@@ -535,6 +538,108 @@ ___________________________________________________________________*/
 /*_________________________________________________________________
 END RESULTS BODY
 
+INCLUDES: 
+CLASSES: 
+FEATURED IN(.html): userResults
+
+START USER SEARCH RESULT 
+___________________________________________________________________*/
+
+.userAccount_container{
+    position: relative;
+    z-index: 0;
+    margin-left: 2.5%;
+}
+
+.userAccount_card{
+    position: relative;
+    margin-right: 2.5%;
+    height:160px;
+    border-radius: 5px;
+    z-index: 10;
+}
+
+.whatever{
+    z-index: 0;
+    position: absolute;
+    margin-top: 300px;
+    width: 25%;
+    box-shadow: 0 6px 10px 2px rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    background-color: #f2f2f2;
+    height: 130;
+}
+
+.userAccount_image{
+    position: absolute;
+    margin-top:5px;
+    margin-left: 5px;
+    border-radius: 50%;
+    height:120px;
+}
+
+.userAccount_follow{
+    position: absolute;
+    background-color: #ff0055;
+    border-radius: 50%;
+    z-index: 10;
+    height:40px;
+    width:40px;
+    color:white;
+    margin-top: -20px;
+    margin-left: 94%;
+    box-shadow: 2px -2px 10px 2px rgba(0, 0, 0, 0.3), 2px -2px 20px 0px rgba(0, 0, 0, 0.2);    
+}
+
+.userAccount_name{
+    position: absolute;
+    margin-left: 125px;
+}
+
+.userAccount_userName{
+    position: absolute;
+    margin-left: 130px;
+    margin-top: 40px;
+}
+
+.userAccount_followers{
+    position: absolute;
+}
+
+.followers_text{
+    position: absolute;
+    margin-left: 130px;
+    margin-top: 75;
+    font-size: 14;
+}
+
+.followers_count{
+    position: absolute;
+    margin-left: 196px;
+    margin-top: 75px;
+    font-size: 14px;
+}
+
+.userAccount_recipes{
+    position: absolute;
+}
+
+.recipes_text{
+    position: absolute;
+    margin-left: 125px;
+    margin-top: 95px;
+    font-size: 14px;
+}
+
+.recipes_count{
+    position: absolute;
+    margin-left: 179px;
+    margin-top: 95px;
+    font-size: 14px;
+}
+
+/*_________________________________________________________________
+END USER SEARCH REULT
+
 INCLUDES: account page, user(home,recipes,following,favs)
 CLASSES: recipeDisplay, RDimage
 FEATURED IN(.html): account
@@ -543,7 +648,20 @@ START ACCOUNT PAGE BODY
 ___________________________________________________________________*/
 
 .openSideNav{
-    
+    margin-left: 3px;
+    margin-top: 3px;
+    position: absolute;
+    z-index: 2;
+    font-size: 16;
+    background-color: #f2f2f2;
+    border:0;    
+	font-weight: bold;
+	padding: 0 15px 0 15px;
+	line-height: 50px;
+	height: auto;
+    display: block;
+	text-align:center;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .user_sideNav{
@@ -574,15 +692,87 @@ ___________________________________________________________________*/
 
 .user_resource{
     margin:auto;
+    margin-top: 280px;
     position: absolute;
     margin-left: 5%;
     width: 90%;
     height: 500px;
-    display: block;
+    display: none;
+}
+/*for User Home*/
+.user_home{
+    /*background image here*/
+    background-color: aqua;
 }
 
-.user_home{
-    background-color: aqua;
+.user_welcome{
+    color: white;
+    font-size: 130;
+    padding: 10px;
+    font-weight: 700;
+    text-align: center;
+    margin-top:-25;
+    text-shadow: 1px 3px 4px #000000;
+}
+
+.user_taskBar{
+    position: absolute;
+    margin-top: 231px;
+    width: 100%;
+    height: 100px;
+    
+}
+
+.user_info{
+    position: absolute;
+    width:100%;
+    margin-left: -80px;
+    margin-top: -50px;
+}
+
+.user_profilePic{
+    position: absolute;
+    padding: 10px;
+    border-radius: 50%;
+    height: 75;
+    margin-top: 5px;
+    margin-left: 5%;
+}
+
+.user_name{
+    position: absolute;
+    margin: auto;
+    padding: 10px;
+    margin-left:11%;
+    margin-top: 10px;
+    font-weight: 700;
+    font-size: 20px;
+}
+
+.user_userName{
+    position: relative;
+    margin: auto;
+    padding: 10px;
+    margin-top: 30px;
+    margin-left: 12%;
+    font-size: 14px;
+}
+
+.follower_info{
+    position: relative;
+    margin: auto;
+    margin-left: 12%;
+    margin-top: -10;
+}
+
+.follower_text{
+    position: absolute;
+    
+}
+
+.follower_count{
+    position: absolute;
+    margin-left:75;
 }
 
 .user_recipes{

@@ -69,29 +69,29 @@
     </div>
     
     <!------------------------------------------------------>
-    <div class="recipeDisplay">
-        <image class="recipeDisplay_image" src="images/Hawaiian.jpeg">
+    <div class="recipeDisplay" id="RDDisplay">
+        <image class="recipeDisplay_image" src="images/Hawaiian.jpeg" style="margin-top: 350px;">
             <div class ="RD_title">
                 <div class="RDimage_title">Hawaiian Burger</div>
                 <div class="RDimage_info">A classic burger with a tropical twist.</div>
             </div>
         </image>
             
-        <button class="recipeDisplay_like" onclick="">
-            <i class="material-icons">favorite_border</i>
+        <button class="recipeDisplay_like" onclick="favoriteRecipe('likeIcon')" style="margin-top: 350px;">
+            <i class="material-icons" id="likeIcon">favorite_border</i>
             <!---change to favorite on click--->
         </button>
         <div class="recipeDisplay_likes">
             <h3 class="likes">Likes</h3>
-            <h6 class="likes_num">10</h6>
+            <h6 class="likes_num" id="likesNum">10</h6>
         </div>
-        <button class="recipeDisplay_openDetails">
-            <i class="material-icons" onclick="open_close('RDdetails')">keyboard_arrow_right</i>
+        <button class="recipeDisplay_openDetails" style="margin-top: 480px;">
+            <i class="material-icons" onclick="open_close('RDdetails','RDDisplay')">keyboard_arrow_right</i>
         </button>
         <div class="recipeDisplay_details" id="RDdetails">
             <div class="details_tabs" >
-                <button class="tabs tabs_ingredients" id="ingredients" onclick="show('tabs','ingredients'); show2('tabs_text','ingredientsT');">Ingredients</button>
-                <button class=" tabs tabs_directions" id="directions" onclick="show('tabs','directions'); show2('tabs_text','directionsT');">Directions</button>
+                <button class="tabs tabs_ingredients" id="ingredients" onclick="show('ingredients','directions','ingredientsT','directionsT',1)">Ingredients</button>
+                <button class=" tabs tabs_directions" id="directions" onclick= "show('ingredients','directions','ingredientsT','directionsT',-1)">Directions</button>
                 <div class="tabs_divider"></div>
                 <div class="tabs_text ingredients_text" id="ingredientsT">1lb meat<br>1tbs salt</div>
                 <div class="tabs_text directions_text" id="directionsT">Cook that shit</div>
@@ -102,6 +102,39 @@
         
     </div>
     
+     <div class="recipeDisplay" id="RDDisplay2">
+        <image class="recipeDisplay_image" src="images/Hawaiian.jpeg" style="margin-top: 150px;">
+            <div class ="RD_title">
+                <div class="RDimage_title">Hawaiian Burger</div>
+                <div class="RDimage_info">A classic burger with a tropical twist.</div>
+            </div>
+        </image>
+            
+        <button  class="recipeDisplay_like" onclick="favoriteRecipe('likeIcon2')" style="margin-top: 150px;">
+            <i class="material-icons" id= "likeIcon2">favorite_border</i>
+            <!---change to favorite on click--->
+    
+        </button>
+        <div class="recipeDisplay_likes">
+            <h3 class="likes">Likes</h3>
+            <h6 class="likes_num" id="likesNum2">10</h6>
+        </div>
+        <button class="recipeDisplay_openDetails" style="margin-top: 280px;">
+            <i class="material-icons" onclick="open_close('RDdetails2','RDDisplay2')">keyboard_arrow_right</i>
+        </button>
+        <div class="recipeDisplay_details" id="RDdetails2">
+            <div class="details_tabs" >
+                <button class="tabs tabs_ingredients" id="ingredients2" onclick="show('ingredients2','directions2','ingredientsT2','directionsT2',1)">Ingredients</button>
+                <button class=" tabs tabs_directions" id="directions2" onclick="show('ingredients2','directions2','ingredientsT2','directionsT2',-1)">Directions</button>
+                <div class="tabs_divider"></div>
+                <div class="tabs_text ingredients_text" id="ingredientsT2">1lb meat<br>1tbs salt</div>
+                <div class="tabs_text directions_text" id="directionsT2">Cook that shit</div>
+                
+            
+            </div>
+        </div>
+        
+    </div>
     
     
     
@@ -123,54 +156,56 @@ function load(){
     
     
     //for recipeReults
-    function open_close(idOfItem){
+    function open_close(idOfItem,itemsClassID){
         
         if(document.getElementById(idOfItem).style.display == "block"){
             
             document.getElementById(idOfItem).style.display = "none";
+            document.getElementById(itemsClassID).style.marginLeft="35%";
+
+            
         } else {
             document.getElementById(idOfItem).style.display ="block";
+            document.getElementById(itemsClassID).style.marginLeft="20%";
+
+            
         }
     }
     
-    function show(classOfItem, id1){
-        var x = document.getElementsByClassName(classOfItem);
-        for (i = 0; i < x.length; i++) {
-            x[i].style.borderTop = "5px solid #f2f2f2" ;
+    function show(ingID,direcID,ingTextID,direcTextID, num){
+        //ingredient clicked
+        if(num == 1){
+            //text first
+            document.getElementById(direcTextID).style.display="none";
+            document.getElementById(ingTextID).style.display="block";
+            
+            //borders next
+            document.getElementById(direcID).style.borderTop="5px solid #f2f2f2";
+            document.getElementById(ingID).style.borderTop="5px solid #ff0055";
         }
-            document.getElementById(id1).style.borderTop= "5px solid #ff0055";
-    }
-    function show2(classOfItem, id1){
-        var x = document.getElementsByClassName(classOfItem);
-        for (i = 0; i < x.length; i++) {
-            x[i].style.display = "none" ;
+        //directions closed
+        if(num==-1){
+            document.getElementById(ingTextID).style.display="none";
+            document.getElementById(direcTextID).style.display="block";
+            
+            //borders next
+            document.getElementById(ingID).style.borderTop="5px solid #f2f2f2";
+            document.getElementById(direcID).style.borderTop="5px solid #ff0055";
         }
-            document.getElementById(id1).style.display="block";
+            
     }
     
-    //for slideshow
-    var c = 0;
-    function next_prev(np){        
-        c = c + np;
-        if(c >= 3){
-            c = 0;
+    function favoriteRecipe(id){
+        var x = document.getElementById(id).textContent;
+        if(x == "favorite_border"){
+            //add to favorites table...
+            document.getElementById(id).textContent = "favorite";
+        } else {
+            //remove from favorites table...
+            //decrement likes
+            document.getElementById(id).textContent = "favorite_border";
         }
-        if(c < 0){
-            c = 2;
-        }
-        display("slideshow_image","image"+c);
-        display("image_title", "title"+c);
-        display("image_desc", "desc"+c)
-        
     }
-    function display(item,id){
-        var x = document.getElementsByClassName(item);
-        for (i = 0; i < x.length; i++) {
-            x[i].style.display = "none";
-        }
-        
-        document.getElementById(id).style.display = "block";
-    }
-    //end slideshow functions    
+    
 </script>
 

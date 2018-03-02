@@ -119,7 +119,7 @@ def user_detail(request, pk):
         user = User.objects.get(pk=pk, is_superuser = 0)
         print(user)
         user_recipes = Recipe.objects.filter(username__exact = user)
-        return render(request, 'user_detail.html', {'user': user, 'user_recipes': user_recipes,})
+        return render(request, 'user_detail.html', context = {'user': user, 'user_recipes': user_recipes,})
     except User.DoesNotExist:
         return render(request, '');
 
@@ -129,7 +129,7 @@ def recipe_detail(request, pk):
         print(recipe)
         recipe_ingredients = Ingredients.objects.filter(recipe_id__exact = pk)
         recipe_comments = Comments.objects.filter(recipe_id__exact = pk)
-        return render(request, 'recipe_detail.html', {'recipe': recipe, 'recipe_ingredients':recipe_ingredients, 'recipe_comments': recipe_comments})
+        return render(request, 'recipe_detail.html', context = {'recipe': recipe, 'recipe_ingredients':recipe_ingredients, 'recipe_comments': recipe_comments})
     except recipe.DoesNotExist:
         return render(request, '');
     

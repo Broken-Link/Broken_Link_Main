@@ -67,7 +67,7 @@ class OfficialAccountHasRecipe(models.Model):
 class Recipe(models.Model):
     recipe_id = models.IntegerField(db_column='recipe_id', primary_key=True)  # Field name made lowercase.
     name = models.CharField(db_column='Name', max_length=45)  # Field name made lowercase.
-    steps = models.CharField(db_column='Steps', max_length=500)  # Field name made lowercase.
+    steps = models.TextField(db_column='Steps')  # Field name made lowercase.
     username = models.CharField(max_length=150)
     image = models.CharField(max_length=100, blank=True, null=True)
 

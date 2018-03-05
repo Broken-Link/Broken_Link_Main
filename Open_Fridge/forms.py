@@ -45,9 +45,9 @@ class BaseIngredientFormSet(BaseFormSet):
             return
         ingredients = []
         duplicates = False
-        for forms in self.forms:
-            if forms.cleaned_data:
-                ingredient = forms.cleaned_data['ingredient']
+        for form in self.forms:
+            if form.cleaned_data:
+                ingredient = form.cleaned_data['ingredient']
                 if ingredient in ingredients:
                     duplicates = True
                 ingredients.append(ingredient)

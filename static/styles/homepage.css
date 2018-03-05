@@ -19,7 +19,9 @@ body{
     margin: 0 0 0 0;
     padding: 0 0 0 0;
     background-image: url("../images/WebTitle.jpg");
+    background-attachment: fixed;
     background-size:cover;
+    align-content: center;
 }
 
 h1,h2,h3,h4,h5{
@@ -64,6 +66,7 @@ nav li{
     padding: 0;
     margin: 0;
     clear: none;
+    text-shadow: 1px 3px 5px #000000;
 }
 
 nav a{
@@ -235,13 +238,13 @@ nav a:hover{
 }
 
 footer{
-    height: 10px;
-    width: 100%;
-    color: #f8f8f8;
+    font-family: sans-serif;
+    background: #898B8E;
+    color: #000000;
 }
 
 
-#container{
+.container{
   width: 350px;
   height: 500px;
   background: inherit;
@@ -253,7 +256,7 @@ footer{
   margin-top: -250px;
   border-radius: 8px;
 }
-#container:before{
+.container:before{
   width: 400px;
   height: 550px;
   content: "";

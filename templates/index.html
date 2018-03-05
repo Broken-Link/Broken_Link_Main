@@ -23,26 +23,26 @@
     <div class="page">
         <header>
             <nav>
-<!--                <ul class="nav_social">
+                <ul class="nav_social">
                     <li><a class="icon" href=""><image id="social_icon" src="{% static '/images/facebook.jpg' %}"></image></a></li>
-                    <li><a class="icon" href="" ><image id="social_icon" src="{%static '/images/twitter.jpg '%}"></image></a></li>
+                    <li><a class="icon" href="" ><image id="social_icon" src="{% static '/images/twitter.jpg '%}"></image></a></li>
                     <li><a class="icon" href=""><image id="social_icon" src="{% static '/images/youtube.jpg' %}"></image></a></li>
                 </ul>
--->
+
                 <ul class="nav_site">
 
                     {%block content%}
                     {% if request.user.is_authenticated %}
-                    <li><a class="icon" href="{% url 'logout' %}">Logout</a></li>
-                    {% else %}
                     <li><a class="icon" href="{% url 'register_page'%}">Sign Up</a></li>
                     <li><a class="icon" href="{% url 'login'%}">Log In</a></li>
+                    {% else %}
+                    <li><a class="icon" href="{% url 'logout' %}">Logout</a></li>
                     {% endif %}
                     {%endblock%}
                 </ul>
-                <h1 class="header_text">Open Fridge</h1>
             </nav>
         </header>
+        <h1 class="header_text">Open Fridge</h1>
         <h3 class="header_subtitle">Hungy? Find your next grub here!</h3>
         
 
@@ -89,10 +89,11 @@
         </div>
     -->
     </div>
+    <footer>
+        &copy; Broken Link 2018
+    </footer>
 </body>
-<footer>
-    &copy; Broken Link 2018
-</footer>
+
 
 <script>
     

@@ -114,6 +114,7 @@ def recipe_register(request):
     }
     return render(request, 'recipe_register.html', context)
 
+@login_required
 def user_detail(request, pk):
     try:
         user = User.objects.get(pk=pk, is_superuser = 0)

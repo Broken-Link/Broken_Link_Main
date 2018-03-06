@@ -1,0 +1,211 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name = "viewport" content = "width=device-width", intial-scale = 1>
+        <meta http-equiv = "X-UA-Compatible" content = "IE=edge,chrome = 1">
+        <title>Recipe Search Results</title>
+        <!---CSS--->
+        <link rel = "stylesheet" href = "styles/homepage.css">
+        <!---<link rel = "stylesheet" href = "styles/results.css">--->
+        
+        <!---Utilities--->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    </head>
+
+</html>
+<body>
+    <!---HEADER--->
+    <div class="header">
+        <div class="header_text">Open-Fridge</div>
+        <div class="header_subtitle">Hungry? Find your next grub here!</div>
+        <div class="header_utilButtons">
+            <div class="utilButton_socialText">Follow Us On....</div>
+            <div class="utilButton_socialIcons">
+                <button class="socialIcons_FB socialButton" onclick="">
+                    <image class="FB_icon" src="styles/images/facebook.jpg"></image>
+                </button>
+                <button class="socialIcons_T socialButton" onclick="">
+                    <image class="T_icon" src="styles/images/twitter.jpg"></image>
+                </button>
+                <button class="socialIcons_YT socialButton" onclick="">
+                    <image class="YT_icon" src="styles/images/youtube.jpg"></image>
+                </button>
+            </div>
+            <button class="utilButton_signUp button" onclick="">Sign Up</button>
+            <button class="utilButton_logIn button" onclick="">Log In</button>
+        </div>
+        
+    </div>
+    <!---UTILITY BAR--->
+    <div class="header_utilBar">
+        
+        <!--Browse Button
+        <button class="utilBar_browse button" onclick="showSubMenu()">Browse 
+            <i class="material-icons">arrow_drop_down</i>
+        </button>
+        --->
+        <button class="utilBar_ingredientSearch" onclick="openItem('ingSearchBar')">Ingredient Search</button>
+        <input type="text" class="utilBar_search" placeholder="Search...">
+        <button class="utilBar_submit button" onclick="submitSearch()">Search</button>
+        <button class="utilBar_home socialButton" onclick="">
+            <i class="material-icons">home</i>
+        </button>
+        <button class="utilBar_account socialButton" onclick="">
+            <i class="material-icons">account_circle</i>
+        </button>
+        
+    </div>
+    <!---INGREDIENT SEARCH
+        not displayed until ingredient search is clicked
+    --->
+    <div class="ingredientSearch" id="ingSearchBar">
+        <input type="text" class="ingSearch_incIng" placeholder="Include Ingredient...">
+        <input type="text" class="ingSearch_excIng" placeholder="Exclude Ingredient...">
+        <button class="ingSearch_submit button" onclick="">Search</button>
+        <button class="ingSearch_exit socialButton" onclick="closeItem('ingSearchBar')">
+            <i class="material-icons">close</i>
+        </button>
+        
+    </div>
+    
+    <!------------------------------------------------------>
+    <div class="recipeDisplay" id="RDDisplay">
+        <image class="recipeDisplay_image" src="images/Hawaiian.jpeg" style="margin-top: 350px;">
+            <div class ="RD_title">
+                <div class="RDimage_title">Hawaiian Burger</div>
+                <div class="RDimage_info">A classic burger with a tropical twist.</div>
+            </div>
+        </image>
+            
+        <button class="recipeDisplay_like" onclick="favoriteRecipe('likeIcon')" style="margin-top: 350px;">
+            <i class="material-icons" id="likeIcon">favorite_border</i>
+            <!---change to favorite on click--->
+        </button>
+        <div class="recipeDisplay_likes">
+            <h3 class="likes">Likes</h3>
+            <h6 class="likes_num" id="likesNum">10</h6>
+        </div>
+        <button class="recipeDisplay_openDetails" style="margin-top: 480px;">
+            <i class="material-icons" onclick="open_close('RDdetails','RDDisplay')">keyboard_arrow_right</i>
+        </button>
+        <div class="recipeDisplay_details" id="RDdetails">
+            <div class="details_tabs" >
+                <button class="tabs tabs_ingredients" id="ingredients" onclick="show('ingredients','directions','ingredientsT','directionsT',1)">Ingredients</button>
+                <button class=" tabs tabs_directions" id="directions" onclick= "show('ingredients','directions','ingredientsT','directionsT',-1)">Directions</button>
+                <div class="tabs_divider"></div>
+                <div class="tabs_text ingredients_text" id="ingredientsT">1lb meat<br>1tbs salt</div>
+                <div class="tabs_text directions_text" id="directionsT">Cook that shit</div>
+                
+            
+            </div>
+        </div>
+        
+    </div>
+    
+     <div class="recipeDisplay" id="RDDisplay2">
+        <image class="recipeDisplay_image" src="images/Hawaiian.jpeg" style="margin-top: 150px;">
+            <div class ="RD_title">
+                <div class="RDimage_title">Hawaiian Burger</div>
+                <div class="RDimage_info">A classic burger with a tropical twist.</div>
+            </div>
+        </image>
+            
+        <button  class="recipeDisplay_like" onclick="favoriteRecipe('likeIcon2')" style="margin-top: 150px;">
+            <i class="material-icons" id= "likeIcon2">favorite_border</i>
+            <!---change to favorite on click--->
+    
+        </button>
+        <div class="recipeDisplay_likes">
+            <h3 class="likes">Likes</h3>
+            <h6 class="likes_num" id="likesNum2">10</h6>
+        </div>
+        <button class="recipeDisplay_openDetails" style="margin-top: 280px;">
+            <i class="material-icons" onclick="open_close('RDdetails2','RDDisplay2')">keyboard_arrow_right</i>
+        </button>
+        <div class="recipeDisplay_details" id="RDdetails2">
+            <div class="details_tabs" >
+                <button class="tabs tabs_ingredients" id="ingredients2" onclick="show('ingredients2','directions2','ingredientsT2','directionsT2',1)">Ingredients</button>
+                <button class=" tabs tabs_directions" id="directions2" onclick="show('ingredients2','directions2','ingredientsT2','directionsT2',-1)">Directions</button>
+                <div class="tabs_divider"></div>
+                <div class="tabs_text ingredients_text" id="ingredientsT2">1lb meat<br>1tbs salt</div>
+                <div class="tabs_text directions_text" id="directionsT2">Cook that shit</div>
+                
+            
+            </div>
+        </div>
+        
+    </div>
+    
+    
+    
+</body>
+
+<script>
+function load(){
+        next_prev(0);
+    }
+    
+    function openItem(idOfItem){
+        document.getElementById(idOfItem).style.display = "block";
+    }
+    
+    function closeItem(idOfItem){
+        document.getElementById(idOfItem).style.display = "none";
+    }
+    
+    
+    
+    //for recipeReults
+    function open_close(idOfItem,itemsClassID){
+        
+        if(document.getElementById(idOfItem).style.display == "block"){
+            
+            document.getElementById(idOfItem).style.display = "none";
+            document.getElementById(itemsClassID).style.marginLeft="35%";
+
+            
+        } else {
+            document.getElementById(idOfItem).style.display ="block";
+            document.getElementById(itemsClassID).style.marginLeft="20%";
+
+            
+        }
+    }
+    
+    function show(ingID,direcID,ingTextID,direcTextID, num){
+        //ingredient clicked
+        if(num == 1){
+            //text first
+            document.getElementById(direcTextID).style.display="none";
+            document.getElementById(ingTextID).style.display="block";
+            
+            //borders next
+            document.getElementById(direcID).style.borderTop="5px solid #f2f2f2";
+            document.getElementById(ingID).style.borderTop="5px solid #ff0055";
+        }
+        //directions closed
+        if(num==-1){
+            document.getElementById(ingTextID).style.display="none";
+            document.getElementById(direcTextID).style.display="block";
+            
+            //borders next
+            document.getElementById(ingID).style.borderTop="5px solid #f2f2f2";
+            document.getElementById(direcID).style.borderTop="5px solid #ff0055";
+        }
+            
+    }
+    
+    function favoriteRecipe(id){
+        var x = document.getElementById(id).textContent;
+        if(x == "favorite_border"){
+            //add to favorites table...
+            document.getElementById(id).textContent = "favorite";
+        } else {
+            //remove from favorites table...
+            //decrement likes
+            document.getElementById(id).textContent = "favorite_border";
+        }
+    }
+    
+</script>
+

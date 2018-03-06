@@ -33,10 +33,11 @@
 
                     {%block content%}
                     {% if request.user.is_authenticated %}
+                    <li><a class="icon" href="{% url 'logout' %}">Logout</a></li>
+                    <li><a class="icon" href="{% url 'recipe_register' %}">Register Recipe</a></li>
+                    {%else%}
                     <li><a class="icon" href="{% url 'register_page'%}">Sign Up</a></li>
                     <li><a class="icon" href="{% url 'login'%}">Log In</a></li>
-                    {% else %}
-                    <li><a class="icon" href="{% url 'logout' %}">Logout</a></li>
                     {% endif %}
                     {%endblock%}
                 </ul>

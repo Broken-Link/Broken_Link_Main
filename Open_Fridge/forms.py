@@ -37,7 +37,7 @@ class IngredientForms(forms.Form):
     ingredient = forms.CharField(label='ingredient', max_length=30)
     measurement = forms.DecimalField(label='measurement', max_digits=10)
     unit = forms.CharField(max_length=20, widget=forms.TextInput())
-    additionalinfo = forms.CharField(max_length=100, widget=forms.TextInput())
+    additionalinfo = forms.CharField(max_length=100, widget=forms.TextInput(), initial = "N/A")
 
 
 class BaseIngredientFormSet(BaseFormSet):

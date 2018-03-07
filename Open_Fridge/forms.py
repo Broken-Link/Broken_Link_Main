@@ -3,7 +3,7 @@ import re
 from django.contrib.auth.models import User
 from django.core.exceptions import ObjectDoesNotExist
 from django.forms.formsets import BaseFormSet
-from .models import Ingredients
+from .models import Ingredients, Recipe
 
 class RegistrationForms(forms.Form):
     username = forms.CharField(label='Username', max_length=30)
@@ -27,10 +27,10 @@ class RegistrationForms(forms.Form):
             return username
         raise forms.ValidationError("Username is already taken.")
 
-class RecipeForm(forms.Form):
-    name = forms.CharField(max_length=45, widget=forms.TextInput()) 
-    steps = forms.CharField(max_length=500, widget=forms.TextInput())
-    comments = forms.CharField(max_length=500, widget=forms.TextInput())
+class RecipeForm(forms.ModelForm):
+    class Meta:
+        model = Recipe
+        exclude = ['recipe_id', 'username']
 
 class IngredientForms(forms.Form):
     # recipe_id = forms.IntegerField(label = 'Recipe_id', initial=0)
@@ -38,6 +38,7 @@ class IngredientForms(forms.Form):
     measurement = forms.DecimalField(label='measurement', max_digits=10)
     unit = forms.CharField(max_length=20, widget=forms.TextInput())
     additionalinfo = forms.CharField(max_length=100, widget=forms.TextInput())
+
 
 class BaseIngredientFormSet(BaseFormSet):
     def clean(self):
@@ -57,6 +58,3 @@ class BaseIngredientFormSet(BaseFormSet):
                     'Ingredient must have Name',
                     code = 'no_name'
                 )
-class RecipeImageForm(forms.ModelForm):
-    class Meta:
-        fields = ( 'image',)

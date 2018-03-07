@@ -14,7 +14,8 @@ from .models import Recipe, Ingredients, Comments
 def index(request):
     """
     View function for home page of site.
-    """   
+    """
+
     # Render the HTML template index.html with the data in the context variable
     return render(
         request,
@@ -29,7 +30,6 @@ def database(request) :
     # Generate counts of some of the main objectss
     list_recipes = Recipe.objects.all()
     num_recipes = Recipe.objects.all().count()
-    
     # Render the HTML template index.html with the data in the context variable
     return render(
         request,
@@ -86,7 +86,6 @@ def register_page(request):
         if form.is_valid():
             user = User.objects.create_user(username=form.cleaned_data['username'], password=form.cleaned_data['password1'], email=form.cleaned_data['email'])
             return HttpResponseRedirect('/')
-        
     form = RegistrationForms()
     #variables = RequestContext(request,{'form':form})
     return render(request,
@@ -97,13 +96,16 @@ def register_page(request):
 def recipe_register(request):
     IngredientFormSet = formset_factory(IngredientForms, formset=BaseIngredientFormSet)
     if request.method =='POST':
-        recipe_form = RecipeForm(request.POST)
+        recipe_form = RecipeForm(request.POST, request.FILES)
         ingredient_formset = IngredientFormSet(request.POST)
         if recipe_form.is_valid() and ingredient_formset.is_valid():
-            recipe = Recipe.objects.create(recipe_id = Recipe.objects.all().count() + 1, steps = recipe_form.cleaned_data['steps'], name = recipe_form.cleaned_data['name'], username = request.user.username, image = "NA")
+            new = recipe_form.save(commit=False)
+            new.recipe_id = Recipe.objects.all().count()
+            new.username  = request.user.username
+            new.save()
             new_ingredients = []
             for ing_form in ingredient_formset:
-                new_ingredients.append(Ingredients(recipe_id = recipe.recipe_id, name = ing_form.cleaned_data['ingredient'], measurement = ing_form.cleaned_data['measurement'], unit = ing_form.cleaned_data['unit'], additionalinfo = ing_form.cleaned_data['additionalinfo']))
+                new_ingredients.append(Ingredients(recipe_id = new.recipe_id, name = ing_form.cleaned_data['ingredient'], measurement = ing_form.cleaned_data['measurement'], unit = ing_form.cleaned_data['unit'], additionalinfo = ing_form.cleaned_data['additionalinfo']))
             Ingredients.objects.bulk_create(new_ingredients)
         return HttpResponseRedirect('/index/accountPage/')
     recipe_form = RecipeForm()

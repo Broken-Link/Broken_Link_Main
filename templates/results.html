@@ -1,46 +1,57 @@
-{% block content %}
-<a href="{% url 'index' %}">Home</a>
+{% load static %} {% block content %}
 
-{% if option == "title" %}
-    <h1>Results for: {{searched}}</h1>
-    {%for recipe in list_recipes %}
-<h1><a href = "{% url 'recipe_detail' pk=recipe.pk %}">{{ recipe.name }}</a></h1>
 
-    <ul>
-      <ul>
-         <li>Steps: <br> {{ recipe.steps }} <br><br></li>
+<head>
+    <link rel="icon" href="{% static '/images/fridge.png' %}">
+    <!--StyleSheet-->
+    <link rel="stylesheet" href="{% static 'styles/recipeResults.css' %}">
+</head>
 
-      </ul>
-    </ul>
-    {% endfor %}
-{% elif option == "ingredients" %}
-    <h1>Results for the specified ingredients</h1>
+<body class="page">
+    <header>
+        <a href="{%url 'index'%}">
+            <h1 class="header_text" href="{%url 'index'%}">Open Fridge</h1>
+        </a>
+    </header>
 
-    {% for ing in include %}
-    <h1>{{ ing }}</h1>
-    {% endfor %}	
+    <div id="container">
+        <div class="userContent"><a href="{% url 'index' %}">Home</a> 
+            {% if option == "title" %}
+            <h1>Results for: {{searched}}</h1>
+            {%for recipe in list_recipes %}
+            <h1><a href="{% url 'recipe_detail' pk=recipe.pk %}">{{ recipe.name }}</a></h1>
 
-    {%for recipe in list_recipes %}
-    <h1><a href = "{% url 'recipe_detail' pk=recipe.pk %}">a{{ recipe.title }}</a></h1>
+            <ul>
+                <ul>
+                    <li>Steps: <br> {{ recipe.steps }} <br><br></li>
 
-    <ul>
-      <ul>
-         <li>Steps: <br> {{ recipe.steps }} <br><br></li>
+                </ul>
+            </ul>
+            {% endfor %} {% elif option == "ingredients" %}
+            <h1>Results for the specified ingredients</h1>
 
-      </ul>
-    </ul>
-    	
+            {% for ing in include %}
+            <h1>{{ ing }}</h1>
+            {% endfor %} {%for recipe in list_recipes %}
+            <h1><a href="{% url 'recipe_detail' pk=recipe.pk %}">a{{ recipe.title }}</a></h1>
 
-    {% endfor %}
+            <ul>
+                <ul>
+                    <li>Steps: <br> {{ recipe.steps }} <br><br></li>
 
-{% else %}
-    <h1>Users with: -search- </h1>
-    {% for i in list_users %}
-    <h1><a href =" {% url 'user_detail' pk=i.pk %}">{{ i.username }}</a></h1>
+                </ul>
+            </ul>
 
-    {% endfor %}
 
-{% endif %}
+            {% endfor %} {% else %}
+            <h1>Users with: -search- </h1>
+            {% for i in list_users %}
+            <h1><a href=" {% url 'user_detail' pk=i.pk %}">{{ i.username }}</a></h1>
 
+            {% endfor %} {% endif %}
+        </div>
+    </div>
+
+</body>
 
 {% endblock %}

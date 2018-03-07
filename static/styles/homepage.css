@@ -95,9 +95,9 @@ nav a:hover{
 
 .icon{
     border: 2px;
-    border-radius: 20%;
-    -moz-border-radius:20%;
-    -webkit-border-radius:20%;
+    border-radius: 20% 20% 20% 20%;
+    -moz-border-radius:20% 20% 20% 20%;
+    -webkit-border-radius:20% 20% 20% 20%;
 }
 
 .icon:hover{

@@ -13,31 +13,32 @@
 <head>
     <!--StyleSheet-->
     <link rel="stylesheet" href="{% static 'styles/loginSignUp(2).css' %}">
-    <!-- <link rel="stylesheet" href="{% static '/styles/homepage.css' %}"> -->
-
-    <h1 class="header_text">Open Fridge</h1>
 </head>
 
 <body class="page">
+    <header>
+        <a href="{%url 'index'%}">
+            <h1 class="header_text" href="{%url 'index'%}">Open Fridge</h1>
+        </a>
+    </header>
+    <div id="container">
+        <div class="forms">
+
+            <form class="login" action="{% url 'login' %}" method="post">
+                <h1>Login</h1>
+                <div class="input-field">
+                    {% csrf_token %} {{ form.username.label_tag }} {{ form.username }} {{ form.password.label_tag }} {{ form.password }}
+                    <input class="button" type="submit" value="login" />
+                    <input type="hidden" name="next" value="{{ next }}" />
+                    <p><a href="{% url 'password_reset' %}">Lost password?</a></p>
+                    <p><a href="{% url 'register_page' %}">Sign Up</a></p>
+                </div>
+                {# Assumes you setup the password_reset view in your URLconf #}
+            </form>
 
 
-    <div class="forms">
-
-        <form id="login" action="{% url 'login' %}" method="post">
-            <h1>Login</h1>
-            <div class="input-field">
-                {% csrf_token %} {{ form.username.label_tag }} {{ form.username }} {{ form.password.label_tag }} {{ form.password }}
-                <input class="button" type="submit" value="login" />
-                <input type="hidden" name="next" value="{{ next }}" />
-                <p><a href="{% url 'password_reset' %}">Lost password?</a></p>
-                <p><a href="{% url 'register_page' %}">Sign Up</a></p>
-            </div>
-            {# Assumes you setup the password_reset view in your URLconf #}
-        </form>
-
-
+        </div>
     </div>
-
 </body>
 {% endblock %}
 

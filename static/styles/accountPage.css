@@ -29,7 +29,7 @@ header a:visited {
 
 #container {
     width: 80%;
-    height: 90%;
+    height: 140%;
     background: inherit;
     position: absolute;
     overflow: hidden;
@@ -52,3 +52,64 @@ header a:visited {
     box-shadow: inset 0 0 0 200px rgba(255, 255, 255, 0.2);
     filter: blur(10px);
 }
+
+.userContent_info{
+    position: absolute;
+    z-index: 0;
+    display: block;
+    background-color: #f2f2f2;
+    border-radius: 5px;
+}
+
+.userContent_statscont{
+    height: 200px;
+    width: 700px;
+    top: -620px;
+    left: -560px;
+}
+
+.userContent_profilePic{
+    left:10px;
+    top:10px;
+    position:absolute;
+    width: 150;
+    height: 150;
+    border-radius: 50%;
+}
+
+.userContent_name{
+    position: absolute;
+    top: 160px;
+    left: 10px;
+}
+
+.userContent_stats{
+    position: absolute;
+    left: 500px;
+    top:20px;
+    border-bottom: 2px solid #ff0055;
+
+        
+}
+.userContent_statList{
+    list-style-type: none;
+    position: absolute;
+    left: 500px;
+    top: 70px;
+}
+
+.userContent_recipes{
+    height: 1000px;
+    width: 700px;
+    top: -360px;
+    left: -560px;
+}
+
+.userContent_friends{
+    left: 210px;
+    height: 1260px;
+    width: 360px;
+    top: -620px;
+}
+
+

@@ -1,5 +1,7 @@
+<!---
 {% load static %}
 {%block content%}
+--->
 
 
 <head>
@@ -8,7 +10,10 @@
     <meta name="viewport" content="width=device-width" , intial-scale=1>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome = 1">
     <title>Open Fridge</title>
+    <!---
     <link rel="stylesheet" href="{% static '/styles/accountPage.css' %}">
+    --->
+    <link rel="stylesheet" href="/static/styles/accountPage.css">
     <!--Utilities-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
@@ -24,20 +29,35 @@
         <header>
             <nav>
                 <ul class="nav_social">
+                    <!---
                     <li><a class="icon" href=""><image id="social_icon" src="{% static '/images/facebook.jpg' %}"></image></a></li>
                     <li><a class="icon" href="" ><image id="social_icon" src="{% static '/images/twitter.jpg '%}"></image></a></li>
                     <li><a class="icon" href=""><image id="social_icon" src="{% static '/images/youtube.jpg' %}"></image></a></li>
+                    --->
+                    
+                    <li><a class="icon" href=""><image id="social_icon"    
+                        src="/static/images/facebook.jpg"></image></a></li>
+                    <li><a class="icon" href="" ><image id="social_icon" 
+                        src="/static/images/twitter.jpg"></image></a></li>
+                    <li><a class="icon" href=""><image id="social_icon"
+                        src="/static/images/youtube.jpg"></image></a></li>
+                    
                 </ul>
 
                 <ul class="nav_site">
-
+                    <!---
                     {% if request.user.is_authenticated %}
+                    --->
                     <li><a class="icon" href="{% url 'logout' %}">Logout</a></li>
                     <li><a class="icon" href="{% url 'recipe_register' %}">Create    Recipe</a></li>
+                    <!---
                     {%else%}
+                    --->
                     <li><a class="icon" href="{% url 'register_page'%}">Sign Up</a></li>
                     <li><a class="icon" href="{% url 'login'%}">Log In</a></li>
+                    <!---
                     {% endif %}
+                    --->
                 </ul>
             </nav>
             
@@ -49,13 +69,35 @@
         
         <div id="container">
             <div class="userContent">
+                <!---
                 <a href="{%url 'index'%}">Return To Main Page</a>
                 <p>Welcome {{user.username}} account pages are under construction</p>
                 <p>Please help build our site by adding a recipe</p>
                 <a href="{%url 'recipe_register'%}">Recipe Creation</a>
+                -->
+                <div class="userContent_statscont userContent_info">
+                    <image class="userContent_profilePic" src="/static/images/no_profile_pic.jpg"></image>
+                    <h1 class="userContent_name">UserName Here</h1>
+                    <h1 class="userContent_stats">Stats</h1>
+                    <ul class="userContent_statList">
+                        <li>Recipes: 10</li>
+                        <li>Followers: 11</li>
+                        <li>Following: 32</li>
+                        <li>Likes: 25</li>
+                    </ul>
+                    
+                </div>
+                <div class="userContent_recipes userContent_info">
+                    <!---insert recipe result here--->
+                
+                </div>
+                <div class="userContent_friends userContent_info">
+                    <!---premade friend icons also alread made go here--->
+                </div>
             </div>
         </div>
     </div>
 </body>
-
+<!--
 {% endblock %}
+---> 

@@ -92,33 +92,3 @@ input[type="submit"] {
         transition: all 600ms ease-in-out;
     }
 }
-
-
-
-/*
-.forms .button {
-    border: 0;
-    outline: none;
-    border-radius: 0;
-    padding: 5px 5px;
-    font-size: 5px;
-    font-weight: 300;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    background: #3366ff;
-
-}
-
-.forms .button:hover,
-.button:focus {
-    background: #336;
-}
-
-.text-p {
-    text-align: right;
-}
-
-.text-p a {
-    color: #1383ea;
-}
-*/

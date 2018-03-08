@@ -85,7 +85,7 @@
             <h3 class="likes">Likes</h3>
             <h6 class="likes_num" id="likesNum">10</h6>
         </div>
-        <button class="recipeDisplay_openDetails" style="margin-top: 480px;">
+        <button class="recipeDisplay_openDetails" style="margin-top: 580px;">
             <i class="material-icons" onclick="open_close('RDdetails','RDDisplay')">keyboard_arrow_right</i>
         </button>
         <div class="recipeDisplay_details" id="RDdetails">
@@ -103,10 +103,10 @@
     </div>
     
      <div class="recipeDisplay" id="RDDisplay2">
-        <image class="recipeDisplay_image" src="images/Hawaiian.jpeg" style="margin-top: 150px;">
+        <image class="recipeDisplay_image" src="/static/images/butteredToast.jpeg" style="margin-top: 150px;">
             <div class ="RD_title">
-                <div class="RDimage_title">Hawaiian Burger</div>
-                <div class="RDimage_info">A classic burger with a tropical twist.</div>
+                <div class="RDimage_title">Buttered Toast</div>
+                <div class="RDimage_info">Can't cook...No Problem</div>
             </div>
         </image>
             
@@ -119,7 +119,7 @@
             <h3 class="likes">Likes</h3>
             <h6 class="likes_num" id="likesNum2">10</h6>
         </div>
-        <button class="recipeDisplay_openDetails" style="margin-top: 280px;">
+        <button class="recipeDisplay_openDetails" style="margin-top: 380px;">
             <i class="material-icons" onclick="open_close('RDdetails2','RDDisplay2')">keyboard_arrow_right</i>
         </button>
         <div class="recipeDisplay_details" id="RDdetails2">
@@ -127,14 +127,15 @@
                 <button class="tabs tabs_ingredients" id="ingredients2" onclick="show('ingredients2','directions2','ingredientsT2','directionsT2',1)">Ingredients</button>
                 <button class=" tabs tabs_directions" id="directions2" onclick="show('ingredients2','directions2','ingredientsT2','directionsT2',-1)">Directions</button>
                 <div class="tabs_divider"></div>
-                <div class="tabs_text ingredients_text" id="ingredientsT2">1lb meat<br>1tbs salt</div>
-                <div class="tabs_text directions_text" id="directionsT2">Cook that shit</div>
+                <div class="tabs_text ingredients_text" id="ingredientsT2">2 slices bread<br>1tbs butter</div>
+                <div class="tabs_text directions_text" id="directionsT2">Toast that shit<br>Butter that shit</div>
                 
             
             </div>
         </div>
         
     </div>
+    
     
     
     
@@ -161,12 +162,12 @@ function load(){
         if(document.getElementById(idOfItem).style.display == "block"){
             
             document.getElementById(idOfItem).style.display = "none";
-            document.getElementById(itemsClassID).style.marginLeft="35%";
+            document.getElementById(itemsClassID).style.marginLeft="27%";
 
             
         } else {
             document.getElementById(idOfItem).style.display ="block";
-            document.getElementById(itemsClassID).style.marginLeft="20%";
+            document.getElementById(itemsClassID).style.marginLeft="10%";
 
             
         }

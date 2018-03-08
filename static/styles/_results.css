@@ -4,7 +4,7 @@
 .recipeDisplay{
     position: relative;
     z-index: 0;
-    margin-left: 35%;
+    margin-left: 27%;
 }
 
 .recipeDisplay_image{
@@ -13,7 +13,7 @@
     border-radius: 5px;
     /* margin-top: 350px;*/
     margin-bottom: 50px;
-    width: 400px;
+    width: 700;
     box-shadow: 0 6px 10px 2px rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
 
 }
@@ -27,7 +27,7 @@
     background-color: black;
     border-radius: 5px;
     height: 70px;
-    width: 400px;
+    width: 700px;
     opacity: .4;
     margin-top: -120px;
 }
@@ -49,20 +49,22 @@
 .recipeDisplay_like{
     position: absolute;
     /* margin-top: 350px; */
-    margin-left:-50px;
+    margin-left:-100px;
     border-radius: 50%;
     background-color: #ff0055;
     color:white;
-    height: 50px;
-    width: 50px;
+    font-size: large;
+    height: 100px;
+    width: 100px;
+    
 }
 
 .recipeDisplay_likes{
     position: absolute;
     margin-top: -350px;
     margin-left: 5px;
-    width:75px;
-    height:75px;
+    width:100px;
+    height:100px;
     background-color: #ff0055;
     border-radius: 50%;
     color:white;
@@ -73,7 +75,7 @@
     position: relative;
     text-align: center;
     font-weight: 100;
-    margin-top: 10px;
+    margin-top: 20px;
 }
 
 .likes_num{
@@ -85,13 +87,13 @@
 
 .recipeDisplay_openDetails{
     position: absolute;
-    width: 40px;
-    height: 40px;
+    width: 60px;
+    height: 60px;
     border-radius: 50%;
     background-color: #ff0055;
     color: white;
-    /* margin-top: 480px;*/
-    margin-left: -20px;
+    /*margin-top: 580px;*/
+    margin-left: -30px;
     z-index: auto;
 }
 
@@ -109,10 +111,10 @@
 .recipeDisplay_details{
     position: absolute;
     background:#f2f2f2;
-    margin-top: -350px;
-    margin-left: 400px;
+    margin-top: -500px;
+    margin-left: 700px;
     width: 500px;
-    height: 400px;
+    height: 500px;
     display:;
     z-index: -1;
     display:none;

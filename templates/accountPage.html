@@ -65,7 +65,20 @@
                 <h1 class="header_text" href="{%url 'index'%}">Open Fridge</h1>
             </a>
             
+            
         </header>
+        
+        <div class="main_search">
+            <form action = "{% url 'results' %}" method = 'GET'>    
+                <select class = "search_option" name="option">
+                    <option value="title">Recipe</option>
+                    <option value="ingredients">Ingredients</option>
+                    <option value="user">User</option>
+                </select>       
+                <input type="text"  name = "search" class="utilBar_search" placeholder=" Search...">
+                <button class="utilBar_submitButton button" onclick="submitSearch()">Search</button>
+            </form>
+        </div>
         
         <div id="container">
             <div class="userContent">

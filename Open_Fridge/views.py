@@ -1,5 +1,5 @@
-from django.shortcuts import get_object_or_404, render
-from django.http import HttpResponseRedirect, HttpResponse
+from django.shortcuts import get_object_or_404, render, redirect
+from django.http import HttpResponseRedirect, HttpResponse, JsonResponse
 from django.urls import reverse
 from django.template import RequestContext
 from django.forms.formsets import formset_factory, BaseFormSet
@@ -7,6 +7,8 @@ from .forms import RegistrationForms, IngredientForms, BaseIngredientFormSet, Re
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ValidationError
+from datetime import datetime
+from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
 from .models import Recipe, Ingredients, Comments
@@ -61,6 +63,60 @@ def results(request):
     else:
         list_users = User.objects.filter(username__contains = key, is_superuser = 0);        print(list_users)
         return render(request, 'results.html', context = {'list_users': list_users, 'option':option},)
+
+@csrf_exempt
+def follow(request):
+    if(request.method == 'POST'):
+        username = request.POST.get('username')
+        print("worked")
+        print("action")
+        print("added")
+        followEntry = Following.objects.create(username = request.user.username, followusername = username, datefollowed = datetime.now())
+        print(followEntry)
+        return JsonResponse({})
+    else:
+        print("No")
+        return JsonResponse({})
+    
+@csrf_exempt
+def unfollow(request):
+    if(request.method == 'POST'):
+        username = request.POST.get('username')
+        print("unfollow")
+        print("action")
+        print("delete")
+        Following.objects.filter(username = request.user.username, followusername = username).delete()
+        return JsonResponse({})
+    else:
+        print("No")
+        return JsonResponse({})
+
+@csrf_exempt
+def updateComments(request):
+    if(request.method == 'POST'):
+        recipeID = request.POST.get('recipeId')
+        commenter = request.POST.get('commenter')
+        comment = request.POST.get('comment')
+        print("comment added")
+        Comments.objects.create(recipe_id = recipeID, posterusername = commenter, dateposted = datetime.now(), ucomment = comment)
+        return JsonResponse({})
+    else:
+        print("Comment not added")
+        return JsonResponse({})
+
+@csrf_exempt
+def deleteComment(request):
+    if(request.method == 'POST'):
+        recipeID = request.POST.get('recipeId')
+        commenter = request.POST.get('commenter')
+        comment = request.POST.get('comment')
+        commentID = request.POST.get('commentID')
+        print("comment deleted")
+        Comments.objects.filter(recipe = recipeID, posterusername = commenter, ucomment = comment, id = commentID).delete()
+        return JsonResponse({})
+    else:
+        print("comment wasn't deleted")
+        return JsonResponse({})
 
 def login_view(request):
     username = request.POST['username']

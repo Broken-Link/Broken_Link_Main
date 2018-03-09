@@ -111,6 +111,40 @@ $(document).ready(function() {
 **/    
 </script>
     
+    <!---HEADER--->
+        <!--- Search Bar and Title but its commented as format is incorrect--->
+        <header>
+            <nav>
+                <ul class="nav_social">
+                    <li><a class="icon" href=""><image id="social_icon" src="{% static '/images/facebook.jpg' %}"></image></a></li>
+                    <li><a class="icon" href="" ><image id="social_icon" src="{% static '/images/twitter.jpg '%}"></image></a></li>
+                    <li><a class="icon" href=""><image id="social_icon" src="{% static '/images/youtube.jpg' %}"></image></a></li>
+                </ul>
+
+                <ul>
+                    <a href = "{% url 'index' %}" style ="float:left" ><h1 >Open Fridge</h1>
+                    </a>
+                </ul>
+                    
+                <ul class="nav_site">
+
+                    
+                    {% if request.user.is_authenticated %}
+                    <li><a class="icon" href="{% url 'logout' %}">Logout</a></li>
+                    <li><a class="icon" href="{% url 'recipe_register' %}">Create Recipe</a></li>
+                    <!--- Not needed in account page already 
+                    <li><a class="icon" href="{% url 'accountPage' %}">My Account</a></li> --->
+                    {%else%}
+                    <li><a class="icon" href="{% url 'register_page'%}">Sign Up</a></li>
+                    <li><a class="icon" href="{% url 'login'%}">Log In</a></li>
+                    {% endif %}
+                
+                </ul>
+            </nav>
+        </header>    
+    
+    
+    
     
     <!--- Glass div begins --->
     <div id="container">

@@ -1,10 +1,239 @@
 
 
+<html>
+{% load static %}
 {% block content %}
+
+<head>
+<link rel="icon" href="{% static '/images/fridge.png' %}">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width" , intial-scale=1>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome = 1">
+    <title>Open Fridge</title>
+    
+    <link rel="stylesheet" href="{% static '/styles/accountPage.css' %}">
+    <!---
+    <link rel="stylesheet" href="/static/styles/accountPage.css">
+    <!--Utilities-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+
+    <!--[if lt IE 9]>
+            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+
+</head>
+<body>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"> </script>
+<script>
+/**<!---
+var el = document.getElementById("1follow");
+if(el){
+    el.addEventListener ("click", update_Following(event));  
+}
+    
+var ell = document.getElementById("1following");
+if(ell){
+    addEventListener ("click", update_Unfollowing(event));
+} ---> **/
+function update_Following(){
+        $.ajax({                
+            type: 'POST',
+            url: "{% url 'following' %}",
+            data: $('#follow').serialize(),
+            datatype: 'json',
+            success:function() {
+                console.log("Followed") // check out how data is structured
+                //$('#follow').find(".dynamicFollow").html(data.html)
+            
+            }   
+        })  
+        
+        document.getElementById("follow").style.display="none";
+        document.getElementById("unfollow").style.display="block";
+
+    return false;
+}
+    
+function update_Unfollowing(){
+    $.ajax({                
+      type: 'POST',
+      url: "{% url 'unfollow' %}",
+      data: $('#unfollow').serialize(),
+      datatype: 'json',
+      success: function() {
+        console.log("Unfollowed") // check out how data is structured
+        //$('.1following').contents()[0].textContent = 'follow'
+        
+      }  
+    })
+    
+    document.getElementById("follow").style.display="block";
+    document.getElementById("unfollow").style.display="none";
+    
+    return false;
+}   
+
+  
+/**
+$(document).ready(function() {
+    $('#unfollow').on('submit',function(e) {
+        e.preventDefault();
+        $.post("{% url 'unfollow' %}", $(this).serialize(), function () {
+            // This is executed when the call to mail.php was succesful.
+            // 'data' contains the response from the request
+            console.log("unfollowed")
+        }).error(function() {
+            // This is executed when the call to mail.php failed.
+            
+        });
+        //e.preventDefault();
+        document.getElementById("follow").style.display="block";
+        document.getElementById("unfollow").style.display="none";
+        return false;
+    });
+        
+//});
+    
+//$(document).ready(function() {
+    $('#follow').on('submit',function(e) {
+        e.preventDefault();
+        $.post("{% url 'following' %}", $(this).serialize(), function () {
+            // This is executed when the call to mail.php was succesful.
+            // 'data' contains the response from the request
+            console.log("everything worked!");
+        }).error(function() {
+            // This is executed when the call to mail.php failed.
+        });
+        //e.preventDefault();
+        document.getElementById("follow").style.display="none";
+        document.getElementById("unfollow").style.display="block";
+    return false;
+    });
+  
+
+
+});
+
+**/    
+</script>
+
+    <div id="container">
+    <div class="userContent">
+        <!---
+        <a href="{%url 'index'%}">Return To Main Page</a>
+        <p>Welcome {{user.username}} account pages are under construction</p>
+        <p>Please help build our site by adding a recipe</p>
+        <a href="{%url 'recipe_register'%}">Recipe Creation</a>
+        -->
+    <div class="userContent_statscont userContent_info">
+    <image class="userContent_profilePic" src="{% static '/images/no_profile_pic.jpg' %}"></image>    
+
+    <!--_ displays follow/unfollow button and updates on its own --->
     <div>
-        {% if user.is_superuser == 0 %}
-        <h1>{{ user.username }}</h1>
-        <p>{{ user.email }}</p>
+        {% if userInfo.is_superuser == 0 %}
+        <h1>{{ userInfo.username }}</h1>
+        <p>{{ userInfo.email }}</p>
+
+        {% if following == "true" and userInfo.username != user.username %}    
+        <form  name="unfollow" id ="unfollow" action ="{% url 'unfollow' %}" method="post">    
+            {% csrf_token %}
+        <button id = "unfollowing1" onclick = "update_Unfollowing(); return false;"> Unfollow </button>
+        <input type = "hidden" name = "username" value = "{{userInfo.username}}">
+        </form>
+        
+        {% elif userInfo.username != user.username %}
+        <form  name="follow" id ="follow" action="{% url 'following' %}" method= "post">
+            {% csrf_token %}
+           
+        <button id = "follow1"  onclick = "update_Following(); return false;">Follow </button>
+        <input type = "hidden" name = "username" value = "{{userInfo.username}}">
+        </form>
+        {% else %}
+            <!--- Dont display follow button --->
+        
         {% endif %}
+        {% endif %}
+        
+        <!--- These two forms below are used to display new form after other form is submitted -->
+        <form hidden  name="follow" id ="follow" action="{% url 'following' %}" method= "post">
+            {% csrf_token %}
+           
+        <button id = "follow1"  onclick = "update_Following(); return false;">Follow </button>
+        <input type = "hidden" name = "username" value = "{{userInfo.username}}">
+        </form>
+        
+        <form  hidden name="unfollow" id ="unfollow" action ="{% url 'unfollow' %}" method="post">    
+            {% csrf_token %}
+        <input type = "hidden" name = "username" value = "{{userInfo.username}}">
+        <button id = "unfollowing1" onclick = "update_Unfollowing(); return false;"> Unfollow </button>
+        
+        </form>
     </div>
+                    
+        <h1 class="userContent_name">UserName Here</h1>
+        <h1 class="userContent_stats">Stats</h1>
+        <ul class="userContent_statList">
+            <li>Recipes: 10</li>
+            <li>Followers: 11</li>
+            <li>Following: 32</li>
+            <li>Likes: 25</li>
+        </ul>
+                    
+        </div>
+        <div class="userContent_recipes userContent_info">
+            <!---insert recipe result here--->
+                
+        </div>
+        <div class="userContent_friends">
+        <!---premade friend icons also alread made go here--->
+                    
+        <div class="friend_card">
+            <image class="card_image" src="{% static '/images/no_profile_pic.jpg' %}"></image>
+            <h3 class="card_name">Friends Name</h3>
+            <div class="card_followers card_circle">
+            <h5 class="followers_text">Followers </h5>
+            <h5 class="followers_count"> 18 </h5>
+            </div>
+            
+            <div class="card_recipes card_circle">
+            <h5 class="recipes_text">Recipes </h5>
+            <h5 class="recipes_count"> 15 </h5>
+            </div>
+            
+        </div>
+                    
+        <div class="friend_card">
+            <image class="card_image" src="{% static 'images/no_profile_pic.jpg' %}"></image>
+            <h3 class="card_name">Friends Name</h3>
+            <div class="card_followers card_circle">
+            <h5 class="followers_text">Followers </h5>
+            <h5 class="followers_count"> 18 </h5>
+            </div>
+            
+            <div class="card_recipes card_circle">
+                <h5 class="recipes_text">Recipes </h5>
+                <h5 class="recipes_count"> 15 </h5>
+            </div>
+        </div>
+                    
+                    
+        </div>
+    </div>
+    </div>
+        
+
+    </body>
+
+<!---function SubForm (){
+    $.ajax({
+        url:'/Person/Edit/@Model.Id/',
+        type:'post',
+        data:$('#myForm').serialize(),
+        success:function(){
+            alert("worked");
+        }
+    });
+} --->
 {% endblock %}
+</html>

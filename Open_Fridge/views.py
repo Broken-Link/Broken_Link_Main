@@ -190,8 +190,8 @@ def recipe_detail(request, pk):
         recipe = Recipe.objects.get(pk=pk)
         print(recipe)
         recipe_ingredients = Ingredients.objects.filter(recipe_id__exact = pk)
-        user_friends = Following.objects.filter(username__exact = user)
-        return render(request, 'user_detail.html', context = {'user': user, 'user_recipes': user_recipes, 'user_friends' : user_friends})
+        recipe_comments = Comments.objects.filter(recipe_id__exact = pk)
+        return render(request, 'recipe_detail.html', context = {'recipe': recipe, 'recipe_ingredients':recipe_ingredients, 'recipe_comments': recipe_comments})
     except recipe.DoesNotExist:
         return render(request, '');
     

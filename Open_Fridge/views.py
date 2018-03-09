@@ -175,10 +175,13 @@ def recipe_register(request):
 @login_required
 def user_detail(request, pk):
     try:
-        user = User.objects.get(pk=pk, is_superuser = 0)
-        print(user)
-        user_recipes = Recipe.objects.filter(username__exact = user)
-        return render(request, 'user_detail.html', context = {'user': user, 'user_recipes': user_recipes,})
+        userInfo = User.objects.get(pk=pk, is_superuser = 0)
+        user_recipes = Recipe.objects.filter(username__exact = userInfo)
+        userF = Following.objects.filter(username__exact = request.user.username)
+        user_friends = []
+        for userS in userF:
+            user_friends.append(User.objects.get(username__exact = userS.followusername))
+        return render(request, 'user_detail.html', context = {'userInfo': userInfo, 'user_recipes': user_recipes, 'user_friends' : user_friends})
     except User.DoesNotExist:
         return render(request, '');
 
@@ -194,4 +197,9 @@ def recipe_detail(request, pk):
     
 @login_required
 def accountPage(request):    
-    return render(request, 'accountPage.html', context={})
+user_recipes = Recipe.objects.filter(username__exact = request.user.username)
+    userF = Following.objects.filter(username__exact = request.user.username)
+    user_friends = []
+    for userS in userF:
+        user_friends.append(User.objects.get(username__exact = userS.followusername))
+    return render(request, 'accountPage.html', context = {'user_recipes': user_recipes, 'user_friends' : user_friends})

@@ -137,7 +137,7 @@ $(document).ready(function() {
             <li>Likes: 25</li>
         </ul>
         
-        {% if following == "true" and userInfo.username != user.username %}    
+        {% if following == "true" and userInfo.username != "{{user.username}}" %}    
         <form  name="unfollow" id ="unfollow" action ="{% url 'unfollow' %}" method="post">    
             {% csrf_token %}
         <button id = "unfollowing1" onclick = "update_Unfollowing(); return false;"> Unfollow </button>
@@ -187,8 +187,12 @@ $(document).ready(function() {
              
         {% for friend in user_friends %}
         <div class="friend_card">
+            <!--- GIVE IMAGE A LINK TO THE USERS USER_DETAIL PAGE --->
+            <a href=" {% url 'user_detail' pk=friend.pk %}">
             <image class="card_image" src="{% static '/images/no_profile_pic.jpg' %}"></image>
-            <h3 class="card_name">{{friend.followusername}}</h3>
+            </a>
+            
+            <h3 class="card_name">{{friend.username}}</h3>
             <div class="card_followers card_circle">
             <h5 class="followers_text">Followers </h5>
             <h5 class="followers_count"> 18 </h5>

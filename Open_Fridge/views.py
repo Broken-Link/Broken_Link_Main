@@ -197,7 +197,7 @@ def recipe_detail(request, pk):
     
 @login_required
 def accountPage(request):    
-user_recipes = Recipe.objects.filter(username__exact = request.user.username)
+    user_recipes = Recipe.objects.filter(username__exact = request.user.username)
     userF = Following.objects.filter(username__exact = request.user.username)
     user_friends = []
     for userS in userF:

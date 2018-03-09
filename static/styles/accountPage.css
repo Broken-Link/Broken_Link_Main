@@ -76,6 +76,18 @@ header a:visited {
     width: 150;
     height: 150;
     border-radius: 50%;
+    z-index: 1;
+}
+
+.follow_button{
+    position: absolute;
+    background-color: #ff0055;
+    border-radius: 50%;
+    width: 50;
+    height: 50;
+    color:white;
+    text-align: center;
+    z-index: 2;
 }
 
 .userContent_name{

@@ -68,7 +68,7 @@
             
         </header>
         
-        <div class="main_search isUser">
+        <div class="main_search">
             <form action = "{% url 'results' %}" method = 'GET'>    
                 <select class = "search_option" name="option">
                     <option value="title">Recipe</option>
@@ -90,6 +90,9 @@
                 -->
                 <div class="userContent_statscont userContent_info">
                     <image class="userContent_profilePic" src="/static/images/no_profile_pic.jpg"></image>
+                    <button class="follow_button isUser" onclick="followUser('f_icon')">
+                        <i id="f_icon" class="material-icons" >add_circle_outline</i>
+                    </button>
                     <h1 class="userContent_name">UserName Here</h1>
                     <h1 class="userContent_stats">Stats</h1>
                     <ul class="userContent_statList">
@@ -139,6 +142,19 @@
         </div>
     </div>
 </body>
+
+<script>
+    function followUser(id){
+        var x = document.getElementById(id).textContent;
+        if(x == "add_circle_outline"){
+            //add to favorites table...
+            document.getElementById(id).textContent = "add_circle";
+        } else {
+            //remove from favorites table...
+            document.getElementById(id).textContent = "add_circle_outline";
+        }
+    }
+</script>
 <!--
 {% endblock %}
 ---> 

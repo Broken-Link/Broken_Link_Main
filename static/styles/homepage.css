@@ -4,11 +4,17 @@ header, section, aside, nav, ariticle, figure, figcaption, {
 footer{
     display: block;
     background-color: #FFFFFF;
+    
 }
 
 body{
     margin: 0;
-    padding: 0;
+    padding: 0;  
+    background-image: url("../images/WebTitle.jpg");
+    background-size: cover;
+    background-attachment: fixed;
+    background-size:cover;
+    align-content: center;
 
 }
 
@@ -18,10 +24,7 @@ body{
     font-family: sans-serif;
     margin: 0 0 0 0;
     padding: 0 0 0 0;
-    background-image: url("../images/WebTitle.jpg");
-    background-attachment: fixed;
-    background-size:cover;
-    align-content: center;
+
 }
 
 h1,h2,h3,h4,h5{

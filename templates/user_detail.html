@@ -38,6 +38,7 @@ function update_Following(){
             success:function() {
                 console.log("Followed") // check out how data is structured
                 //$('#follow').find(".dynamicFollow").html(data.html)
+                $("#following").load(location.href+" #following>*","");
             
             }   
         })  
@@ -57,6 +58,7 @@ function update_Unfollowing(){
       success: function() {
         console.log("Unfollowed") // check out how data is structured
         //$('.1following').contents()[0].textContent = 'follow'
+        $("#following").load(location.href+" #following>*","");
         
       }  
     })
@@ -222,7 +224,7 @@ $(document).ready(function() {
             {% endfor %}
             
         </div>
-        <div class="userContent_friends">
+        <div id = "following" class="userContent_friends">
         <!---premade friend icons also alread made go here--->
              
         {% for friend in user_friends %}

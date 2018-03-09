@@ -171,6 +171,8 @@ $(document).ready(function() {
             <li>Likes: 25</li>
         </ul>
         
+        {% if request.user.is_authenticated %} <!--- if statement should stop follow button form appearing --->
+        
         {% if following == "true" and userInfo.username != "{{user.username}}" %}    
         <form  name="unfollow" id ="unfollow" action ="{% url 'unfollow' %}" method="post">    
             {% csrf_token %}
@@ -188,6 +190,7 @@ $(document).ready(function() {
         {% else %}
             <!--- Dont display follow button --->
         
+        {% endif %}
         {% endif %}
         {% endif %}
         

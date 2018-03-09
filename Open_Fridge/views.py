@@ -11,7 +11,7 @@ from datetime import datetime
 from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
-from .models import Recipe, Ingredients, Comments
+from .models import Recipe, Ingredients, Comments, Following
 
 def index(request):
     """

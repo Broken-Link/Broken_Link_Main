@@ -172,7 +172,7 @@ def recipe_register(request):
     }
     return render(request, 'recipe_register.html', context)
 
-@login_required
+#@login_required - throws error when non user searches for users 
 def user_detail(request, pk):
     try:
         userInfo = User.objects.get(pk=pk, is_superuser = 0)

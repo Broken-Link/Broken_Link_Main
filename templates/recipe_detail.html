@@ -1,25 +1,304 @@
+{% load static %}
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name = "viewport" content = "width=device-width", intial-scale = 1>
+        <meta http-equiv = "X-UA-Compatible" content = "IE=edge,chrome = 1">
+        <title>Recipe Search Results</title>
+        <!---CSS--->
+        <link rel = "stylesheet" href ="{% static '/styles/_results.css' %}">
+        <link rel = "stylesheet" href = "{% static '/styles/homepage.css' %}">
+        
+        <!---Utilities--->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    </head>
+<body>
+{% block content %}    
+    <!---HEADER--->
+        <header>
+            <nav>
+                <ul class="nav_social">
+                    <li><a class="icon" href=""><image id="social_icon" src="{% static '/images/facebook.jpg' %}"></image></a></li>
+                    <li><a class="icon" href="" ><image id="social_icon" src="{% static '/images/twitter.jpg '%}"></image></a></li>
+                    <li><a class="icon" href=""><image id="social_icon" src="{% static '/images/youtube.jpg' %}"></image></a></li>
+                </ul>
 
+                <ul class="nav_site">
 
-{% block content %}
-    <div >
-        <h1>{{ recipe.name }}</h1>
-        <h2>{{ recipe.username }}</h2>
-	<p>{{recipe.steps}}<p>
+                    
+                    {% if request.user.is_authenticated %}
+                    <li><a class="icon" href="{% url 'logout' %}">Logout</a></li>
+                    <li><a class="icon" href="{% url 'recipe_register' %}">Create Recipe</a></li>
+                    <li><a class="icon" href="{% url 'accountPage' %}">My Account</a></li>
+                    {%else%}
+                    <li><a class="icon" href="{% url 'register_page'%}">Sign Up</a></li>
+                    <li><a class="icon" href="{% url 'login'%}">Log In</a></li>
+                    {% endif %}
+                
+                </ul>
+            </nav>
+        </header>
+        <h1 class="header_text">Open Fridge</h1>
+        <h3 class="header_subtitle">Hungy? Find your next grub here!</h3>
+        
 
-	{% for ing in recipe_ingredients %}
-    	<h3>{{ ing.name }}</h3>
-	<p>{{ ing.Measurement }}</p>
-	<p>{{ ing.Unit }}</p>
-	<p>{{ ing.AdditionalInfo }}</p>
+        <div class="main_search">
+            <form action = "{% url 'results' %}" method = 'GET'>
+                
+                <select class = "search_option" name="option">
+                    <option value="title">Recipe</option>
+                    <option value="ingredients">Ingredients</option>
+                    <option value="user">User</option>
+                </select>       
+                <input type="text"  name = "search" class="utilBar_search" placeholder="  Search...">
+                <button class="utilBar_submitButton button" onclick="submitSearch()">Search</button>
+            </form>
+        </div>
+        
+                    <!--- Error message when a recipe isn't found. Used header_subtitle for visibility-->
+            <center class = "header_subtitle"> {% if error %}<p><strong>{{error}}</strong></p>{% endif %} </center>
+        
+    
+    <!------------------------------------------------------>
+    <div class="recipeDisplay" id="RDDisplay">
+        <!--- Needs to retrieve image from django --->
+        <image class="recipeDisplay_image" src="{{recipe.image}}" style="margin-top: 350px;">
+            <div class ="RD_title">
+                <div class="RDimage_title">{{ recipe.name }}</div>
+                <div class="RDimage_info">{{ recipe.username }}</div>
+            </div>
+        </image>
+            
+        <button class="recipeDisplay_like" onclick="favoriteRecipe('likeIcon')" style="margin-top: 350px;">
+            <i class="material-icons" id="likeIcon">favorite_border</i>
+            <!---change to favorite on click--->
+        </button>
+        <div class="recipeDisplay_likes">
+            <h3 class="likes">Likes</h3>
+            <h6 class="likes_num" id="likesNum">10</h6>
+        </div>
+        <button class="recipeDisplay_openDetails" style="margin-top: 580px;">
+            <i class="material-icons" onclick="open_close('RDdetails','RDDisplay')">keyboard_arrow_right</i>
+        </button>
+        <div class="recipeDisplay_details" id="RDdetails">
+            <div class="details_tabs" >
+                <button class="tabs tabs_ingredients" id="ingredients" onclick="show('ingredients','directions','ingredientsT','directionsT',1)">Ingredients</button>
+                <button class=" tabs tabs_directions" id="directions" onclick= "show('ingredients','directions','ingredientsT','directionsT',-1)">Directions</button>
+                <!--- add tab for comments --->
+                <div class="tabs_divider"></div>
+                <div class="tabs_text ingredients_text" id="ingredientsT">
+                    
+                    	   {% for ing in recipe_ingredients %}
+                           <h1>{{ ing.name }}</h1>
+	                       <p>{{ ing.Measurement }}</p>
+                           <p>{{ ing.Unit }}</p>
+	                       <p>{{ ing.AdditionalInfo }}</p>
 
-    	{% endfor %}
+                           {% endfor %}
+                    
+                </div>
+                <div class="tabs_text directions_text" id="directionsT">
+                    <p>{{recipe.steps}}</p>
+                </div>
+                
+            
+            </div>
+        </div>
+        
+    </div>
+    
+    <!--- Div should reload when a comment is entered onto the recipe detial page -->
+    <div style = "text-align: center;"> <!-- comments begin --->
+    {% if user.is_authenticated %}
+    <div id = "commentForm">    
+    
+        
+        <form id = "commentUpdate" action = "{% url 'updateComments' %}" method = "post">
+            <input type = "hidden" name = "commenter" value = "{{user.username}}">
+            <input type = "hidden" name = "recipeId" value = "{{recipe.recipe_id}}">
+            <textarea  name = "comment" placeholder="Comment..."></textarea>
+            <button>Post Comment</button>
+        </form>
+    </div>
+    {% endif %}
+        
+    <div id = "currentComments"> Current Comments<!-- used to relaod this division after comments have been created or removed - Append childs to this div!--->       
+        
+    </div>  
+        
+    <div id ="newComment" style ="display: none"> <!--- this division is where new comments are appended to --->      
+    </div>
         
     {% for comment in recipe_comments %}
-    	<h3>{{ comment.posterusername }}</h3>
-	<p>{{ comment.dateposted }}</p>
-    <p>{{ comment.ucomment }}</p>
+            
+        <!-- Form must provide a button to delete a comment with from the recipe. Comments that were posted by the user should only be able to be deleted by them. Owner should delete all comments?. This should probably cause the div Comments to relaod again?  --->
+  
+        <!--- if statement used to determine if person logged in posted comment. If so add a delete button --->
+        {% if user.username == comment.posterusername %}
+        <!--- Delete button currently disabled -->
+        <script> new_entry('currentComments', 'newComment', 'notTrue', '{{comment.posterusername}}', '{{comment.dateposted}}', '{{comment.ucomment}}'); </script> 
+        <!--- appends a comment to div "currentComments" --->
+        
+        {% else %}
+        <p></p>
+        <script> new_entry('currentComments', 'newComment', 'notTrue', '{{comment.posterusername}}', '{{comment.dateposted}}', '{{comment.ucomment}}'); </script>
+        
+        {% endif %}
+        
     {% endfor %}
-	
-
+        
+    </div> <!--- comments end --->
+    
+    <!---
+     <div class="recipeDisplay" id="RDDisplay2">
+        <image class="recipeDisplay_image" src="/static/images/butteredToast.jpeg" style="margin-top: 150px;">
+            <div class ="RD_title">
+                <div class="RDimage_title">Buttered Toast</div>
+                <div class="RDimage_info">Can't cook...No Problem</div>
+            </div>
+        </image>
+            
+        <button  class="recipeDisplay_like" onclick="favoriteRecipe('likeIcon2')" style="margin-top: 150px;">
+            <i class="material-icons" id= "likeIcon2">favorite_border</i>
+            <\!---change to favorite on click---\>
+    
+        </button>
+        <div class="recipeDisplay_likes">
+            <h3 class="likes">Likes</h3>
+            <h6 class="likes_num" id="likesNum2">10</h6>
+        </div>
+        <button class="recipeDisplay_openDetails" style="margin-top: 380px;">
+            <i class="material-icons" onclick="open_close('RDdetails2','RDDisplay2')">keyboard_arrow_right</i>
+        </button>
+        <div class="recipeDisplay_details" id="RDdetails2">
+            <div class="details_tabs" >
+                <button class="tabs tabs_ingredients" id="ingredients2" onclick="show('ingredients2','directions2','ingredientsT2','directionsT2',1)">Ingredients</button>
+                <button class=" tabs tabs_directions" id="directions2" onclick="show('ingredients2','directions2','ingredientsT2','directionsT2',-1)">Directions</button>
+                <div class="tabs_divider"></div>
+                <div class="tabs_text ingredients_text" id="ingredientsT2">2 slices bread<br>1tbs butter</div>
+                <div class="tabs_text directions_text" id="directionsT2">Toast that shit<br>Butter that shit</div>
+                
+            
+            </div>
+        </div>
+        
     </div>
+         --->
+    
+    
+    
+</body>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"> </script> <!--- required for ajax being used --->
+<script>
+function load(){
+        next_prev(0);
+    }
+    
+    function openItem(idOfItem){
+        document.getElementById(idOfItem).style.display = "block";
+    }
+    
+    function closeItem(idOfItem){
+        document.getElementById(idOfItem).style.display = "none";
+    }
+    
+    
+    
+    //for recipeReults
+    function open_close(idOfItem,itemsClassID){
+        
+        if(document.getElementById(idOfItem).style.display == "block"){
+            
+            document.getElementById(idOfItem).style.display = "none";
+            document.getElementById(itemsClassID).style.marginLeft="27%";
+
+            
+        } else {
+            document.getElementById(idOfItem).style.display ="block";
+            document.getElementById(itemsClassID).style.marginLeft="10%";
+
+            
+        }
+    }
+    
+    function show(ingID,direcID,ingTextID,direcTextID, num){
+        //ingredient clicked
+        if(num == 1){
+            //text first
+            document.getElementById(direcTextID).style.display="none";
+            document.getElementById(ingTextID).style.display="block";
+            
+            //borders next
+            document.getElementById(direcID).style.borderTop="5px solid #f2f2f2";
+            document.getElementById(ingID).style.borderTop="5px solid #ff0055";
+        }
+        //directions closed
+        if(num==-1){
+            document.getElementById(ingTextID).style.display="none";
+            document.getElementById(direcTextID).style.display="block";
+            
+            //borders next
+            document.getElementById(ingID).style.borderTop="5px solid #f2f2f2";
+            document.getElementById(direcID).style.borderTop="5px solid #ff0055";
+        }
+            
+    }
+    
+    function favoriteRecipe(id){
+        var x = document.getElementById(id).textContent;
+        if(x == "favorite_border"){
+            //add to favorites table...
+            document.getElementById(id).textContent = "favorite";
+        } else {
+            //remove from favorites table...
+            //decrement likes
+            document.getElementById(id).textContent = "favorite_border";
+        }
+    }
+    
+    //Functions for updating "currentComments" 
+    $(document).ready(function() {
+    $('#commentUpdate').on('submit',function(e) {
+        e.preventDefault();
+        $.post("{% url 'updateComments' %}", $(this).serialize(), function () {
+            // This is executed when the call to mail.php was succesful.
+            // 'data' contains the response from the request
+            console.log("Comment added")
+            $("#currentComments").load(location.href+" #currentComments>*","");
+            
+        }).error(function() {
+            // This is executed when the call to mail.php failed.
+            
+        });
+        //e.preventDefault();
+        //Div load ?
+        
+        
+        document.getElementById("#commentUpdate").style.display="block";
+        return false;
+    });   
+    
+    //Not used in this html
+    $('#deleteComment').on('submit',function(e) {
+        e.preventDefault();
+        $.post("{% url 'deleteComment' %}", $(this).serialize(), function () {
+            // This is executed when the call to mail.php was succesful.
+            // 'data' contains the response from the request
+            console.log("Comment deleted")
+            $("#currentComments").load(location.href+" #currentComments>*","");
+        }).error(function() {
+            // This is executed when the call to mail.php failed.
+            
+        });
+        //e.preventDefault();
+        //Div load ?
+        return false;
+    });       
+    
+}); 
+    
+    
+</script>
 {% endblock %}
+</html>
+

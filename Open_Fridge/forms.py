@@ -31,7 +31,9 @@ class RecipeForm(forms.ModelForm):
     class Meta:
         model = Recipe
         exclude = ['recipe_id', 'username']
-
+class TagForm(forms.Form):
+    tag = forms.CharField(label='tag', max_length=45)        
+        
 class IngredientForms(forms.Form):
     # recipe_id = forms.IntegerField(label = 'Recipe_id', initial=0)
     ingredient = forms.CharField(label='ingredient', max_length=30)

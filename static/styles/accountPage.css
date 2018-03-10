@@ -123,6 +123,7 @@ header a:visited {
     width: 700px;
     top: -390px;
     left: -560px;
+    overflow:scroll;
 }
 
 .userContent_friends{
@@ -265,4 +266,56 @@ header a:visited {
         z-index: 0;
         display: block;
         border-radius: 5px; 
+    }
 }
+
+@media only screen and (max-width: 1000px) and (min-width:800px){
+    .main_search{
+        position: relative;
+        height:60px;
+        top:-30px;
+    }
+    .search_option{
+        height:100%;
+    }
+    .utilBar_search{
+        height:100%;
+    }
+    .utilBar_submitButton{
+        height: 100%;
+    }
+    
+    .userContent_statscont{
+        top:-980px;
+        left:-300px;
+        width: 600px;
+    }
+    
+    .userContent_recipes{
+        top: -730px;
+        left:-300px;
+        width: 600px;
+        word-wrap: break-word;
+        overflow: scroll;
+    }
+    
+    .userContent_stats{
+        left: 380px;
+        top:20px;
+    }
+    
+    .userContent_statList{
+        left: 390px;
+    }
+    
+    .userContent_friends{
+        left: -250px;
+        height: 200px;
+        width: 500px;
+        top: 320px;
+        position: absolute;
+        z-index: 0;
+        display:block;
+        border-radius: 5px; 
+}
+

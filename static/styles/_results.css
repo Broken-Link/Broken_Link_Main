@@ -182,3 +182,32 @@
 .directions_text{
     display:none;
 }
+
+
+@media only screen and (max-width:800px){
+    
+    .recipeDisplay{
+         position: relative;
+        z-index: 0;
+        margin-left: 27%;
+    }
+    
+    .recipeDisplay_image{
+        width:400px
+    }
+    
+    .RD_title{
+        width:400px;
+    }
+    
+    .recipeDisplay_like{
+        margin-left:-50px;
+        height: 50px;
+        width: 50px;
+    }
+    
+    .recipeDisplay_openDetails{
+        width: 50px;
+        height: 50px;
+    }
+}

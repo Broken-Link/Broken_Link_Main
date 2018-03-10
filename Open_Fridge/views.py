@@ -172,18 +172,24 @@ def recipe_register(request):
     }
     return render(request, 'recipe_register.html', context)
 
-#@login_required - throws error when non user searches for users 
+
 def user_detail(request, pk):
     try:
         userInfo = User.objects.get(pk=pk, is_superuser = 0)
         user_recipes = Recipe.objects.filter(username__exact = userInfo)
         userF = Following.objects.filter(username__exact = request.user.username)
         user_friends = []
+        f = Following.objects.filter(username = request.user.username, followusername = userInfo)
+        print(f)
+        following = "false"
+        if len(f) > 0:
+            following = "true"
+                
         for userS in userF:
             user_friends.append(User.objects.get(username__exact = userS.followusername))
-        return render(request, 'user_detail.html', context = {'userInfo': userInfo, 'user_recipes': user_recipes, 'user_friends' : user_friends})
+        return render(request, 'user_detail.html', context = {'userInfo': userInfo, 'user_recipes': user_recipes, 'user_friends' : user_friends, 'following' : following})
     except User.DoesNotExist:
-        return render(request, '');
+        return render(request, '')
 
 def recipe_detail(request, pk):
     try:

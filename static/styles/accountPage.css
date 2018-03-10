@@ -40,6 +40,7 @@ header a:visited {
     right: 10%;
     border-radius: 8px;
     z-index: 0;
+    overflow: scroll;
 }
 
 #container:before {
@@ -52,8 +53,12 @@ header a:visited {
     bottom: 0;
     right: 0;
     background: inherit;
+    /*
     box-shadow: inset 0 0 0 200px rgba(255, 255, 255, 0.2);
+    */
+    background-color: rgba(255,255,255,0.2);
     filter: blur(10px);
+    
 }
 
 .userContent_info{
@@ -208,4 +213,56 @@ header a:visited {
 
 .isUser{
     display:block;
+}
+
+
+
+@media only screen and (max-width: 800px){
+    .main_search{
+        position: relative;
+        height:60px;
+        top:-20px;
+    }
+    .search_option{
+        height:100%;
+    }
+    .utilBar_search{
+        height:100%;
+    }
+    .utilBar_submitButton{
+        height: 100%;
+    }
+    
+    .userContent_statscont{
+        top:-980px;
+        left:-250px;
+        width: 500px;
+    }
+    
+    .userContent_recipes{
+        top: -730px;
+        left:-250px;
+        width: 500px;
+        word-wrap: break-word;
+        overflow: scroll;
+    }
+    
+    .userContent_stats{
+        left: 380px;
+        top:20px;
+    }
+    
+    .userContent_statList{
+        left: 390px;
+    }
+    
+    .userContent_friends{
+        left: -250px;
+        height: 1260px;
+        width: 500px;
+        top: 320px;
+        position: absolute;
+        z-index: 0;
+        display: block;
+        border-radius: 5px; 
 }

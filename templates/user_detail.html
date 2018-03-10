@@ -151,31 +151,6 @@ $(document).ready(function() {
     
     
     <!--- Glass div begins --->
-        <div style = "float:left">
-        <!--- code for follow button can be moved to display it somewhere else --->
-            {% if request.user.is_authenticated %} <!--- if statement should stop follow button form appearing --->
-        
-            {% if following == "true" and userInfo.username != "{{user.username}}" %}    
-             <form  name="unfollow" id ="unfollow" action ="{% url 'unfollow' %}" method="post">    
-                {% csrf_token %}
-            <button id = "unfollowing1" onclick = "update_Unfollowing(); return false;"> Unfollow </button>
-            <input type = "hidden" name = "username" value = "{{userInfo.username}}">
-            </form>
-        
-            {% elif userInfo.username != user.username %}
-            <form  name="follow" id ="follow" action="{% url 'following' %}" method= "post">
-                {% csrf_token %}
-           
-            <button id = "follow1"  onclick = "update_Following(); return false;">Follow </button>
-            <input type = "hidden" name = "username" value = "{{userInfo.username}}">
-            </form>
-             {% else %}
-            <!--- Dont display follow button --->
-        
-             {% endif %}
-        {% endif %} <!-- end of follow button --->    
-        <!--- end of code for follow button --->
-         </div>
         
     <div id="container">
     <div class="userContent">
@@ -201,6 +176,28 @@ $(document).ready(function() {
             <li>Likes: 25</li>
         </ul>
         
+        <!--- code for follow button can be moved to display it somewhere else --->
+        {% if request.user.is_authenticated %} <!--- if statement should stop follow button form appearing --->
+        
+            {% if following == "true" and userInfo.username != "{{user.username}}" %}    
+             <form  name="unfollow" id ="unfollow" action ="{% url 'unfollow' %}" method="post">    
+                {% csrf_token %}
+            <button id = "unfollowing1" onclick = "update_Unfollowing(); return false;"> Unfollow </button>
+            <input type = "hidden" name = "username" value = "{{userInfo.username}}">
+            </form>
+        
+            {% elif userInfo.username != user.username %}
+            <form  name="follow" id ="follow" action="{% url 'following' %}" method= "post">
+                {% csrf_token %}
+           
+            <button id = "follow1"  onclick = "update_Following(); return false;">Follow </button>
+            <input type = "hidden" name = "username" value = "{{userInfo.username}}">
+            </form>
+             {% else %}
+            <!--- Dont display follow button --->
+        
+             {% endif %}
+        {% endif %}    
 
         {% endif %}
         

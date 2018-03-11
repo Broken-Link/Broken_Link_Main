@@ -37,6 +37,8 @@ header a:visited {
     left: 10%;
     right: 10%;
     border-radius: 8px;
+    overflow: scroll;
+
 }
 
 #container:before {

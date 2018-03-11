@@ -55,11 +55,15 @@ def results(request):
             error = "Couldn't find a recipe with that title"
             return render(request, 'index.html', context={ 'error' : error},)        
     elif option == 'ingredients':
-        include = key.split(",")
-        for ing in include:
-            list_recipes = Recipe.objects.filter(ingredients__name = ing).distinct();
-        return render(request, 'results.html', context = {'list_recipes' : list_recipes, 'option':option, 'include': include},)
-
+        if len(list_recipes) >0:
+            include = key.split(",")
+            for ing in include:
+                list_recipes = Recipe.objects.filter(ingredients__name = ing).distinct();
+            return render(request, 'results.html', context = {'list_recipes' : list_recipes, 'option':option, 'include': include},)
+        else:
+            error = "Couldn't find a recipe with those ingredients"
+            return render(request, 'results.html', context = {'error':error})
+        
     else:
         list_users = User.objects.filter(username__contains = key, is_superuser = 0);        print(list_users)
         return render(request, 'results.html', context = {'list_users': list_users, 'option':option},)

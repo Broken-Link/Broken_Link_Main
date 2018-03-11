@@ -73,12 +73,48 @@ function load(){
         var x = document.getElementById(id).textContent;
         if(x == "favorite_border"){
             //add to favorites table...
+            
+            
+            $.ajax({                
+            type: 'POST',
+            url: "{% url 'updateLike' %}",
+            data: $('#updateLikes').serialize(),
+            datatype: 'json',
+            success:function() {
+                console.log("like added")
+               $("#likes").load(location.href+" #likes>*","");
+           //    $("#comments").load(location.href+" #comments>*","");
+                console.log("section reloaded")
+
+            
+            }   
+            }) 
+            
             document.getElementById(id).textContent = "favorite";
+            
         } else {
             //remove from favorites table...
             //decrement likes
+            
+            $.ajax({                
+            type: 'POST',
+            url: "{% url 'removeLike' %}",
+            data: $('#updateLikes').serialize(),
+            datatype: 'json',
+            success:function() {
+                console.log("like removed")
+               $("#likes").load(location.href+" #likes>*","");
+           //    $("#comments").load(location.href+" #comments>*","");
+                console.log("section reloaded")
+
+            
+            }   
+            }) 
+            
+            
             document.getElementById(id).textContent = "favorite_border";
         }
+        return false;
     };
     
     
@@ -190,13 +226,34 @@ function delComment(pks){
             </div>
         </image>
             
-        <button class="recipeDisplay_like" onclick="favoriteRecipe('likeIcon')" style="margin-top: 350px;">
+        {% if user.is_authenticated %}
+        {% if liked == "false" %}
+        <form id = "updateLikes" style = "display:inline">
+        <input type = "hidden" name="recipeOwner" value ="{{ recipe.username }}">
+        <input type = "hidden" name="recipeID" value ="{{ recipe.recipe_id }}">
+        <button class="recipeDisplay_like" onclick="favoriteRecipe('likeIcon'); return false;" style="margin-top: 350px;">
             <i class="material-icons" id="likeIcon">favorite_border</i>
             <!---change to favorite on click--->
         </button>
-        <div class="recipeDisplay_likes">
+        </form>
+        
+        {% else %}
+        
+        <form id = "updateLikes" style = "display:inline">
+        <input type = "hidden" name="recipeOwner" value ="{{ recipe.username }}">
+        <input type = "hidden" name="recipeID" value ="{{ recipe.recipe_id }}">
+        <button class="recipeDisplay_like" onclick="favoriteRecipe('likeIcon'); return false;" style="margin-top: 350px;">
+            <i class="material-icons" id="likeIcon">favorite</i>
+            <!---change to favorite on click--->
+        </button>
+        </form>
+        
+        {% endif %}
+        {% endif %}
+        
+        <div id = "likes" class="recipeDisplay_likes">
             <h3 class="likes">Likes</h3>
-            <h6 class="likes_num" id="likesNum">10</h6>
+            <h6 class="likes_num" id="likesNum">{{ recipe.likes }}</h6>
         </div>
         <button class="recipeDisplay_openDetails" style="margin-top: 580px;">
             <i class="material-icons" onclick="open_close('RDdetails','RDDisplay')">keyboard_arrow_right</i>
@@ -243,6 +300,7 @@ function delComment(pks){
     </div>
     {% endif %}
         
+    <!--- CSS NEEDED --->    
     <div id = "Comments"> Current Comments    
         
     </div>  
@@ -270,7 +328,7 @@ function delComment(pks){
                    
         {% else %}
 
-        <div>
+        <div> 
             
         <h3 >{{comment.ucomment }}</h3>
         <h5> {{comment.dateposted }} </h5>

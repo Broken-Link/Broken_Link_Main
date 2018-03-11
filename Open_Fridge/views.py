@@ -55,15 +55,17 @@ def results(request):
             error = "Couldn't find a recipe with that title"
             return render(request, 'index.html', context={ 'error' : error},)        
     elif option == 'ingredients':
-        if len(list_recipes) >0:
-            include = key.split(",")
-            for ing in include:
-                list_recipes = Recipe.objects.filter(ingredients__name = ing).distinct();
-            return render(request, 'results.html', context = {'list_recipes' : list_recipes, 'option':option, 'include': include},)
+        pKey = key.split(',')
+        print(pkey)
+        list_recipes = []
+        for p in pKey:
+             list_recipes.append(Recipe.objects.all().filter(ingredient__name= p ))
+        list_recipes = set(list_recipes)
+        if len(list_recipes) > 0:
+            return render(request, 'results.html', context = {'list_recipes': list_recipes, 'searched' : q, 'option':option},)
         else:
             error = "Couldn't find a recipe with those ingredients"
-            return render(request, 'results.html', context = {'error':error})
-        
+            return render(request, 'index.html', context={ 'error' : error},)
     else:
         list_users = User.objects.filter(username__contains = key, is_superuser = 0);        print(list_users)
         return render(request, 'results.html', context = {'list_users': list_users, 'option':option},)

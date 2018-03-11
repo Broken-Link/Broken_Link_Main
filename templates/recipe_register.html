@@ -6,7 +6,7 @@
 <p>Register a Recipe</p>
 <p>{{user.username}}</p>
 
-<form method = "post" action="." enctype="multipart/form-data" >{% csrf_token %}
+<form method = "POST" action="." enctype="multipart/form-data" >{% csrf_token %}
     <ul>
         <li>{{recipe_form.name}}</li>
 	<li>{{recipe_form.steps}}</li>

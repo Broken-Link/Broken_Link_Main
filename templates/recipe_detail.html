@@ -12,6 +12,127 @@
         <!---Utilities--->
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     </head>
+    
+<!--- script to run required functions, may be better to store in another file --->    
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"> </script> <!--- required for ajax being used --->
+<script>
+function load(){
+        next_prev(0);
+    };
+    
+    function openItem(idOfItem){
+        document.getElementById(idOfItem).style.display = "block";
+    };
+    
+    function closeItem(idOfItem){
+        document.getElementById(idOfItem).style.display = "none";
+    };
+    
+    
+    //for recipeReults
+    function open_close(idOfItem,itemsClassID){
+        
+        if(document.getElementById(idOfItem).style.display == "block"){
+            
+            document.getElementById(idOfItem).style.display = "none";
+            document.getElementById(itemsClassID).style.marginLeft="27%";
+
+            
+        } else {
+            document.getElementById(idOfItem).style.display ="block";
+            document.getElementById(itemsClassID).style.marginLeft="10%";
+
+            
+        }
+    };
+    
+    function show(ingID,direcID,ingTextID,direcTextID, num){
+        //ingredient clicked
+        if(num == 1){
+            //text first
+            document.getElementById(direcTextID).style.display="none";
+            document.getElementById(ingTextID).style.display="block";
+            
+            //borders next
+            document.getElementById(direcID).style.borderTop="5px solid #f2f2f2";
+            document.getElementById(ingID).style.borderTop="5px solid #ff0055";
+        }
+        //directions closed
+        if(num==-1){
+            document.getElementById(ingTextID).style.display="none";
+            document.getElementById(direcTextID).style.display="block";
+            
+            //borders next
+            document.getElementById(ingID).style.borderTop="5px solid #f2f2f2";
+            document.getElementById(direcID).style.borderTop="5px solid #ff0055";
+        }
+            
+    };
+    
+    function favoriteRecipe(id){
+        var x = document.getElementById(id).textContent;
+        if(x == "favorite_border"){
+            //add to favorites table...
+            document.getElementById(id).textContent = "favorite";
+        } else {
+            //remove from favorites table...
+            //decrement likes
+            document.getElementById(id).textContent = "favorite_border";
+        }
+    };
+    
+    
+//Functions for updating "currentComments" 
+
+    
+function update_Comments(){
+ 
+        $.ajax({                
+            type: 'POST',
+            url: "{% url 'updateComments' %}",
+            data: $('#commentUpdate').serialize(),
+            datatype: 'json',
+            success:function() {
+                console.log("Comment added")
+              //  $('#comments').html(data);
+                
+               $("#commentForm").load(location.href+" #commentForm>*","");
+               $("#comments").load(location.href+" #comments>*","");
+                console.log("section reloaded")
+
+            
+            }   
+        })  
+        
+    return false;
+};  
+            
+// function to delete the newly added set of elements
+function delComment(pks){
+    console.log("called "+ pks)
+	//var ele = this.getElementById("pk");
+    var pk = pks;
+ 
+        $.ajax({                
+            type: 'POST',
+            url: "{% url 'deleteComment' %}",
+            data: {pk},
+            datatype: 'json',
+            success:function() {
+                console.log("Comment deleted")
+                $("#commentForm").load(location.href+" #commentForm>*","");
+                $("#comments").load(location.href+" #comments>*","");
+            
+            }   
+        })  
+        
+
+    return false;
+};    
+</script>    
+    
+    
+    
 <body>
 {% block content %}    
     <!---HEADER--->
@@ -19,7 +140,7 @@
             <nav>
                 <ul class="nav_social">
                     <li><a class="icon" href=""><image id="social_icon" src="{% static '/images/facebook.jpg' %}"></image></a></li>
-                    <li><a class="icon" href="" ><image id="social_icon" src="{% static '/images/twitter.jpg '%}"></image></a></li>
+                    <li><a class="icon" href="" ><image id="social_icon" src="{% static '/images/twitter.jpg'%}"></image></a></li>
                     <li><a class="icon" href=""><image id="social_icon" src="{% static '/images/youtube.jpg' %}"></image></a></li>
                 </ul>
 
@@ -108,7 +229,7 @@
     </div>
     
     <!--- Div should reload when a comment is entered onto the recipe detial page -->
-    <div style = "text-align: center;"> <!-- comments begin --->
+    <div id = "currentComments" style = "text-align: center;"> <!-- comments begin --->
     {% if user.is_authenticated %}
     <div id = "commentForm">    
     
@@ -117,35 +238,51 @@
             <input type = "hidden" name = "commenter" value = "{{user.username}}">
             <input type = "hidden" name = "recipeId" value = "{{recipe.recipe_id}}">
             <textarea  name = "comment" placeholder="Comment..."></textarea>
-            <button>Post Comment</button>
+            <button onclick = "update_Comments(); return false;">Post Comment</button>
         </form>
     </div>
     {% endif %}
         
-    <div id = "currentComments"> Current Comments<!-- used to relaod this division after comments have been created or removed - Append childs to this div!--->       
+    <div id = "Comments"> Current Comments    
         
     </div>  
         
-    <div id ="newComment" style ="display: none"> <!--- this division is where new comments are appended to --->      
-    </div>
-        
+    <div id = "comments"> 
+        <!-- This div is used to reload the comments after one is entered -->
     {% for comment in recipe_comments %}
             
         <!-- Form must provide a button to delete a comment with from the recipe. Comments that were posted by the user should only be able to be deleted by them. Owner should delete all comments?. This should probably cause the div Comments to relaod again?  --->
   
         <!--- if statement used to determine if person logged in posted comment. If so add a delete button --->
-        {% if user.username == comment.posterusername %}
-        <!--- Delete button currently disabled -->
-        <script> new_entry('currentComments', 'newComment', 'notTrue', '{{comment.posterusername}}', '{{comment.dateposted}}', '{{comment.ucomment}}'); </script> 
-        <!--- appends a comment to div "currentComments" --->
         
+        
+        {% if user.username == comment.posterusername %}   
+         <div> <!-- needs CSS -->
+
+            
+        <h3 >{{comment.ucomment }}</h3>
+        <h5> {{comment.dateposted }} </h5>
+        <h5 >{{comment.posterusername}}  </h5>
+        <input id = "pk" hidden name = "pkC" value = "{{comment.pk}}">
+        <button onClick = 'delComment({{comment.pk}}); return false;' >Delete
+                </button>
+        </div>
+                   
         {% else %}
-        <p></p>
-        <script> new_entry('currentComments', 'newComment', 'notTrue', '{{comment.posterusername}}', '{{comment.dateposted}}', '{{comment.ucomment}}'); </script>
+
+        <div>
+            
+        <h3 >{{comment.ucomment }}</h3>
+        <h5> {{comment.dateposted }} </h5>
+        <h5>{{comment.posterusername}} </h5>
+        <input id = "pk" hidden name = "pkC" value = "{{comment.pk}}">
+        </div>
         
         {% endif %}
         
     {% endfor %}
+        
+    </div>
         
     </div> <!--- comments end --->
     
@@ -188,117 +325,7 @@
     
     
 </body>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"> </script> <!--- required for ajax being used --->
-<script>
-function load(){
-        next_prev(0);
-    }
-    
-    function openItem(idOfItem){
-        document.getElementById(idOfItem).style.display = "block";
-    }
-    
-    function closeItem(idOfItem){
-        document.getElementById(idOfItem).style.display = "none";
-    }
-    
-    
-    
-    //for recipeReults
-    function open_close(idOfItem,itemsClassID){
-        
-        if(document.getElementById(idOfItem).style.display == "block"){
-            
-            document.getElementById(idOfItem).style.display = "none";
-            document.getElementById(itemsClassID).style.marginLeft="27%";
 
-            
-        } else {
-            document.getElementById(idOfItem).style.display ="block";
-            document.getElementById(itemsClassID).style.marginLeft="10%";
-
-            
-        }
-    }
-    
-    function show(ingID,direcID,ingTextID,direcTextID, num){
-        //ingredient clicked
-        if(num == 1){
-            //text first
-            document.getElementById(direcTextID).style.display="none";
-            document.getElementById(ingTextID).style.display="block";
-            
-            //borders next
-            document.getElementById(direcID).style.borderTop="5px solid #f2f2f2";
-            document.getElementById(ingID).style.borderTop="5px solid #ff0055";
-        }
-        //directions closed
-        if(num==-1){
-            document.getElementById(ingTextID).style.display="none";
-            document.getElementById(direcTextID).style.display="block";
-            
-            //borders next
-            document.getElementById(ingID).style.borderTop="5px solid #f2f2f2";
-            document.getElementById(direcID).style.borderTop="5px solid #ff0055";
-        }
-            
-    }
-    
-    function favoriteRecipe(id){
-        var x = document.getElementById(id).textContent;
-        if(x == "favorite_border"){
-            //add to favorites table...
-            document.getElementById(id).textContent = "favorite";
-        } else {
-            //remove from favorites table...
-            //decrement likes
-            document.getElementById(id).textContent = "favorite_border";
-        }
-    }
-    
-    //Functions for updating "currentComments" 
-    $(document).ready(function() {
-    $('#commentUpdate').on('submit',function(e) {
-        e.preventDefault();
-        $.post("{% url 'updateComments' %}", $(this).serialize(), function () {
-            // This is executed when the call to mail.php was succesful.
-            // 'data' contains the response from the request
-            console.log("Comment added")
-            $("#currentComments").load(location.href+" #currentComments>*","");
-            
-        }).error(function() {
-            // This is executed when the call to mail.php failed.
-            
-        });
-        //e.preventDefault();
-        //Div load ?
-        
-        
-        document.getElementById("#commentUpdate").style.display="block";
-        return false;
-    });   
-    
-    //Not used in this html
-    $('#deleteComment').on('submit',function(e) {
-        e.preventDefault();
-        $.post("{% url 'deleteComment' %}", $(this).serialize(), function () {
-            // This is executed when the call to mail.php was succesful.
-            // 'data' contains the response from the request
-            console.log("Comment deleted")
-            $("#currentComments").load(location.href+" #currentComments>*","");
-        }).error(function() {
-            // This is executed when the call to mail.php failed.
-            
-        });
-        //e.preventDefault();
-        //Div load ?
-        return false;
-    });       
-    
-}); 
-    
-    
-</script>
 {% endblock %}
 </html>
 

@@ -54,12 +54,34 @@ def results(request):
         else:
             error = "Couldn't find a recipe with that title"
             return render(request, 'index.html', context={ 'error' : error},)        
-    elif option == 'ingredients':
-        include = key.split(",")
-        for ing in include:
-            list_recipes = Recipe.objects.filter(ingredients__name = ing).distinct();
-        return render(request, 'results.html', context = {'list_recipes' : list_recipes, 'option':option, 'include': include},)
+    def results(request):
 
+    option = request.GET.get('option')
+    key = request.GET.get('search')
+    if option == 'title':
+        list_recipes = Recipe.objects.all().filter(name__icontains = key)
+        print(key)
+        print(list_recipes)
+        if len(list_recipes) > 0:
+            q = request.GET['search']
+            list_recipes = Recipe.objects.filter(name__icontains= q)
+            return render(request, 'results.html', context ={'list_recipes' : list_recipes, 'searched' : q, 'opti$
+        else:
+            error = "Couldn't find a recipe with that title"
+            return render(request, 'index.html', context={ 'error' : error},)
+    elif option == 'ingredients':
+        pKey = key.split(',')
+        print(pKey)
+        #DEFAULT the first ingredient filter
+        list_recipes = Recipe.objects.all()
+        for p in pKey:
+            list_recipes = list_recipes.filter(ingredients__name=p)
+        if len(list_recipes) > 0:
+            q = request.GET['search']
+            return render(request, 'results.html', context = {'list_recipes': list_recipes, 'searched' : q, 'opti$
+        else:
+            error = "Couldn't find a recipe with those ingredients"
+            return render(request, 'index.html', context={ 'error' : error},)
     else:
         list_users = User.objects.filter(username__contains = key, is_superuser = 0);        print(list_users)
         return render(request, 'results.html', context = {'list_users': list_users, 'option':option},)
@@ -107,12 +129,9 @@ def updateComments(request):
 @csrf_exempt
 def deleteComment(request):
     if(request.method == 'POST'):
-        recipeID = request.POST.get('recipeId')
-        commenter = request.POST.get('commenter')
-        comment = request.POST.get('comment')
-        commentID = request.POST.get('commentID')
+        commentID = request.POST.get('pk')
         print("comment deleted")
-        Comments.objects.filter(recipe = recipeID, posterusername = commenter, ucomment = comment, id = commentID).delete()
+        Comments.objects.filter(id = commentID).delete()
         return JsonResponse({})
     else:
         print("comment wasn't deleted")
@@ -151,26 +170,33 @@ def register_page(request):
 @login_required
 def recipe_register(request):
     IngredientFormSet = formset_factory(IngredientForms, formset=BaseIngredientFormSet)
+    recipe_form = RecipeForm(request.POST, request.FILES)
     if request.method =='POST':
-        recipe_form = RecipeForm(request.POST, request.FILES)
         ingredient_formset = IngredientFormSet(request.POST)
+        print(recipe_form.is_valid())
+        print(ingredient_formset.is_valid())
         if recipe_form.is_valid() and ingredient_formset.is_valid():
-            new = recipe_form.save(commit=False)
-            new.recipe_id = Recipe.objects.all().count()
-            new.username  = request.user.username
-            new.save()
-            new_ingredients = []
-            for ing_form in ingredient_formset:
-                new_ingredients.append(Ingredients(recipe_id = new.recipe_id, name = ing_form.cleaned_data['ingredient'], measurement = ing_form.cleaned_data['measurement'], unit = ing_form.cleaned_data['unit'], additionalinfo = ing_form.cleaned_data['additionalinfo']))
-            Ingredients.objects.bulk_create(new_ingredients)
-        return HttpResponseRedirect('/index/accountPage/')
-    recipe_form = RecipeForm()
+                new = recipe_form.save(commit=False)
+                new.recipe_id = Recipe.objects.all().count()
+                new.username  = request.user.username
+                new.save()
+                new_ingredients = []
+                for ing_form in ingredient_formset:
+                    new_ingredients.append(Ingredients(recipe_id = new.recipe_id, name = ing_form.cleaned_data['ingredient'], measurement = ing_form.cleaned_data['measurement'], unit = ing_form.cleaned_data['unit'], additionalinfo = ing_form.cleaned_data['additionalinfo']))
+                Ingredients.objects.bulk_create(new_ingredients)
+                return HttpResponseRedirect('/index/accountPage')
+                print("Success in entering a recipe")
+        else:
+                print("Not Entered")
+                return HttpResponseRedirect('/index/recipe_register')
     ingredient_formset = IngredientFormSet()
+    recipe_form = RecipeForm()
     context = {
        'ingredient_formset' : ingredient_formset,
        'recipe_form' : recipe_form,
     }
     return render(request, 'recipe_register.html', context)
+
 
 
 def user_detail(request, pk):

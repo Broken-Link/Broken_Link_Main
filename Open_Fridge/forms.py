@@ -60,3 +60,20 @@ class BaseIngredientFormSet(BaseFormSet):
                     'Ingredient must have Name',
                     code = 'no_name'
                 )
+class BaseTagFormSet(BaseFormSet):
+    def clean(self):
+        if any(self.errors):
+            return
+        tags = []
+        duplicates = False
+        for form in self.forms:
+            if form.cleaned_data:
+                tags = form.cleaned_data['tags']
+                if tag in tags:
+                    duplicates = True
+                tags.append(tag)
+            if duplicates:
+                raise forms.ValidationError(
+                'tag must have name',
+                code = 'no_name'
+                )

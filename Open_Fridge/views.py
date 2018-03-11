@@ -171,11 +171,12 @@ def register_page(request):
 def recipe_register(request):
     IngredientFormSet = formset_factory(IngredientForms, formset=BaseIngredientFormSet)
     recipe_form = RecipeForm(request.POST, request.FILES)
+    tag_form = TagForm(request.POST)
     if request.method =='POST':
         ingredient_formset = IngredientFormSet(request.POST)
         print(recipe_form.is_valid())
         print(ingredient_formset.is_valid())
-        if recipe_form.is_valid() and ingredient_formset.is_valid():
+        if recipe_form.is_valid() and ingredient_formset.is_valid() and tag_form.is_valid():
                 new = recipe_form.save(commit=False)
                 new.recipe_id = Recipe.objects.all().count()
                 new.username  = request.user.username
@@ -184,6 +185,7 @@ def recipe_register(request):
                 for ing_form in ingredient_formset:
                     new_ingredients.append(Ingredients(recipe_id = new.recipe_id, name = ing_form.cleaned_data['ingredient'], measurement = ing_form.cleaned_data['measurement'], unit = ing_form.cleaned_data['unit'], additionalinfo = ing_form.cleaned_data['additionalinfo']))
                 Ingredients.objects.bulk_create(new_ingredients)
+                Tags.objects.create(tag_form)
                 return HttpResponseRedirect('/index/accountPage')
                 print("Success in entering a recipe")
         else:
@@ -191,9 +193,11 @@ def recipe_register(request):
                 return HttpResponseRedirect('/index/recipe_register')
     ingredient_formset = IngredientFormSet()
     recipe_form = RecipeForm()
+    tag_form = TagForm()
     context = {
        'ingredient_formset' : ingredient_formset,
        'recipe_form' : recipe_form,
+       'tag_form' : tag_form,
     }
     return render(request, 'recipe_register.html', context)
 

@@ -85,7 +85,7 @@ class Tags(models.Model):
         db_table = 'Tags'
         
 class UserStats(models.Model):
-    iduser_stats = models.AutoField(db_column='idUser Stats', primary_key=True)  # Field name made lowercase. Field renamed to remove unsuitable characters.
+    userid = models.IntegerField(db_column='userID', primary_key=True)  # Field name made lowercase.
     username = models.CharField(max_length=150)
     followers = models.IntegerField()
     following = models.IntegerField()

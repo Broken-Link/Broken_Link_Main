@@ -3,7 +3,7 @@ from django.http import HttpResponseRedirect, HttpResponse, JsonResponse
 from django.urls import reverse
 from django.template import RequestContext
 from django.forms.formsets import formset_factory, BaseFormSet
-from .forms import RegistrationForms, IngredientForms, BaseIngredientFormSet, RecipeForm
+from .forms import RegistrationForms, IngredientForms, BaseIngredientFormSet, RecipeForm, TagForms, BaseTagFormSet
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ValidationError
@@ -11,7 +11,7 @@ from datetime import datetime
 from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
-from .models import Recipe, Ingredients, Comments, Following, UserStats, Likes
+from .models import Recipe, Ingredients, Comments, Following, UserStats, Likes, Tags
 
 def index(request):
     """
@@ -235,7 +235,7 @@ def recipe_register(request):
                 return HttpResponseRedirect('/index/recipe_register')
     ingredient_formset = IngredientFormSet()
     recipe_form = RecipeForm()
-    tag_form = TagForm()
+    tag_form = TagForms()
     context = {
        'ingredient_formset' : ingredient_formset,
        'recipe_form' : recipe_form,

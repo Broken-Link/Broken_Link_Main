@@ -11,7 +11,7 @@ from datetime import datetime
 from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
-from .models import Recipe, Ingredients, Comments, Following
+from .models import Recipe, Ingredients, Comments, Following, UserStats, Likes
 
 def index(request):
     """
@@ -94,6 +94,14 @@ def follow(request):
         print("action")
         print("added")
         followEntry = Following.objects.create(username = request.user.username, followusername = username, datefollowed = datetime.now())
+        userFollowing = UserStats.objects.get(username = request.user.username)
+        userFollowing.following += 1
+        userFollowing.save()
+
+        userFollowed = UserStats.objects.get(username = username)
+        userFollowed.followers += 1
+        userFollowed.save()
+        
         print(followEntry)
         return JsonResponse({})
     else:
@@ -108,6 +116,13 @@ def unfollow(request):
         print("action")
         print("delete")
         Following.objects.filter(username = request.user.username, followusername = username).delete()
+        userFollowing = UserStats.objects.get(username = request.user.username)
+        userFollowing.following -= 1
+        userFollowing.save()
+
+        userFollowed = UserStats.objects.get(username = username)
+        userFollowed.followers -= 1
+        userFollowed.save()
         return JsonResponse({})
     else:
         print("No")
@@ -136,6 +151,46 @@ def deleteComment(request):
     else:
         print("comment wasn't deleted")
         return JsonResponse({})
+
+@csrf_exempt
+def updateLike(request):
+    if(request.method == 'POST'):
+        recipeID = request.POST.get('recipeID')
+        recipeOwner = request.POST.get('recipeOwner')
+        print("like added" + recipeID)
+        recipe = Recipe.objects.get(recipe_id = recipeID)
+        print(recipe)
+        print(recipe.likes)
+        recipe.likes += 1
+        recipe.save()
+        Likes.objects.create(username = request.user.username, recipeid = recipeID, dateliked= datetime.now(), recipeowner = recipeOwner)
+        owner = UserStats.objects.get(username = recipeOwner)
+        owner.likes += 1
+        owner.save()
+        return JsonResponse({})
+    else:
+        print("Comment not added")
+        return JsonResponse({})
+
+@csrf_exempt
+def removeLike(request):
+    if(request.method == 'POST'):
+        print("like removed")
+        recipeID = request.POST.get('recipeID')
+        recipeOwner = request.POST.get('recipeOwner')
+        recipe = Recipe.objects.get(recipe_id = recipeID)
+        print(recipe.likes)
+        recipe.likes -= 1
+        recipe.save()
+        Likes.objects.get(username = request.user.username, recipeid = recipeID).delete()
+        owner = UserStats.objects.get(username = recipeOwner)
+        owner.likes -= 1
+        owner.save()
+        return JsonResponse({})
+    else:
+        print("comment wasn't deleted")
+        return JsonResponse({})
+
 
 def login_view(request):
     username = request.POST['username']
@@ -208,17 +263,19 @@ def user_detail(request, pk):
     try:
         userInfo = User.objects.get(pk=pk, is_superuser = 0)
         user_recipes = Recipe.objects.filter(username__exact = userInfo)
-        userF = Following.objects.filter(username__exact = request.user.username)
+        userF = Following.objects.filter(username__exact = userInfo.username)
         user_friends = []
         f = Following.objects.filter(username = request.user.username, followusername = userInfo)
+        userStats = UserStats.objects.get(username__exact = userInfo.username)
         print(f)
         following = "false"
         if len(f) > 0:
             following = "true"
                 
         for userS in userF:
-            user_friends.append(User.objects.get(username__exact = userS.followusername))
-        return render(request, 'user_detail.html', context = {'userInfo': userInfo, 'user_recipes': user_recipes, 'user_friends' : user_friends, 'following' : following})
+            user_friends.append(UserStats.objects.get(username__exact = userS.followusername))
+
+        return render(request, 'user_detail.html', context = {'userInfo': userInfo, 'user_recipes': user_recipes, 'user_friends' : user_friends, 'following' : following, 'userStats' : userStats})
     except User.DoesNotExist:
         return render(request, '')
 
@@ -228,7 +285,15 @@ def recipe_detail(request, pk):
         print(recipe)
         recipe_ingredients = Ingredients.objects.filter(recipe_id__exact = pk)
         recipe_comments = Comments.objects.filter(recipe_id__exact = pk)
-        return render(request, 'recipe_detail.html', context = {'recipe': recipe, 'recipe_ingredients':recipe_ingredients, 'recipe_comments': recipe_comments})
+        liked = "false"
+
+
+        if request.user.is_authenticated:
+            likedR = Likes.objects.filter(username = request.user.username, recipeid = pk)
+            if len(likedR) > 0:
+               liked = "true"
+           
+        return render(request, 'recipe_detail.html', context = {'recipe': recipe, 'recipe_ingredients':recipe_ingredients, 'recipe_comments': recipe_comments, 'liked':liked})
     except recipe.DoesNotExist:
         return render(request, '');
     
@@ -237,6 +302,7 @@ def accountPage(request):
     user_recipes = Recipe.objects.filter(username__exact = request.user.username)
     userF = Following.objects.filter(username__exact = request.user.username)
     user_friends = []
+    userStats = UserStats.objects.get(username__exact = request.user.username)
     for userS in userF:
         user_friends.append(User.objects.get(username__exact = userS.followusername))
-    return render(request, 'accountPage.html', context = {'user_recipes': user_recipes, 'user_friends' : user_friends})
+    return render(request, 'accountPage.html', context = {'user_recipes': user_recipes, 'user_friends' : user_friends, 'userStats' : userStats})

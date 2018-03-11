@@ -201,6 +201,7 @@ def register_page(request):
         form = RegistrationForms(request.POST)
         if form.is_valid():
             user = User.objects.create_user(username=form.cleaned_data['username'], password=form.cleaned_data['password1'], email=form.cleaned_data['email'])
+            UserStats.objects.create(userID = user.id, username = user.username, followers = 0, following = 0, recipes = 0, likes = 0)
             return HttpResponseRedirect('/')
     form = RegistrationForms()
     #variables = RequestContext(request,{'form':form})

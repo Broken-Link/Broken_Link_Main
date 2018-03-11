@@ -57,10 +57,10 @@ def results(request):
     elif option == 'ingredients':
         pKey = key.split(',')
         print(pkey)
-        list_recipes = []
+        #DEFAULT the first ingredient filter
+        list_recipes = Recipe.objects.all().filter(ingredients__name= pkey[0])
         for p in pKey:
-             list_recipes.append(Recipe.objects.all().filter(ingredient__name= p ))
-        list_recipes = set(list_recipes)
+            list_recipes.filter(ingredients__name=p)
         if len(list_recipes) > 0:
             return render(request, 'results.html', context = {'list_recipes': list_recipes, 'searched' : q, 'option':option},)
         else:

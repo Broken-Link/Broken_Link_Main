@@ -48,7 +48,7 @@ class Ingredients(models.Model):
     measurement = models.DecimalField(db_column='Measurement', max_digits=10, decimal_places=2)  # Field name made lowercase.
     unit = models.CharField(db_column='Unit', max_length=20, blank=True, null=True)  # Field name made lowercase.
     additionalinfo = models.CharField(db_column='AdditionalInfo', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    id = models.CharField(db_column="id", max_length=100, blank=True, null=False, primary_key=True)
+    
     class Meta:
         managed = False
         db_table = 'INGREDIENTS'
@@ -65,11 +65,12 @@ class OfficialAccountHasRecipe(models.Model):
 
 
 class Recipe(models.Model):
-    recipe_id = models.IntegerField(db_column='recipe_id', primary_key=True)  # Field name made lowercase.
+    recipe_id = models.IntegerField(db_column='Recipe_id', primary_key=True)  # Field name made lowercase.
     name = models.CharField(db_column='Name', max_length=45)  # Field name made lowercase.
     steps = models.TextField(db_column='Steps')  # Field name made lowercase.
     username = models.CharField(max_length=150)
     image = models.ImageField(upload_to = '/static/images/')
+    likes = models.IntegerField()
     class Meta:
         managed = False
         db_table = 'RECIPE'
@@ -82,3 +83,27 @@ class Tags(models.Model):
     class Meta:
         managed = False
         db_table = 'Tags'
+        
+class UserStats(models.Model):
+    iduser_stats = models.AutoField(db_column='idUser Stats', primary_key=True)  # Field name made lowercase. Field renamed to remove unsuitable characters.
+    username = models.CharField(max_length=150)
+    followers = models.IntegerField()
+    following = models.IntegerField()
+    recipes = models.IntegerField()
+    likes = models.IntegerField()
+    accountimage = models.CharField(db_column='accountImage', max_length=100, blank=True, null=True)  # Field name made lowercase.
+
+    class Meta:
+        managed = False
+        db_table = 'User_Stats'
+        
+class Likes(models.Model):
+    idlikes = models.AutoField(db_column='idLikes', primary_key=True)  # Field name made lowercase.
+    username = models.CharField(max_length=150)
+    recipeid = models.IntegerField(db_column='recipeID')  # Field name made lowercase.
+    dateliked = models.DateTimeField(db_column='dateLiked')  # Field name made lowercase.
+    recipeowner = models.CharField(db_column='recipeOwner', max_length=150)  # Field name made lowercase.
+
+    class Meta:
+        managed = False
+        db_table = 'Likes'

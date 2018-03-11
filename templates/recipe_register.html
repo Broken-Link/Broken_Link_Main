@@ -12,13 +12,19 @@
 	<li>{{recipe_form.steps}}</li>
         <li>{{recipe_form.image}}</li>
 	
-	{{ tag_formset.management_form }}
-        {%for tag in tag_formset%}    
-	<div class = tag_formset>
-	    <li>{{tag_form.tag}}</li>
-	</div>
     </ul>
+        {{ tag_formset.management_form }}
+        {%for tag in tag_formset%}
+        <div class = "tag_formset">
+            <ul>
+            <li>{{tag_form.tag}}</li>
+            </ul>
+        </div>
+        {%endfor%}
 
+
+	
+	
     {{ ingredient_formset.management_form }}
     {%for ingred in ingredient_formset%}
     <div class = "ingredient_formset">

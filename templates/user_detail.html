@@ -138,9 +138,13 @@ $(document).ready(function() {
                     {% if request.user.is_authenticated %}
                     <li><a class="icon" href="{% url 'logout' %}">Logout</a></li>
                     <li><a class="icon" href="{% url 'recipe_register' %}">Create Recipe</a></li>
-                    <!--- Not needed in account page already 
-                    <li><a class="icon" href="{% url 'accountPage' %}">My Account</a></li> --->
-                    {%else%}
+                    
+                    
+                    {% if request.user != userInfo.username %}
+                    <li><a class="icon" href="{% url 'accountPage' %}">My Account</a></li>
+                    {% endif %}
+                    
+                    {% else %}
                     <li><a class="icon" href="{% url 'register_page'%}">Sign Up</a></li>
                     <li><a class="icon" href="{% url 'login'%}">Log In</a></li>
                     {% endif %}

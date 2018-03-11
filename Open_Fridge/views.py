@@ -39,6 +39,7 @@ def database(request) :
         context={'list_recipes' : list_recipes, 'num_recipes' : num_recipes},
     )
 
+   
 def results(request):
 
     option = request.GET.get('option')
@@ -53,21 +54,6 @@ def results(request):
             return render(request, 'results.html', context ={'list_recipes' : list_recipes, 'searched' : q, 'option':option},)
         else:
             error = "Couldn't find a recipe with that title"
-            return render(request, 'index.html', context={ 'error' : error},)        
-    def results(request):
-
-    option = request.GET.get('option')
-    key = request.GET.get('search')
-    if option == 'title':
-        list_recipes = Recipe.objects.all().filter(name__icontains = key)
-        print(key)
-        print(list_recipes)
-        if len(list_recipes) > 0:
-            q = request.GET['search']
-            list_recipes = Recipe.objects.filter(name__icontains= q)
-            return render(request, 'results.html', context ={'list_recipes' : list_recipes, 'searched' : q, 'opti$
-        else:
-            error = "Couldn't find a recipe with that title"
             return render(request, 'index.html', context={ 'error' : error},)
     elif option == 'ingredients':
         pKey = key.split(',')
@@ -78,7 +64,7 @@ def results(request):
             list_recipes = list_recipes.filter(ingredients__name=p)
         if len(list_recipes) > 0:
             q = request.GET['search']
-            return render(request, 'results.html', context = {'list_recipes': list_recipes, 'searched' : q, 'opti$
+            return render(request, 'results.html', context = {'list_recipes': list_recipes, 'searched' : q, 'option':option},)
         else:
             error = "Couldn't find a recipe with those ingredients"
             return render(request, 'index.html', context={ 'error' : error},)

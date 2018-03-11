@@ -38,7 +38,8 @@ function update_Following(){
             success:function() {
                 console.log("Followed") // check out how data is structured
                 //$('#follow').find(".dynamicFollow").html(data.html)
-                $("#following").load(location.href+" #following>*","");
+              //  $("#following").load(location.href+" #following>*","");
+                $("#userContent").load(location.href+" #userContent>*","");
             
             }   
         })  
@@ -58,7 +59,8 @@ function update_Unfollowing(){
       success: function() {
         console.log("Unfollowed") // check out how data is structured
         //$('.1following').contents()[0].textContent = 'follow'
-        $("#following").load(location.href+" #following>*","");
+       // $("#following").load(location.href+" #following>*","");
+        $("#userContent").load(location.href+" #userContent>*","");
         
       }  
     })
@@ -160,21 +162,23 @@ $(document).ready(function() {
         <p>Please help build our site by adding a recipe</p>
         <a href="{%url 'recipe_register'%}">Recipe Creation</a>
         -->
-    <div class="userContent_statscont userContent_info">
+    <div id = "userContent" class="userContent_statscont userContent_info">
     <image class="userContent_profilePic" src="{% static '/images/no_profile_pic.jpg' %}"></image>    
 
     <!--_ displays follow/unfollow button and updates on its own --->
         {% if userInfo.is_superuser == 0 %}
         
-        
+        <!--- needs CSS --->
+        <div>
         <h1 class="userContent_name">{{ userInfo.username }}</h1>
         <h1 class="userContent_stats">Stats</h1>
         <ul class="userContent_statList">
-            <li>Recipes: 10</li>
-            <li>Followers: 11</li>
-            <li>Following: 32</li>
-            <li>Likes: 25</li>
+            <li>Recipes: {{userStats.recipes}}</li>
+            <li>Followers: {{userStats.followers}}</li>
+            <li>Following: {{userStats.following}}</li>
+            <li>Likes: {{userStats.likes}} </li>
         </ul>
+        </div>
         
         <!--- code for follow button can be moved to display it somewhere else --->
         {% if request.user.is_authenticated %} <!--- if statement should stop follow button form appearing --->
@@ -239,16 +243,15 @@ $(document).ready(function() {
             <h3 class="card_name">{{friend.username}}</h3>
             <div class="card_followers card_circle">
             <h5 class="followers_text">Followers </h5>
-            <h5 class="followers_count"> 18 </h5>
+            <h5 class="followers_count"> {{ friend.followers}}</h5>
             </div>
             
             <div class="card_recipes card_circle">
             <h5 class="recipes_text">Recipes </h5>
-            <h5 class="recipes_count"> 15 </h5>
+            <h5 class="recipes_count"> {{friend.recipes}}</h5>
             </div>
             
-        </div>
-                
+        </div> 
         {% endfor %}
         <!---    
         <div class="friend_card">

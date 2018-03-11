@@ -290,5 +290,5 @@ def accountPage(request):
     user_friends = []
     userStats = UserStats.objects.get(username__exact = request.user.username)
     for userS in userF:
-        user_friends.append(User.objects.get(username__exact = userS.followusername))
+        user_friends.append(UserStats.objects.get(username__exact = userS.followusername))
     return render(request, 'accountPage.html', context = {'user_recipes': user_recipes, 'user_friends' : user_friends, 'userStats' : userStats})

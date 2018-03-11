@@ -268,9 +268,8 @@ function delComment(pks){
                     
                     	   {% for ing in recipe_ingredients %}
                            <h1>{{ ing.name }}</h1>
-	                       <p>{{ ing.Measurement }}</p>
-                           <p>{{ ing.Unit }}</p>
-	                       <p>{{ ing.AdditionalInfo }}</p>
+	                       <p>{{ ing.measurement }} {{ ing.unit }}</p>
+                            <p>{{ ing.additionalInfo }}</p>
 
                            {% endfor %}
                     

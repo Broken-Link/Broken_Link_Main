@@ -107,12 +107,9 @@ def updateComments(request):
 @csrf_exempt
 def deleteComment(request):
     if(request.method == 'POST'):
-        recipeID = request.POST.get('recipeId')
-        commenter = request.POST.get('commenter')
-        comment = request.POST.get('comment')
-        commentID = request.POST.get('commentID')
+        commentID = request.POST.get('pk')
         print("comment deleted")
-        Comments.objects.filter(recipe = recipeID, posterusername = commenter, ucomment = comment, id = commentID).delete()
+        Comments.objects.filter(id = commentID).delete()
         return JsonResponse({})
     else:
         print("comment wasn't deleted")

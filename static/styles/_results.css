@@ -190,7 +190,9 @@
 
 
 @media only screen and (max-width:1000px){
-    
+    .RDimage_title{
+        font-size: 20;
+    }
     .recipeDisplay{
         position: relative;
         z-index: 0;
@@ -225,6 +227,10 @@
 }
 
 @media only screen and (max-width:1200px) and (min-width:1000px){
+    .RDimage_title{
+        font-size: 27;
+    }
+    
     .recipeDisplay_image{
         width:500px
     }

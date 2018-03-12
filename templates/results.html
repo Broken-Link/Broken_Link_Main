@@ -22,7 +22,7 @@
             
             {%for recipe in list_recipes %}
             <div class="dumpDisplay">
-                <image class="dumpDisplay_image" src="{{recipe.image}}"></image>
+                <image class="dumpDisplay_image" src="{{recipe.image.url}}"></image>
                 <h1 class="dumpDisplay_title"><a href="{% url 'recipe_detail' pk=recipe.pk %}">{{ recipe.name }}</a></h1>
 
                 <ul class="dumpDisplay_recipeInfo">
@@ -40,7 +40,7 @@
             
             {%for recipe in list_recipes %}
             <div class="dumpDisplay">
-                <image class="dumpDisplay_image" src="{{recipe.image}}"></image>
+                <image class="dumpDisplay_image" src="{{recipe.image.url}}"></image>
                 <h1 class="dumpDisplay_title"><a href="{% url 'recipe_detail' pk=recipe.pk %}">{{ recipe.name }}</a></h1>
 
                 <ul class="dumpDisplay_recipeInfo">

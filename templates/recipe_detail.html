@@ -219,7 +219,7 @@ function delComment(pks){
     <!------------------------------------------------------>
     <div class="recipeDisplay" id="RDDisplay">
         <!--- Needs to retrieve image from django --->
-        <image class="recipeDisplay_image" src="{{recipe.image}}" style="margin-top: 0px;">
+        <image class="recipeDisplay_image" src="{{recipe.image.url}}" style="margin-top: 0px;">
             <div class ="RD_title">
                 <div class="RDimage_title">{{ recipe.name }}</div>
                 <div class="RDimage_info">{{ recipe.username }}</div>

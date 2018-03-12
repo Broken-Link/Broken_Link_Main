@@ -216,6 +216,7 @@ def recipe_register(request):
     if request.method =='POST':
         ingredient_formset = IngredientFormSet(request.POST)
         if recipe_form.is_valid() and ingredient_formset.is_valid():
+                new = recipe_form.save(commit=False)
                 new.recipe_id = Recipe.objects.all().count() + 1
                 new.username  = request.user.username
                 new.likes = 0

@@ -3,7 +3,7 @@ from django.http import HttpResponseRedirect, HttpResponse, JsonResponse
 from django.urls import reverse
 from django.template import RequestContext
 from django.forms.formsets import formset_factory, BaseFormSet
-from .forms import RegistrationForms, IngredientForms, BaseIngredientFormSet, RecipeForm, TagForms, BaseTagFormSet
+from .forms import RegistrationForms, IngredientForms, BaseIngredientFormSet, RecipeForm, BaseTagFormSet
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ValidationError

@@ -219,6 +219,7 @@ def recipe_register(request):
                 new = recipe_form.save(commit=False)
                 new.recipe_id = Recipe.objects.all().count()
                 new.username  = request.user.username
+                new.likes = 0
                 new.save()
                 new_ingredients = []
                 for ing_form in ingredient_formset:

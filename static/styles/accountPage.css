@@ -35,12 +35,12 @@ header a:visited {
     background: inherit;
     position: absolute;
     overflow: hidden;
-    top: 15%;
+    top: 30%;
     left: 10%;
     right: 10%;
     border-radius: 8px;
     z-index: 0;
-    overflow: scroll;
+    overflow-y: scroll;
 }
 
 #container:before {
@@ -53,10 +53,10 @@ header a:visited {
     bottom: 0;
     right: 0;
     background: inherit;
+    box-shadow: inset 0 0 0 2000px rgba(255, 255, 255, 0.2);
     /*
-    box-shadow: inset 0 0 0 200px rgba(255, 255, 255, 0.2);
-    */
     background-color: rgba(255,255,255,0.2);
+    */
     filter: blur(10px);
     
 }
@@ -65,11 +65,12 @@ header a:visited {
     position: absolute;
     z-index: 0;
     display: block;
-    background-color: #e6e6e6aa;
+    background-color: #37383ABF;
     border-radius: 5px;
 }
 
 .userContent_statscont{
+    margin: 50px 0 0 0;
     height: 200px;
     width: 700px;
     top: -640px;
@@ -98,12 +99,14 @@ header a:visited {
 }
 
 .userContent_name{
+    color: #FFFFFF;
     position: absolute;
     top: 160px;
     left: 10px;
 }
 
 .userContent_stats{
+    color: #FFFFFF;
     position: absolute;
     left: 500px;
     top:20px;
@@ -112,6 +115,7 @@ header a:visited {
         
 }
 .userContent_statList{
+    color: #FFFFFF;
     list-style-type: none;
     position: absolute;
     left: 500px;
@@ -208,7 +212,7 @@ header a:visited {
 }
 
 .main_search{
-    margin-top: -110px;
+    margin-top: 0;
     z-index: 1;
 }
 
@@ -328,7 +332,7 @@ header a:visited {
         position: relative;
         height:60px;
         top:-20px;
-        left:-50px;
+        left:0;
     }
     .search_option{
         height:100%;

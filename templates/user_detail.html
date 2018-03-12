@@ -126,7 +126,7 @@ $(document).ready(function() {
                     <li><a class="icon" href="" ><image id="social_icon" src="{% static '/images/twitter.jpg '%}"></image></a></li>
                     <li><a class="icon" href=""><image id="social_icon" src="{% static '/images/youtube.jpg' %}"></image></a></li>
                 </ul>
-
+                
                 <ul>
                     <a href = "{% url 'index' %}" style ="float:left" ><h1 >Open Fridge</h1>
                     </a>
@@ -190,7 +190,7 @@ $(document).ready(function() {
             {% if following == "true" and userInfo.username != "{{user.username}}" %}    
              <form  name="unfollow" id ="unfollow" action ="{% url 'unfollow' %}" method="post">    
                 {% csrf_token %}
-            <button id = "unfollowing1" onclick = "update_Unfollowing(); return false;">Unfollow</button>
+            <button class="follow_button" onclick = "update_Unfollowing(); return false;">Unfollow</button>
             <input type = "hidden" name = "username" value = "{{userInfo.username}}">
             </form>
         
@@ -198,7 +198,7 @@ $(document).ready(function() {
             <form  name="follow" id ="follow" action="{% url 'following' %}" method= "post">
                 {% csrf_token %}
            
-            <button id = "follow1"  onclick = "update_Following(); return false;">Unfollow 
+            <button class="follow_button"  onclick = "update_Following(); return false;">Unfollow 
             </button>
             <input type = "hidden" name = "username" value = "{{userInfo.username}}">
             </form>
@@ -214,14 +214,14 @@ $(document).ready(function() {
         <form hidden  name="follow" id ="follow" action="{% url 'following' %}" method= "post">
             {% csrf_token %}
            
-        <button id = "follow1"  onclick = "update_Following(); return false;">Follow</button>
+        <button class="follow_button" id = "follow1"  onclick = "update_Following(); return false;">Follow</button>
         <input type = "hidden" name = "username" value = "{{userInfo.username}}">
         </form>
         
         <form  hidden name="unfollow" id ="unfollow" action ="{% url 'unfollow' %}" method="post">    
             {% csrf_token %}
         <input type = "hidden" name = "username" value = "{{userInfo.username}}">
-        <button id = "unfollowing1" onclick = "update_Unfollowing(); return false;"> Unfollow </button>
+        <button class="follow_button" onclick = "update_Unfollowing(); return false;"> Unfollow </button>
         
         </form>
     <!--- end of follow button --->
@@ -231,7 +231,10 @@ $(document).ready(function() {
             <!---insert recipe result here--->
             {%for recipe in user_recipes %}
             <!--- CSS needed? --->
-            <h1><a href="{% url 'recipe_detail' pk=recipe.pk %}">{{ recipe.name }}</a></h1> <br>
+            <div class="dumpDisplay">
+                <image class="dumpDisplay_image" src="{{ recipe.image }}"></image>
+                <h1 class="dumpDisplay_title"><a href="{% url 'recipe_detail' pk=recipe.pk %}">{{ recipe.name }}</a></h1> <br>
+            </div>
             {% endfor %}
             
         </div>

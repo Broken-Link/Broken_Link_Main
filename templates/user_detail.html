@@ -60,7 +60,7 @@ function update_Unfollowing(){
         console.log("Unfollowed") // check out how data is structured
         //$('.1following').contents()[0].textContent = 'follow'
        // $("#following").load(location.href+" #following>*","");
-        $("#userContent").load(location.href+" #userContent>*","");
+      $("#userContent").load(location.href+" #userContent>*","");
         
       }  
     })
@@ -187,7 +187,8 @@ $(document).ready(function() {
         <!--- code for follow button can be moved to display it somewhere else --->
         {% if request.user.is_authenticated %} <!--- if statement should stop follow button form appearing --->
         
-            {% if following == "true" and userInfo.username != "{{user.username}}" %}    
+            {% if following == "true" and userInfo.username != "{{user.username}}" %}  
+            
              <form  name="unfollow" id ="unfollow" action ="{% url 'unfollow' %}" method="post">    
                 {% csrf_token %}
             <button class="follow_button" onclick = "update_Unfollowing(); return false;">Unfollow</button>
@@ -195,10 +196,11 @@ $(document).ready(function() {
             </form>
         
             {% elif userInfo.username != user.username %}
+            
             <form  name="follow" id ="follow" action="{% url 'following' %}" method= "post">
                 {% csrf_token %}
            
-            <button class="follow_button"  onclick = "update_Following(); return false;">Unfollow 
+            <button class="follow_button"  onclick = "update_Following(); return false;">Follow 
             </button>
             <input type = "hidden" name = "username" value = "{{userInfo.username}}">
             </form>

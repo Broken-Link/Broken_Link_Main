@@ -69,7 +69,7 @@ class Recipe(models.Model):
     name = models.CharField(db_column='Name', max_length=45)  # Field name made lowercase.
     steps = models.TextField(db_column='Steps')  # Field name made lowercase.
     username = models.CharField(max_length=150)
-    image = models.ImageField(upload_to = '/static/images/')
+    image = models.ImageField(upload_to = '/opt/fridge480/fridge480/static/images/')
     likes = models.IntegerField()
     class Meta:
         managed = False

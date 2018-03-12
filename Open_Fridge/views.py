@@ -216,8 +216,7 @@ def recipe_register(request):
     if request.method =='POST':
         ingredient_formset = IngredientFormSet(request.POST)
         if recipe_form.is_valid() and ingredient_formset.is_valid():
-                new = recipe_form.save(commit=False)
-                new.recipe_id = Recipe.objects.all().count()
+                new.recipe_id = Recipe.objects.all().count() + 1
                 new.username  = request.user.username
                 new.likes = 0
                 new.save()
@@ -233,8 +232,8 @@ def recipe_register(request):
         else:
                 print("Not Entered")
                 return HttpResponseRedirect('/index/recipe_register')
-    ingredient_formset = IngredientFormSet()
-    recipe_form = RecipeForm()
+        ingredient_formset = IngredientFormSet()
+        recipe_form = RecipeForm()
     context = {
        'ingredient_formset' : ingredient_formset,
        'recipe_form' : recipe_form,

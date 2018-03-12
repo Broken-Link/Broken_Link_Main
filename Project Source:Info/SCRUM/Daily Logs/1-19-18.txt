@@ -1,0 +1,17 @@
+Today we started by reviewing what we did yesterday. We then decided on a more concrete webstack
+
+[ Javascript, Python, PHP, MySQL ] We also talked more about the data model and what a brief
+
+model could look like, involving all the interactions amongst the data.
+
+Jason: Javascript seems to be a staple use
+
+Chris: Started learning javascript
+
+Erik: Drafted Ideas for the website
+
+James: Drafted some basic data models
+
+Pedro: Learned interactions between MySQL and PHP
+
+Matthew: Website up and running

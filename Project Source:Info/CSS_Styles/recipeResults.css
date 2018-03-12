@@ -1,0 +1,122 @@
+@import url("../styles/homepage.css");
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.page {
+    align-content: center;
+    height: 100%;
+    width: 100%;
+}
+
+header a:link {
+    text-decoration: none;
+}
+
+header a:visited {
+    text-decoration: none;
+}
+
+.userContent {
+    position: relative;
+    align-content: center;
+    height: 100%;
+    overflow-y: scroll;
+}
+
+::-webkit-scrollbar{
+    background-color: #5D6B6D70;
+}
+
+::-webkit-scrollbar-thumb{
+    background-color: #FF0055;
+}
+
+#container {
+    width: 80%;
+    height: 80%;
+    background: inherit;
+    position: absolute;
+    top: 15%;
+    left: 10%;
+    right: 10%;
+    border-radius: 8px;
+}
+
+#container:before {
+    width: 105%;
+    height: 105%;
+    content: "";
+    position: absolute;
+    top: -25px;
+    left: -25px;
+    bottom: 0;
+    right: 0;
+    background: inherit;
+    box-shadow: inset 0 0 0 2000px rgba(255, 255, 255, 0.2);
+    filter: blur(10px);
+}
+
+.headingFor{
+    color: #FFFFFF;
+    text-shadow: 1px 3px 5px #000000;
+}
+
+.dumpDisplay{
+    width: 98%;
+    height: 300px;
+    background-color: #37383ABF;
+    border-radius: 5px;
+    margin-bottom: 25px;
+}
+
+.dumpDisplay a {
+    text-decoration: none;
+    color: #FFFFFF;
+}
+
+.dumpDisplay a:hover {
+    text-decoration: none;
+    color: #F4507C;
+}
+
+.dumpDisplay_image{
+    position: relative;
+    border-radius: 5px;
+    height: 85%;
+    width: 25%;
+    top: 25px;
+    left: 25px;
+}
+
+.dumpDisplay_title{
+    color: #FFFFFF;
+    position: relative;
+    border-bottom: 3px solid #ff0055;
+    width: 60%;
+    top: -200px;
+    left: 30%;
+}
+
+.dumpDisplay_recipeInfo{
+    color: #FF0055;
+    position: relative;
+    list-style-type: none;
+    font-size: 24px;
+    left: 30%;
+    top: -180px;
+    width: 60%;
+    height: 100%;
+    overflow: hidden;
+    text-overflow: clip;
+}
+
+.dumpDisplay_listedSteps{
+    color: #FFFFFF;
+    overflow-y: hidden;
+    height: 115px;
+    width: 100%
+}
+

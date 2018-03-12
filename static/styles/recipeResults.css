@@ -20,30 +20,35 @@ header a:visited {
 }
 
 .userContent {
-    position: absolute;
-    align-content: center;
+    position: absolute;    
+    /*align-content: center;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
+    */
+    
 }
 
+
 #container {
+    
     width: 80%;
     height: 80%;
     background: inherit;
     position: absolute;
-    overflow: hidden;
     top: 15%;
     left: 10%;
     right: 10%;
     border-radius: 8px;
     overflow: scroll;
-
+    
+    
 }
 
 #container:before {
     width: 110%;
-    height: 110%;
+    /*changed this from 110%*/
+    height: 1100%;
     content: "";
     position: absolute;
     top: -25px;
@@ -51,6 +56,7 @@ header a:visited {
     bottom: 0;
     right: 0;
     background: inherit;
-    box-shadow: inset 0 0 0 200px rgba(255, 255, 255, 0.2);
+    box-shadow: inset 0 0 0 2000px rgba(255, 255, 255, 0.2);
     filter: blur(10px);
 }
+

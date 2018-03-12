@@ -30,7 +30,7 @@ class RegistrationForms(forms.Form):
 class RecipeForm(forms.ModelForm):
     class Meta:
         model = Recipe
-        exclude = ['recipe_id', 'username', 'likes']
+        exclude = ['recipe_id', 'username']
 class TagForm(forms.Form):
     tag = forms.CharField(label='tag', max_length=45)        
         

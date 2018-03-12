@@ -69,40 +69,57 @@
     </div>
     
     <!------------------------------------------------------>
-   
-     <div class="recipeDisplay" id="RDDisplay2">
-         <div class="recipeDisplay_likes" style="">
-                <h3 class="likes">Likes</h3>
-                <h6 class="likes_num" id="likesNum2">10</h6>
+    <div class="recipeDisplay" id="RDDisplay">
+        <image class="recipeDisplay_image" src="/static/images/Hawaiian.jpeg" style="margin-top: 350px;">
+            <div class ="RD_title">
+                <div class="RDimage_title">Hawaiian Burger</div>
+                <div class="RDimage_info">A classic burger with a tropical twist.</div>
+            </div>
+        </image>
+            
+        <button class="recipeDisplay_like" onclick="favoriteRecipe('likeIcon')" style="margin-top: 350px;">
+            <i class="material-icons" id="likeIcon">favorite_border</i>
+            <!---change to favorite on click--->
+        </button>
+        <div class="recipeDisplay_likes">
+            <h3 class="likes">Likes</h3>
+            <h6 class="likes_num" id="likesNum">10</h6>
         </div>
-         <div class="recipeDisplay_details" id="RDdetails2">
+        <button class="recipeDisplay_openDetails" style="margin-top: 580px;">
+            <i class="material-icons" onclick="open_close('RDdetails','RDDisplay')">keyboard_arrow_right</i>
+        </button>
+        <div class="recipeDisplay_details" id="RDdetails">
             <div class="details_tabs" >
-                <button class="tabs tabs_ingredients" id="ingredients2" onclick="show('ingredients2','directions2','ingredientsT2','directionsT2',1)">Ingredients</button>
-                <button class=" tabs tabs_directions" id="directions2" onclick="show('ingredients2','directions2','ingredientsT2','directionsT2',-1)">Directions</button>
+                <button class="tabs tabs_ingredients" id="ingredients" onclick="show('ingredients','directions','ingredientsT','directionsT',1)">Ingredients</button>
+                <button class=" tabs tabs_directions" id="directions" onclick= "show('ingredients','directions','ingredientsT','directionsT',-1)">Directions</button>
                 <div class="tabs_divider"></div>
-                <div class="tabs_text ingredients_text" id="ingredientsT2">2 slices bread<br>1tbs butter</div>
-                <div class="tabs_text directions_text" id="directionsT2">Toast that shit<br>Butter that shit</div>
+                <div class="tabs_text ingredients_text" id="ingredientsT">1lb meat<br>1tbs salt</div>
+                <div class="tabs_text directions_text" id="directionsT">Cook that shit</div>
                 
             
             </div>
         </div>
         
-        <image class="recipeDisplay_image" src="/static/images/AppleFritter.jpg" style="margin-top: 150px;">
-            
+    </div>
+    
+     <div class="recipeDisplay" id="RDDisplay2">
+        <image class="recipeDisplay_image" src="/static/images/butteredToast.jpeg" style="margin-top: 150px;">
             <div class ="RD_title">
                 <div class="RDimage_title">Buttered Toast</div>
                 <div class="RDimage_info">Can't cook...No Problem</div>
             </div>
-            
         </image>
             
-        <button  class="recipeDisplay_like" onclick="favoriteRecipe('likeIcon2')" style="">
+        <button  class="recipeDisplay_like" onclick="favoriteRecipe('likeIcon2')" style="margin-top: 150px;">
             <i class="material-icons" id= "likeIcon2">favorite_border</i>
             <!---change to favorite on click--->
     
         </button>
-        
-        <button class="recipeDisplay_openDetails" style="">
+        <div class="recipeDisplay_likes">
+            <h3 class="likes">Likes</h3>
+            <h6 class="likes_num" id="likesNum2">10</h6>
+        </div>
+        <button class="recipeDisplay_openDetails" style="margin-top: 380px;">
             <i class="material-icons" onclick="open_close('RDdetails2','RDDisplay2')">keyboard_arrow_right</i>
         </button>
         <div class="recipeDisplay_details" id="RDdetails2">

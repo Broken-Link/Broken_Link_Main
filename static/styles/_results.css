@@ -35,7 +35,7 @@
 .RDimage_title{
     position: absolute;
     color: white;
-    font-size: 38;
+    font-size: 40;
     font-weight: 300;
 }
 
@@ -48,31 +48,27 @@
 
 .recipeDisplay_like{
     position: absolute;
+    /* margin-top: 350px; */
     margin-left:-100px;
-    margin-top: 150px;
-    height: 100px;
-    width: 100px;
-    background-color: #ff0055;
     border-radius: 50%;
+    background-color: #ff0055;
     color:white;
     font-size: large;
-    box-shadow: 0 6px 10px 2px rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    
+    height: 100px;
+    width: 100px;
     
 }
 
 .recipeDisplay_likes{
     position: absolute;
+    margin-top: -350px;
     margin-left: 5px;
-    margin-top:150px;
-    z-index: 1;
     width:100px;
     height:100px;
     background-color: #ff0055;
     border-radius: 50%;
     color:white;
     box-shadow: 0 6px 10px 2px rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    
 }
 
 .likes{
@@ -96,8 +92,8 @@
     border-radius: 50%;
     background-color: #ff0055;
     color: white;
+    /*margin-top: 580px;*/
     margin-left: -30px;
-    margin-top: 300px;
     z-index: auto;
 }
 
@@ -115,7 +111,7 @@
 .recipeDisplay_details{
     position: absolute;
     background:#f2f2f2;
-    margin-top: 200px;
+    margin-top: -500px;
     margin-left: 700px;
     width: 500px;
     height: 500px;
@@ -190,9 +186,7 @@
 
 
 @media only screen and (max-width:1000px){
-    .RDimage_title{
-        font-size: 20;
-    }
+    
     .recipeDisplay{
         position: relative;
         z-index: 0;
@@ -227,10 +221,6 @@
 }
 
 @media only screen and (max-width:1200px) and (min-width:1000px){
-    .RDimage_title{
-        font-size: 27;
-    }
-    
     .recipeDisplay_image{
         width:500px
     }

@@ -3,7 +3,7 @@ from django.http import HttpResponseRedirect, HttpResponse, JsonResponse
 from django.urls import reverse
 from django.template import RequestContext
 from django.forms.formsets import formset_factory, BaseFormSet
-from .forms import RegistrationForms, IngredientForms, BaseIngredientFormSet, RecipeForm, BaseTagFormSet
+from .forms import RegistrationForms, IngredientForms, BaseIngredientFormSet, RecipeForm, TagForms, BaseTagFormSet
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ValidationError
@@ -212,32 +212,40 @@ def register_page(request):
 @login_required
 def recipe_register(request):
     IngredientFormSet = formset_factory(IngredientForms, formset=BaseIngredientFormSet)
+    TagFormSet = formset_factory(TagForms, formset=BaseTagFormSet)
     recipe_form = RecipeForm(request.POST, request.FILES)
     if request.method =='POST':
         ingredient_formset = IngredientFormSet(request.POST)
-        if recipe_form.is_valid() and ingredient_formset.is_valid():
+        tag_formset = TagFormSet(request.POST)
+        if recipe_form.is_valid() and ingredient_formset.is_valid() and tag_formset.is_valid():
                 new = recipe_form.save(commit=False)
-                new.recipe_id = Recipe.objects.all().count() + 1
+                new.recipe_id = Recipe.objects.all().count()
                 new.username  = request.user.username
-                new.likes = 0
                 new.save()
                 new_ingredients = []
+                for tag_form in tag_formset:
+                    new_tags.append(Tags(tag = tag_form.cleaned_data['tag'], recipe_id = new.recipe_id))
                 for ing_form in ingredient_formset:
                     new_ingredients.append(Ingredients(recipe_id = new.recipe_id, name = ing_form.cleaned_data['ingredient'], measurement = ing_form.cleaned_data['measurement'], unit = ing_form.cleaned_data['unit'], additionalinfo = ing_form.cleaned_data['additionalinfo']))
                 Ingredients.objects.bulk_create(new_ingredients)
+                Tags.objects.bulk_create(tag_form)
+                
                 owner = UserStats.objects.get(username = request.user.username)
                 owner.recipes += 1
                 owner.save()
+                
                 return HttpResponseRedirect('/index/accountPage')
                 print("Success in entering a recipe")
         else:
                 print("Not Entered")
                 return HttpResponseRedirect('/index/recipe_register')
-        ingredient_formset = IngredientFormSet()
-        recipe_form = RecipeForm()
+    ingredient_formset = IngredientFormSet()
+    recipe_form = RecipeForm()
+    tag_form = TagForms()
     context = {
        'ingredient_formset' : ingredient_formset,
        'recipe_form' : recipe_form,
+       'tag_form' : tag_form,
     }
     return render(request, 'recipe_register.html', context)
 

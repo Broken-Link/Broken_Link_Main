@@ -222,7 +222,7 @@ def recipe_register(request):
                 new.save()
                 new_ingredients = []
                 for ing_form in ingredient_formset:
-                    new_ingredients.append(Ingredients(recipe_id = new.recipe_id, name = ing_form.cleaned_data['$
+                    new_ingredients.append(Ingredients(recipe_id = new.recipe_id,'name = ing_form.cleaned_data['ingredient'], measurement = ing_form.cleaned_data['measurement'], unit = ing_form.cleaned_data['unit'],additionalinfo = ing_form.cleaned_data['additionalinfo']))
                 Ingredients.objects.bulk_create(new_ingredients)
                 owner = UserStats.objects.get(username = request.user.username)
                 owner.recipes += 1

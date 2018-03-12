@@ -97,7 +97,7 @@ header a:visited {
 }
 
 .ingredientBox{
-    border: 2px;
+    border: 3px;
     border-color: #FF0055;
     margin: 10px 0 10px 0;
     display: inline-flex;

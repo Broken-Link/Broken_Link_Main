@@ -39,11 +39,13 @@
             </nav>
         </header>
         <div id="container">
+            
             <div class="userContent">
                 <div class="contentTitle">
                     <p>Register a Recipe</p>
                     <p>{{user.username}}</p>
                 </div>
+                
                 <form class="form1" method = "POST" action="." enctype="multipart/form-data">
                     {% csrf_token %}
 
@@ -53,6 +55,7 @@
                         <li>Add Image: {{recipe_form.image}}</li>
 
                     </ul>
+                    
                     {{ ingredient_formset.management_form }}
                     {%for ingred in ingredient_formset%}
                     <div class = "ingredient_formset">
@@ -62,7 +65,9 @@
                             <li>Unit       : {{ingred.unit}}</li>
                             <li>Additional Information: {{ingred.additionalinfo}}</li>
                         </ul>
+                        
                     </div>
+                    
                     {% endfor %}
                     <input type = "submit" value="Create"/>
                 </form>

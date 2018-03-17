@@ -35,7 +35,7 @@ header a:visited {
     background: inherit;
     position: absolute;
     overflow: hidden;
-    top: 30%;
+    top: 10%;
     left: 10%;
     right: 10%;
     border-radius: 8px;
@@ -88,14 +88,19 @@ header a:visited {
 }
 
 .follow_button{
-    position: absolute;
-    background-color: #ff0055;
-    border-radius: 50%;
-    width: 50;
-    height: 50;
+    position: relative;
+    margin: 165px 0 0 470px;
+    background-color: #09090A;
+    border-radius: 2px;
+    width: 70;
+    height: 30;
     color:white;
     text-align: center;
     z-index: 2;
+}
+
+.follow_button:hover{
+    background: #FF0055;
 }
 
 .userContent_name{
@@ -123,12 +128,72 @@ header a:visited {
 }
 
 .userContent_recipes{
-    height: 1000px;
+    height: 800px;
     width: 700px;
     top: -390px;
     left: -560px;
-    overflow:scroll;
+    overflow-y:scroll;
 }
+
+/* Code for displaying the recipes created by the user */
+
+.dumpDisplay{
+    width: 98%;
+    height: 100px;
+    background-color: #09090ABF;
+    border-radius: 5px;
+    margin-bottom: 25px;
+}
+
+.dumpDisplay a {
+    text-decoration: none;
+    color: #FFFFFF;
+}
+
+.dumpDisplay a:hover {
+    text-decoration: none;
+    color: #F4507C;
+}
+
+.dumpDisplay_image{
+    position: relative;
+    border-radius: 5px;
+    height: 85%;
+    width: 25%;
+    top: 5px;
+    left: 25px;
+}
+
+.dumpDisplay_title{
+    color: #FFFFFF;
+    position: relative;
+    border-bottom: 3px solid #ff0055;
+    width: 60%;
+    top: -75px;
+    left: 35%;
+}
+
+.dumpDisplay_recipeInfo{
+    color: #FF0055;
+    position: relative;
+    list-style-type: none;
+    font-size: 24px;
+    left: 30%;
+    top: -180px;
+    width: 60%;
+    height: 100%;
+    overflow: hidden;
+    text-overflow: clip;
+}
+
+.dumpDisplay_listedSteps{
+    color: #FFFFFF;
+    overflow-y: hidden;
+    height: 115px;
+    width: 100%
+}
+
+/* End of code to display recipes created by the yser */
 
 .userContent_friends{
     left: 210px;
@@ -144,7 +209,7 @@ header a:visited {
 .friend_card{
     height: 150px;
     width:100%;
-    background-color: #e6e6e6aa;
+    background-color: #37383ABF;
     margin-bottom: 20px;
     border-radius: 5px;
 }
@@ -157,6 +222,7 @@ header a:visited {
 }
 
 .card_name{
+    color: #FFFFFF;
     font-weight: 700;
     margin-left:10px;
     font-size: 24px;
@@ -373,7 +439,7 @@ header a:visited {
         left: 100px;
         height: 200px;
         width: 380px;
-        top: -690px;
+        top: -640px;
         position: absolute;
         z-index: 0;
         display:block;

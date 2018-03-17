@@ -38,40 +38,42 @@
                 </ul>
             </nav>
         </header>
-        <h1 class="header_text">Open Fridge</h1> 
-    
-            <p>Register a Recipe</p>
-            <p>{{user.username}}</p>
-        <form class="form1" method = "POST" action="." enctype="multipart/form-data" >
-            {% csrf_token %}
+        <div id="container">
             
-            <ul>
-                <li>{{recipe_form.name}}</li>
-	            <li>{{recipe_form.steps}}</li>
-                <li>{{recipe_form.image}}</li>
-	
-            </ul>
-            {{ ingredient_formset.management_form }}
-            {%for ingred in ingredient_formset%}
-            <div class = "ingredient_formset">
-                <ul>
-                    <li>Ingredient : {{ingred.ingredient}}</li>
-                    <li>Measurement: {{ingred.measurement}}</li>
-                    <li>Unit       : {{ingred.unit}}</li>
-                    <li>Additional Information: {{ingred.additionalinfo}}</li>
-                </ul>
+            <div class="userContent">
+                <div class="contentTitle">
+                    <p>Register a Recipe</p>
+                    <p>{{user.username}}</p>
+                </div>
+                
+                <form class="form1" method = "POST" action="." enctype="multipart/form-data">
+                    {% csrf_token %}
+
+                    <ul clss="recipeBox">
+                        <li>Recipe Name: {{recipe_form.name}}</li>
+                        <li>Steps: {{recipe_form.steps}}</li>
+                        <li>Add Image: {{recipe_form.image}}</li>
+
+                    </ul>
+                    
+                    {{ ingredient_formset.management_form }}
+                    {%for ingred in ingredient_formset%}
+                    <div class = "ingredient_formset">
+                        <ul class="ingredientBox">
+                            <li>Ingredient : {{ingred.ingredient}}</li>
+                            <li>Measurement: {{ingred.measurement}}</li>
+                            <li>Unit       : {{ingred.unit}}</li>
+                            <li>Additional Information: {{ingred.additionalinfo}}</li>
+                        </ul>
+                        
+                    </div>
+                    
+                    {% endfor %}
+                    <input type = "submit" value="Create"/>
+                </form>
             </div>
-            {% endfor %}
-            <input type = "submit"value="Create"/>
-        </form>
-        
+        </div>
     </div>
-    
-    
-    
-    
-    
-    
     <footer>
         &copy; Broken Link 2018
     </footer>

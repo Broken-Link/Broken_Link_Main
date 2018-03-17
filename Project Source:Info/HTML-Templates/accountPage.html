@@ -64,7 +64,7 @@
         <h3 class="header_subtitle">Hungy? Find your next grub here!</h3>
     --->
         
-
+    <!--
         <div class="main_search">
             <form action = "{% url 'results' %}" method = 'GET'>
                 
@@ -77,7 +77,7 @@
                 <button class="utilBar_submitButton button" onclick="submitSearch()">Search</button>
             </form>
         </div>
-        
+    -->
                     <!--- Error message when a recipe isn't found. Used header_subtitle for visibility--\>
             <center class = "header_subtitle"> {% if error %}<p><strong>{{error}}</strong></p>{% endif %} </center>
         
@@ -108,11 +108,14 @@
             </div>
                 
             <div class="userContent_recipes userContent_info">
-            <!---insert recipe result here--->
-            {%for recipe in user_recipes %}
-            <!--- CSS needed? --->
-            <h1><a href="{% url 'recipe_detail' pk=recipe.pk %}">{{ recipe.name }}</a></h1> <br>
-            {% endfor %}
+                <!---insert recipe result here--->
+                {%for recipe in user_recipes %}
+                <!--- CSS needed? --->
+                <div class="dumpDisplay">
+                    <image class="dumpDisplay_image" src="{{recipe.image.url}}"></image>
+                    <h1 class="dumpDisplay_title"><a href="{% url 'recipe_detail' pk=recipe.pk %}">{{ recipe.name }}</a></h1> <br>
+                </div>
+                {% endfor %}
             
             </div>
                 

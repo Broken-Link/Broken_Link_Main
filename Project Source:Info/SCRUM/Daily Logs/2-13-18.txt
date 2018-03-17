@@ -1,0 +1,6 @@
+Jason Account Page adjustments
+Chris: Still Looking small widgets for displaying images
+Erik: Index Page modifications
+James: more modifications to database
+Pedro: Search Bar (queries not working)
+Matthew: Login authentication in Django(learning the Django functions)

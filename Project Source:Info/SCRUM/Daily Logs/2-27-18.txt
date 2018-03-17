@@ -1,0 +1,6 @@
+Jason Login Page Adjustments
+Chris: Recipe Display page modifications
+Erik: Login Page adjustments
+James: Prepping for recipes to be stored
+Pedro: Recipe display page
+Matthew: Recipe Creation Page bugs

@@ -1,0 +1,6 @@
+Jason: Overall Site design change
+Chris: Overall Site design change
+Erik: Overall Site design change
+James: modifications to database
+Pedro: Search Bar ingredient testing
+Matthew: Login Testing

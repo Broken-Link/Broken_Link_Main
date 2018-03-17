@@ -1,0 +1,5 @@
+Chris: Index Page Organization
+Erik: Index Page Organization
+James: Ingredients/ Recipes/ Comment Table Refined
+Pedro: Search Bar (work on search by ingredient)
+Matthew: Apply Django Forms.

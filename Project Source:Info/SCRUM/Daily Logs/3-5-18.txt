@@ -1,0 +1,6 @@
+Jason Overall Page Adjustments
+Chris: Research site resizing for window sizes
+Erik: Overall Page Adjustments
+James: modifications to database
+Pedro: Adding Like System
+Matthew: Tweak Recipe Creation

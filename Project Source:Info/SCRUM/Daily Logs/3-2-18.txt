@@ -1,0 +1,6 @@
+Jason Overall Page Adjustments
+Chris: Decorate Recipe Creation Page
+Erik: Add a follow button
+James: Adding Follow Table
+Pedro: Adding Follow System
+Matthew: Recipe Creation Page working

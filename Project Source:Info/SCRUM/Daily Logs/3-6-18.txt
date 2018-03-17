@@ -1,0 +1,6 @@
+Jason: Overall Page Adjustments
+Chris: Figure out Django interactions with the website
+Erik: Finalize Recipe Results Structure
+James: Rework Tables
+Pedro: Displaying users from followed onto account page
+Matthew: Adding images to recipe creation

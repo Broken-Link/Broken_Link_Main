@@ -1,0 +1,6 @@
+Jason: Page Finalization
+Chris: Page Finalization
+Erik: Page Finalization
+James: Testing all Pages
+Pedro: Last Minute Tweaks
+Matthew: Reworking Image Storing

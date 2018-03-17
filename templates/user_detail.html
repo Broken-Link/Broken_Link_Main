@@ -1,0 +1,300 @@
+
+
+<html>
+{% load static %}
+{% block content %}
+
+<head>
+<link rel="icon" href="{% static '/images/fridge.png' %}">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width" , intial-scale=1>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome = 1">
+    <title>Open Fridge</title>
+    
+    <link rel="stylesheet" href="{% static '/styles/accountPage.css' %}">
+    <!---
+    <link rel="stylesheet" href="/static/styles/accountPage.css">
+    <!--Utilities-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+
+    <!--[if lt IE 9]>
+            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+
+</head>
+<body onload = "load()">
+<!--- required for ajax --->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"> </script>
+<script>
+
+/** Functions update databse with follow relationship and change the form button being displayed on the page **/
+function update_Following(){
+        $.ajax({                
+            type: 'POST',
+            url: "{% url 'following' %}",
+            data: $('#follow').serialize(),
+            datatype: 'json',
+            success:function() {
+                console.log("Followed") // check out how data is structured
+                //$('#follow').find(".dynamicFollow").html(data.html)
+              //  $("#following").load(location.href+" #following>*","");
+                $("#userContent").load(location.href+" #userContent>*","");
+            
+            }   
+        })  
+        
+        document.getElementById("follow").style.display="none";
+        document.getElementById("unfollow").style.display="block";
+
+    return false;
+}
+    
+function update_Unfollowing(){
+    $.ajax({                
+      type: 'POST',
+      url: "{% url 'unfollow' %}",
+      data: $('#unfollow').serialize(),
+      datatype: 'json',
+      success: function() {
+        console.log("Unfollowed") // check out how data is structured
+        //$('.1following').contents()[0].textContent = 'follow'
+       // $("#following").load(location.href+" #following>*","");
+      $("#userContent").load(location.href+" #userContent>*","");
+        
+      }  
+    })
+    
+    document.getElementById("follow").style.display="block";
+    document.getElementById("unfollow").style.display="none";
+    
+    return false;
+}   
+
+  
+/**
+$(document).ready(function() {
+    $('#unfollow').on('submit',function(e) {
+        e.preventDefault();
+        $.post("{% url 'unfollow' %}", $(this).serialize(), function () {
+            // This is executed when the call to mail.php was succesful.
+            // 'data' contains the response from the request
+            console.log("unfollowed")
+        }).error(function() {
+            // This is executed when the call to mail.php failed.
+            
+        });
+        //e.preventDefault();
+        document.getElementById("follow").style.display="block";
+        document.getElementById("unfollow").style.display="none";
+        return false;
+    });
+        
+//});
+    
+//$(document).ready(function() {
+    $('#follow').on('submit',function(e) {
+        e.preventDefault();
+        $.post("{% url 'following' %}", $(this).serialize(), function () {
+            // This is executed when the call to mail.php was succesful.
+            // 'data' contains the response from the request
+            console.log("everything worked!");
+        }).error(function() {
+            // This is executed when the call to mail.php failed.
+        });
+        //e.preventDefault();
+        document.getElementById("follow").style.display="none";
+        document.getElementById("unfollow").style.display="block";
+    return false;
+    });
+  
+
+
+});
+
+**/    
+</script>
+    
+    
+    <div class = "page">
+    <!---HEADER--->
+        <!--- Search Bar and Title but its commented as format is incorrect--->
+        <header>
+            <nav>
+                <ul class="nav_social">
+                    <li><a class="icon" href=""><image id="social_icon" src="{% static '/images/facebook.jpg' %}"></image></a></li>
+                    <li><a class="icon" href="" ><image id="social_icon" src="{% static '/images/twitter.jpg '%}"></image></a></li>
+                    <li><a class="icon" href=""><image id="social_icon" src="{% static '/images/youtube.jpg' %}"></image></a></li>
+                </ul>
+                
+                <ul>
+                    <a href = "{% url 'index' %}" style ="float:left" ><h1 >Open Fridge</h1>
+                    </a>
+                </ul>
+                    
+                <ul class="nav_site">
+
+                    
+                    {% if request.user.is_authenticated %}
+                    <li><a class="icon" href="{% url 'logout' %}">Logout</a></li>
+                    <li><a class="icon" href="{% url 'recipe_register' %}">Create Recipe</a></li>
+                    
+                    
+                    {% if request.user != userInfo.username %}
+                    <li><a class="icon" href="{% url 'accountPage' %}">My Account</a></li>
+                    {% endif %}
+                    
+                    {% else %}
+                    <li><a class="icon" href="{% url 'register_page'%}">Sign Up</a></li>
+                    <li><a class="icon" href="{% url 'login'%}">Log In</a></li>
+                    {% endif %}
+                
+                </ul>
+            </nav>
+        </header>    
+    
+    
+    
+    
+    <!--- Glass div begins --->
+        
+    <div id="container">
+    <div class="userContent">
+        <!---
+        <a href="{%url 'index'%}">Return To Main Page</a>
+        <p>Welcome {{user.username}} account pages are under construction</p>
+        <p>Please help build our site by adding a recipe</p>
+        <a href="{%url 'recipe_register'%}">Recipe Creation</a>
+        -->
+    <div id = "userContent" class="userContent_statscont userContent_info">
+    <image class="userContent_profilePic" src="{% static '/images/no_profile_pic.jpg' %}"></image>    
+
+    <!--_ displays follow/unfollow button and updates on its own --->
+        {% if userInfo.is_superuser == 0 %}
+        
+        <!--- needs CSS --->
+        <div>
+        <h1 class="userContent_name">{{ userInfo.username }}</h1>
+        <h1 class="userContent_stats">Stats</h1>
+        <ul class="userContent_statList">
+            <li>Recipes: {{userStats.recipes}}</li>
+            <li>Followers: {{userStats.followers}}</li>
+            <li>Following: {{userStats.following}}</li>
+            <li>Likes: {{userStats.likes}} </li>
+        </ul>
+        </div>
+        
+        <!--- code for follow button can be moved to display it somewhere else --->
+        {% if request.user.is_authenticated %} <!--- if statement should stop follow button form appearing --->
+        
+            {% if following == "true" and userInfo.username != "{{user.username}}" %}  
+            
+             <form  name="unfollow" id ="unfollow" action ="{% url 'unfollow' %}" method="post">    
+                {% csrf_token %}
+            <button class="follow_button" onclick = "update_Unfollowing(); return false;">Unfollow</button>
+            <input type = "hidden" name = "username" value = "{{userInfo.username}}">
+            </form>
+        
+            {% elif userInfo.username != user.username %}
+            
+            <form  name="follow" id ="follow" action="{% url 'following' %}" method= "post">
+                {% csrf_token %}
+           
+            <button class="follow_button"  onclick = "update_Following(); return false;">Follow 
+            </button>
+            <input type = "hidden" name = "username" value = "{{userInfo.username}}">
+            </form>
+             {% else %}
+            <!--- Dont display follow button --->
+        
+             {% endif %}
+        {% endif %}    
+
+        {% endif %}
+        
+        <!--- These two forms below are used to display new form after other form is submitted -->
+        <form hidden  name="follow" id ="follow" action="{% url 'following' %}" method= "post">
+            {% csrf_token %}
+           
+        <button class="follow_button" id = "follow1"  onclick = "update_Following(); return false;">Follow</button>
+        <input type = "hidden" name = "username" value = "{{userInfo.username}}">
+        </form>
+        
+        <form  hidden name="unfollow" id ="unfollow" action ="{% url 'unfollow' %}" method="post">    
+            {% csrf_token %}
+        <input type = "hidden" name = "username" value = "{{userInfo.username}}">
+        <button class="follow_button" onclick = "update_Unfollowing(); return false;"> Unfollow </button>
+        
+        </form>
+    <!--- end of follow button --->
+                    
+        </div>
+        <div class="userContent_recipes userContent_info">
+            <!---insert recipe result here--->
+            {%for recipe in user_recipes %}
+            <!--- CSS needed? --->
+            <div class="dumpDisplay">
+                <image class="dumpDisplay_image" src="{{ recipe.image }}"></image>
+                <h1 class="dumpDisplay_title"><a href="{% url 'recipe_detail' pk=recipe.pk %}">{{ recipe.name }}</a></h1> <br>
+            </div>
+            {% endfor %}
+            
+        </div>
+        <div id = "following" class="userContent_friends">
+        <!---premade friend icons also alread made go here--->
+             
+        {% for friend in user_friends %}
+        <div class="friend_card">
+            <!--- GIVE IMAGE A LINK TO THE USERS USER_DETAIL PAGE --->
+            <a href=" {% url 'user_detail' pk=friend.pk %}">
+            <image class="card_image" src="{% static '/images/no_profile_pic.jpg' %}"></image>
+            </a>
+            
+            <h3 class="card_name">{{friend.username}}</h3>
+            <div class="card_followers card_circle">
+            <h5 class="followers_text">Followers </h5>
+            <h5 class="followers_count"> {{ friend.followers}}</h5>
+            </div>
+            
+            <div class="card_recipes card_circle">
+            <h5 class="recipes_text">Recipes </h5>
+            <h5 class="recipes_count"> {{friend.recipes}}</h5>
+            </div>
+            
+        </div> 
+        {% endfor %}
+        <!---    
+        <div class="friend_card">
+            <image class="card_image" src="{% static 'images/no_profile_pic.jpg' %}"></image>
+            <h3 class="card_name">Friends Name</h3>
+            <div class="card_followers card_circle">
+            <h5 class="followers_text">Followers </h5>
+            <h5 class="followers_count"> 18 </h5>
+            </div>
+            
+            <div class="card_recipes card_circle">
+                <h5 class="recipes_text">Recipes </h5>
+                <h5 class="recipes_count"> 15 </h5>
+            </div>
+        </div> --->
+                    
+                    
+        </div>
+    </div>
+    </div>
+        
+    </div>
+    </body>
+
+<!---function SubForm (){
+    $.ajax({
+        url:'/Person/Edit/@Model.Id/',
+        type:'post',
+        data:$('#myForm').serialize(),
+        success:function(){
+            alert("worked");
+        }
+    });
+} --->
+{% endblock %}
+</html>

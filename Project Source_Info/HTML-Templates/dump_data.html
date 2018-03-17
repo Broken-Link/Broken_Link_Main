@@ -1,0 +1,98 @@
+<!---
+{% load static %}
+{%block content%}
+--->
+
+
+<head>
+    <link rel="icon" href="{% static '/images/fridge.png' %}">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width" , intial-scale=1>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome = 1">
+    <title>Open Fridge</title>
+    <!---
+    <link rel="stylesheet" href="{% static '/styles/dump_data.css' %}">
+    --->
+    <link rel="stylesheet" href="/static/styles/dump_data.css">
+    <!--Utilities-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+
+    <!--[if lt IE 9]>
+            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+
+</head>
+
+<body onload="load()">
+    <div class="page">
+        <header>
+            <nav>
+                <ul class="nav_social">
+                    <!---
+                    <li><a class="icon" href=""><image id="social_icon" src="{% static '/images/facebook.jpg' %}"></image></a></li>
+                    <li><a class="icon" href="" ><image id="social_icon" src="{% static '/images/twitter.jpg '%}"></image></a></li>
+                    <li><a class="icon" href=""><image id="social_icon" src="{% static '/images/youtube.jpg' %}"></image></a></li>
+                    --->
+                    
+                    <li><a class="icon" href=""><image id="social_icon"    
+                        src="/static/images/facebook.jpg"></image></a></li>
+                    <li><a class="icon" href="" ><image id="social_icon" 
+                        src="/static/images/twitter.jpg"></image></a></li>
+                    <li><a class="icon" href=""><image id="social_icon"
+                        src="/static/images/youtube.jpg"></image></a></li>
+                    
+                </ul>
+
+                <ul class="nav_site">
+                    <!---
+                    {% if request.user.is_authenticated %}
+                    --->
+                    <li><a class="icon" href="{% url 'logout' %}">Logout</a></li>
+                    <li><a class="icon" href="{% url 'recipe_register' %}">Create    Recipe</a></li>
+                    <!---
+                    {%else%}
+                    --->
+                    <li><a class="icon" href="{% url 'register_page'%}">Sign Up</a></li>
+                    <li><a class="icon" href="{% url 'login'%}">Log In</a></li>
+                    <!---
+                    {% endif %}
+                    --->
+                </ul>
+            </nav>
+            
+            <a href="{%url 'index'%}">
+                <h1 class="header_text" href="{%url 'index'%}">Open Fridge</h1>
+            </a>
+            
+        </header>
+        
+        <div id="container">
+            <div class="userContent">
+                <!---
+                <a href="{%url 'index'%}">Return To Main Page</a>
+                <p>Welcome {{user.username}} account pages are under construction</p>
+                <p>Please help build our site by adding a recipe</p>
+                <a href="{%url 'recipe_register'%}">Recipe Creation</a>
+                -->
+                
+                
+                <div class="dumpDisplay">
+                    <image class="dumpDisplay_image" src="/static/images/TunaSalad.jpeg"></image>
+                    <h1 class= "dumpDisplay_title">Tuna Salad by User</h1>
+                    <ul class="dumpDisplay_recipeInfo">
+                        <li>Likes: 1</li>
+                        <li>Steps: 46</li>
+                        <li>Ingredients: 7</li>
+                    </ul>
+                </div>
+                
+                
+                
+            </div>
+        </div>
+    </div>
+</body>
+<!--
+{% endblock %}
+---> 

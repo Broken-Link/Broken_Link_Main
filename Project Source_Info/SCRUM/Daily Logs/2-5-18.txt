@@ -1,0 +1,5 @@
+Jason: a twitter-like interface for the feed
+Chris: add a search suggestions Recipe Results Page, learn how to parse through the output given by the python page
+Erik: find a few recipes, test new data organization on the webpage
+Pedro: test new data organization on the webpage, organize output a bit better
+Matthew: optimize the data base

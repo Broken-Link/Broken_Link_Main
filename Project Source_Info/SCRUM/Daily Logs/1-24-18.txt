@@ -1,0 +1,16 @@
+Today we finished the webstack and have a better approximation to the Data Model, some entities were not correct and some of the data is still missing. We started to discuss different features and layouts for the website, and how complex the website would look. Discussed a medal system for account users to be more willing to post recipes.
+
+Objectives: 
+
+Jason: Last Minute things to add entities to the data model post to discussion boards.
+
+Chris:Last Minute things to add entities to the data model post to discussion boards.
+
+Erik:Last Minute things to add entities to the data model post to discussion boards.
+
+James:Last Minute things to add entities to the data model post to discussion boards.
+
+Pedro: Last Minute things to add entities to the data model post to discussion boards.
+
+Matthew: Start preparing everything for our meeting with professor.
+

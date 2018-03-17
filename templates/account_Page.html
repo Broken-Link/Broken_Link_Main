@@ -1,0 +1,143 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name = "viewport" content = "width=device-width", intial-scale = 1>
+        <meta http-equiv = "X-UA-Compatible" content = "IE=edge,chrome = 1">
+        <title>Main page html</title>
+        <!---CSS--->
+        <link rel = "stylesheet" href = "/static/styles/homepage.css">
+        
+        <!---Utilities--->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    </head>
+
+</html>
+<body onload = "load()">
+    <!---HEADER--->
+    <div class="header">
+        <div class="header_text">Open-Fridge</div>
+        <div class="header_subtitle">Hungry? Find your next grub here!</div>
+        <div class="header_utilButtons">
+            <div class="utilButton_socialText">Follow Us On....</div>
+            <div class="utilButton_socialIcons">
+                <button class="socialIcons_FB socialButton" onclick="">
+                    <image class="FB_icon" src="styles/images/facebook.jpg"></image>
+                </button>
+                <button class="socialIcons_T socialButton" onclick="">
+                    <image class="T_icon" src="styles/images/twitter.jpg"></image>
+                </button>
+                <button class="socialIcons_YT socialButton" onclick="">
+                    <image class="YT_icon" src="styles/images/youtube.jpg"></image>
+                </button>
+            </div>
+            
+            <button class="utilButton_signUp button" onclick="">Sign Up</button>
+            <button class="utilButton_logIn button" onclick="">Log In</button>
+        </div>
+        
+    </div>
+    <!---UTILITY BAR--->
+    <div class="header_utilBar">
+        
+        <!--Browse Button
+        <button class="utilBar_browse button" onclick="showSubMenu()">Browse 
+            <i class="material-icons">arrow_drop_down</i>
+        </button>
+        --->
+        <button class="utilBar_ingredientSearch" onclick="openItem('ingSearchBar')">Ingredient Search</button>
+        <input type="text" class="utilBar_search" placeholder="Search...">
+        <button class="utilBar_submit button" onclick="submitSearch()">Search</button>
+        <button class="utilBar_home socialButton" onclick="">
+            <i class="material-icons">home</i>
+        </button>
+        <button class="utilBar_account socialButton" onclick="">
+            <i class="material-icons">account_circle</i>
+        </button>
+        
+    </div>
+    <!---INGREDIENT SEARCH
+        not displayed until ingredient search is clicked
+    --->
+    <div class="ingredientSearch" id="ingSearchBar">
+        <input type="text" class="ingSearch_incIng" placeholder="Include Ingredient...">
+        <input type="text" class="ingSearch_excIng" placeholder="Exclude Ingredient...">
+        <button class="ingSearch_submit button" onclick="">Search</button>
+        <button class="ingSearch_exit socialButton" onclick="closeItem('ingSearchBar')">
+            <i class="material-icons">close</i>
+        </button>
+    </div>
+    
+    <!---USER STUFFS--->
+    <button class="openSideNav" id="openSideNav" onclick="openItem('sideNAV')">
+        
+    Account Menu</button>
+    
+    <div class="user_sideNav" id="sideNAV">
+        <button class = "user_buttons user_close" onclick="closeItem('sideNAV')">
+            <i class= "material-icons">close</i>
+        </button>
+        <button class = "user_buttons" onclick="openResource('user_resource','uH')">Home</button>
+        <button class = "user_buttons" onclick="openResource('user_resource','uR')">My Recipes</button>
+        <button class = "user_buttons" onclick="openResource('user_resource','uF')">Following</button>
+        <button class = "user_buttons" onclick="openResource('user_resource','uff')">My Favs</button>
+        
+    </div>
+    <div class="user_taskBar">
+        <div class="user_info">
+            <image class="user_profilePic" src="images/profilePic.jpg"></image>
+            <div class="user_name">Nusret Gokce</div>
+            <div class="user_userName">aka: "Salt-Bae"</div>
+            <div class="user_followerInfo">
+                <div class="follower_text">Followers: </div>
+                <div class="follower_count">17</div>
+                
+                <div class="following_text">Following: </div>
+                <div class="following_count">25</div>
+            </div>
+        </div>
+    </div>
+    <div class="user_container">
+        <div class="user_resource user_home" id="uH">
+            <h2 class="user_welcome" id="userWelcome">Welcome</h2>
+        </div>
+        <div class="user_resource user_recipes" id="uR"></div>
+        <div class="user_resource user_following" id="uF"></div>
+        <div class="user_resource user_favs" id="uff"></div>
+    </div>
+    
+    
+    <a href="{%url 'index'%}">Return To Main Page</a>
+    <a href="{%url 'recipe_register'%}">Recipe Creation</a>
+</body>
+
+<script>
+    function load(){
+        openResource('user_home','uH');
+    }
+    
+    
+    function openItem(idOfItem){
+        document.getElementById(idOfItem).style.display = "block";
+        //this is here to remove the open side nav button from screen when open
+        document.getElementById('openSideNav').style.display="none"
+    }
+    
+    function closeItem(idOfItem){
+        document.getElementById(idOfItem).style.display = "none";
+        document.getElementById('openSideNav').style.display="block"
+
+    }
+    
+    function openResource(classOfItem, id){
+        
+    var x = document.getElementsByClassName(classOfItem);
+        for (i = 0; i < x.length; i++) {
+            x[i].style.display = "none";
+        }
+        
+        document.getElementById(id).style.display = "block";
+        document.getElementById('sideNAV').style.display = "none";
+        document.getElementById('openSideNav').style.display="block"
+    }
+    
+</script>

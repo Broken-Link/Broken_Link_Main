@@ -1,0 +1,273 @@
+header, section, aside, nav, ariticle, figure, figcaption, {
+    display: block;
+}
+footer{
+    display: block;
+    background-color: #FFFFFF;
+    
+}
+
+body{
+    margin: 0;
+    padding: 0;  
+    background-image: url("../images/WebTitle.jpg");
+    background-size: cover;
+    background-attachment: fixed;
+    align-content: center;
+
+}
+
+.page{
+    width: 100%;
+    height: 100%;
+    font-family: sans-serif;
+    margin: 0 0 0 0;
+    padding: 0 0 0 0;
+
+}
+
+h1,h2,h3,h4,h5{
+    font-family: Tahoma, Geneva, sans-serif;
+    font-weight: 10;
+}
+
+
+header{
+    width: 100%;
+    height: 20%;
+    text-align: center;
+}
+
+.header_text{
+    text-align: center;
+    font-size: 400%;
+    margin: 0 0 0 0;
+    padding: 0 0 0 0;
+    color: #ffffff;
+    text-shadow: 1px 3px 5px #000000;
+}
+
+.header_subtitle{
+    text-align: center;
+    font-size: 150%;
+    margin: 0;
+    padding: 0 0 0 0;
+    color: #ffffff;
+    text-shadow: 1px 3px 5px #000000;
+}
+
+nav ul{
+    list-style-type: none; 
+    font-family: sans-serif;
+    font-size: 125%;
+    padding: 0;
+}
+
+nav li{
+    display: inline;
+    margin-right: 15px;
+    padding: 0;
+    margin: 0;
+    clear: none;
+    text-shadow: 1px 3px 5px #000000;
+}
+
+nav a{
+    float: right;
+    border: 1px solid #ffffff;
+    color: #ffffff;
+    margin: 0px;
+    padding: 7px;
+    text-decoration: none;
+    clear: none;
+}
+
+nav a:hover{
+    color: #ff0055;
+    background: #000000;
+}
+
+.nav_social{
+    float: left;
+    margin: 0;
+}
+
+#social_icon{
+    height: 25%;
+}
+
+.icon{
+    border: 2px;
+    border-radius: 20% 20% 20% 20%;
+    -moz-border-radius:20% 20% 20% 20%;
+    -webkit-border-radius:20% 20% 20% 20%;
+}
+
+.icon:hover{
+    background: #ffffff;
+}
+/*search bar */
+
+
+.main_search{
+    text-align: center;
+    margin: 5% 10% 0 0;
+    width: 100%;
+    height: 30%;
+}
+
+.utilBar_search{
+    width: 60%;
+    height: 20%;
+}
+
+.search_option{
+    width: 10%;
+    height: 20%;
+    
+}
+
+.button{
+	font-size:100%;
+	font-weight: bold;;
+	text-align: center;
+	background-color:#f2f2f2;
+    margin: 0;
+    padding: 0 10px 0 10px;
+    border: 0;
+    height: 20%;
+}
+
+.button:hover{
+    background-color: #ff0055;
+    color: #ffffff;
+    opacity: 0.7;
+}
+
+
+
+
+
+/*Slideshow*/
+
+.slideshow_divider{
+    position: absolute;
+    margin:; 0;
+    float: left;
+    width:80%;
+    border-bottom: 3px solid #ff0055;
+}
+
+.divider_title{
+    font-weight: 700;
+    font-size: 230%;
+    color: #000000;
+    background: #000000;
+    opacity: 0.7;
+}
+
+.slideshow{
+    position: relative;
+    margin:0;
+    width: 75%;
+    height: 50%;
+    padding: 10px;
+}
+
+.slideshow_image{
+    width: 100%;
+    height: 400px;
+    margin-top: 0%;
+    background-color:#999;
+    overflow: hidden;
+    border-radius: 0px;
+    display: none;
+    box-shadow: 0 6px 10px 2px rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.image_title{
+    position: absolute;
+    margin-top: 50%;
+    font-weight: 400;
+    color: white;
+    font-size: 30px;
+    text-align: center;
+    padding: 10px;
+    display:none;
+    text-shadow: 1px 3px 4px #000000;
+    
+}
+
+.image_desc{
+    position: absolute;
+    margin-top: 10%;
+    margin-left: 30px;
+    color: white;
+    font-size: 30;
+    padding: 10px;
+    display:none;
+}
+
+.slideshow_button{
+    position: absolute;
+    height: 400px;
+    width: 60px;
+    border: 0;
+    background-color: #000000;
+    opacity: 0.3;
+    margin-top: 0%;
+}
+
+.slideshow_button:hover{
+    opacity: 0.6;
+}
+
+.slideshow_next{
+    position: relative;
+    float: right;
+    left: 20px;
+}
+
+.slideshow_prev{
+    position:relative;
+    float: left;
+    
+}
+
+.slideshow_icon{
+    opacity: 1;
+    color: white;
+}
+
+footer{
+    font-family: sans-serif;
+    background: #898B8E;
+    color: #000000;
+}
+
+
+.container{
+  width: 350px;
+  height: 500px;
+  background: inherit;
+  position: absolute;
+  overflow: hidden;
+  top: 50%;
+  left: 50%;
+  margin-left: -175px;
+  margin-top: -250px;
+  border-radius: 8px;
+}
+.container:before{
+  width: 400px;
+  height: 550px;
+  content: "";
+  position: absolute;
+  top: -25px;
+  left: -25px;
+  bottom: 0;
+  right: 0;
+  background: inherit;
+  box-shadow: inset 0 0 0 200px rgba(255,255,255,0.2);
+  filter: blur(10px);
+}

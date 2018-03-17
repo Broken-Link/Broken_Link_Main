@@ -1,0 +1,11 @@
+Jason: Built comfortability with Javascript
+
+Chris: Created some basic website widgets
+
+Erik: Started Planning Website layout
+
+James: Completed Data Model
+
+Pedro: Learned the Table interactions from PHP to MySQL
+
+Matthew: Fixed the Website, decided to possibly extend our server hosting for the new website to allow python integration.

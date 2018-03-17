@@ -1,0 +1,139 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name = "viewport" content = "width=device-width", intial-scale = 1>
+        <meta http-equiv = "X-UA-Compatible" content = "IE=edge,chrome = 1">
+        <title>User Search Results</title>
+        <!---CSS--->
+        <link rel = "stylesheet" href = "styles/homepage.css">
+        <!---<link rel = "stylesheet" href = "styles/results.css">--->
+        
+        <!---Utilities--->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    </head>
+
+</html>
+<body>
+    <!---HEADER--->
+    <div class="header">
+        <div class="header_text">Open-Fridge</div>
+        <div class="header_subtitle">Hungry? Find your next grub here!</div>
+        <div class="header_utilButtons">
+            <div class="utilButton_socialText">Follow Us On....</div>
+            <div class="utilButton_socialIcons">
+                <button class="socialIcons_FB socialButton" onclick="">
+                    <image class="FB_icon" src="styles/images/facebook.jpg"></image>
+                </button>
+                <button class="socialIcons_T socialButton" onclick="">
+                    <image class="T_icon" src="styles/images/twitter.jpg"></image>
+                </button>
+                <button class="socialIcons_YT socialButton" onclick="">
+                    <image class="YT_icon" src="styles/images/youtube.jpg"></image>
+                </button>
+            </div>
+            <button class="utilButton_signUp button" onclick="">Sign Up</button>
+            <button class="utilButton_logIn button" onclick="">Log In</button>
+        </div>
+        
+    </div>
+    <!---UTILITY BAR--->
+    <div class="header_utilBar">
+        
+        <!--Browse Button
+        <button class="utilBar_browse button" onclick="showSubMenu()">Browse 
+            <i class="material-icons">arrow_drop_down</i>
+        </button>
+        --->
+        <button class="utilBar_ingredientSearch" onclick="openItem('ingSearchBar')">Ingredient Search</button>
+        <input type="text" class="utilBar_search" placeholder="Search...">
+        <button class="utilBar_submit button" onclick="submitSearch()">Search</button>
+        <button class="utilBar_home socialButton" onclick="">
+            <i class="material-icons">home</i>
+        </button>
+        <button class="utilBar_account socialButton" onclick="">
+            <i class="material-icons">account_circle</i>
+        </button>
+        
+    </div>
+    <!---INGREDIENT SEARCH
+        not displayed until ingredient search is clicked
+    --->
+    <div class="ingredientSearch" id="ingSearchBar">
+        <input type="text" class="ingSearch_incIng" placeholder="Include Ingredient...">
+        <input type="text" class="ingSearch_excIng" placeholder="Exclude Ingredient...">
+        <button class="ingSearch_submit button" onclick="">Search</button>
+        <button class="ingSearch_exit socialButton" onclick="closeItem('ingSearchBar')">
+            <i class="material-icons">close</i>
+        </button>
+        
+    </div>
+
+    <div class="userAccount_container">
+        <div class="userAccount_card">
+            <div class="whatever">
+                <image class="userAccount_image" src="images/profilePic.jpg"></image>
+                <h3 class="userAccount_Name">Nusret Gokce</h3>
+                <div class="userAccount_userName">aka: "Salt-Bae"</div>
+                <div class="userAccount_followers">
+                    <h5 class="followers_text">Followers: </h5>
+                    <h5 class="followers_count"> 18 </h5>
+                </div>
+                <div class="userAccount_recipes">
+                    <h5 class="recipes_text">Recipes: </h5>
+                    <h5 class="recipes_count"> 5 </h5>
+                </div>
+        
+                <button class="userAccount_follow" onclick="followUser('followIcon')">
+                    <i class="material-icons" id="followIcon">add_circle_outline</i>
+                </button>
+            </div>
+        </div>
+    </div>
+   
+    <div class="userAccount_container">
+        <div class="userAccount_card">
+            <div class="whatever">
+                <image class="userAccount_image" id="profilePic" src="images/profilePic.jpg"></image>
+                <h3 class="userAccount_Name" id="realName">Nusret Gokce</h3>
+                <div class="userAccount_userName" id="userName">aka: "Salt-Bae"</div>
+                <div class="userAccount_followers">
+                    <h5 class="followers_text">Followers: </h5>
+                    <h5 class="followers_count"id="followerCount"> 18 </h5>
+                </div>
+                <div class="userAccount_recipes">
+                    <h5 class="recipes_text">Recipes: </h5>
+                    <h5 class="recipes_count" id="recipeCount"> 5 </h5>
+                </div>
+        
+                <button class="userAccount_follow" onclick="followUser('followIcon2')">
+                    <i class="material-icons" id="followIcon2">add_circle_outline</i>
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    
+</body>
+
+<script>
+    function openItem(idOfItem){
+        document.getElementById(idOfItem).style.display = "block";
+    }
+    
+    function closeItem(idOfItem){
+        document.getElementById(idOfItem).style.display = "none";
+    }
+    function followUser(id){
+        var x = document.getElementById(id).textContent;
+        if(x == "add_circle_outline"){
+            //add to favorites table...
+            document.getElementById(id).textContent = "add_circle";
+        } else {
+            //remove from favorites table...
+            //decrement likes
+            document.getElementById(id).textContent = "add_circle_outline";
+        }
+    }
+    
+    
+</script>

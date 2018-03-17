@@ -1,0 +1,21 @@
+Today we just made the objective to research the different technologies as well as plan to
+
+meet tomorrow, and discuss what we have found and how we can use them. We discussed webstacks
+
+and the basics as well as reviewed larger company webstacks and what the common structures were.
+
+We agreed to also look into how the data model works.
+
+Objectives:
+
+Jason: look into some front end Softwares, Javascript.
+
+Chris: look into some front end Softwares, Javascript
+
+Erik: Look into back end softwares
+
+James: Start working on Data Model
+
+Pedro: Look into back end softwares
+
+Matthew: Set up website

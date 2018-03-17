@@ -1,0 +1,64 @@
+{% load static %} {% block content %}
+
+
+<head>
+    <link rel="icon" href="{% static '/images/fridge.png' %}">
+    <!--StyleSheet-->
+    <link rel="stylesheet" href="{% static 'styles/recipeResults.css' %}">
+</head>
+
+<body class="page">
+    <header>
+        <a href="{%url 'index'%}">
+            <h1 class="header_text" href="{%url 'index'%}">Open Fridge</h1>
+        </a>
+    </header>
+
+    <div id="container">
+        <div class="userContent">
+            
+            {% if option == "title" %}
+            <h1 class="headingFor">Results for: {{searched}}</h1>
+            
+            {%for recipe in list_recipes %}
+            <div class="dumpDisplay">
+                <image class="dumpDisplay_image" src="{{recipe.image.url}}"></image>
+                <h1 class="dumpDisplay_title"><a href="{% url 'recipe_detail' pk=recipe.pk %}">{{ recipe.name }}</a></h1>
+
+                <ul class="dumpDisplay_recipeInfo">
+                    <li>Steps: <p class="dumpDisplay_listedSteps"> {{ recipe.steps }} </p><br></li>
+                </ul>
+            </div>
+            {% endfor %} 
+            
+            {% elif option == "ingredients" %}
+            <h1 class="headingFor">Results for the specified ingredients</h1>
+
+            {% for ing in include %}
+            <h1>{{ ing }}</h1>
+            {% endfor %} 
+            
+            {%for recipe in list_recipes %}
+            <div class="dumpDisplay">
+                <image class="dumpDisplay_image" src="{{recipe.image.url}}"></image>
+                <h1 class="dumpDisplay_title"><a href="{% url 'recipe_detail' pk=recipe.pk %}">{{ recipe.name }}</a></h1>
+
+                <ul class="dumpDisplay_recipeInfo">
+                    <li>Steps: <p class="dumpDisplay_listedSteps"> {{ recipe.steps }} </p><br></li>
+                </ul>
+            </div>
+            {% endfor %} 
+            
+            {% else %}
+            <h1 class="headingFor">Users with: -search- </h1>
+                {% for i in list_users %}
+            <div class="dumpDisplay">
+                <h1 class="dumpDisplay_title"><a href=" {% url 'user_detail' pk=i.pk %}">{{ i.username }}</a></h1>
+            </div>
+            {% endfor %} {% endif %}
+        </div>
+    </div>
+
+</body>
+
+{% endblock %}

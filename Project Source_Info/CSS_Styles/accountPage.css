@@ -1,0 +1,384 @@
+@import url("../styles/homepage.css");
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.page {
+    align-content: center;
+    height: 100%;
+    width: 100%;
+}
+
+header a:link {
+    text-decoration: none;
+}
+
+header a:visited {
+    text-decoration: none;
+}
+
+.userContent {
+    position: absolute;
+    align-content: center;
+    left: 50%;
+    top: 65%;
+    transform: translate(-50%, -50%);
+    width : auto;
+    height: auto;
+}
+
+#container {
+    width: 80%;
+    height: 140%;
+    background: inherit;
+    position: absolute;
+    overflow: hidden;
+    top: 30%;
+    left: 10%;
+    right: 10%;
+    border-radius: 8px;
+    z-index: 0;
+    overflow-y: scroll;
+}
+
+#container:before {
+    width: 110%;
+    height: 110%;
+    content: "";
+    position: absolute;
+    top: -25px;
+    left: -25px;
+    bottom: 0;
+    right: 0;
+    background: inherit;
+    box-shadow: inset 0 0 0 2000px rgba(255, 255, 255, 0.2);
+    /*
+    background-color: rgba(255,255,255,0.2);
+    */
+    filter: blur(10px);
+    
+}
+
+.userContent_info{
+    position: absolute;
+    z-index: 0;
+    display: block;
+    background-color: #37383ABF;
+    border-radius: 5px;
+}
+
+.userContent_statscont{
+    margin: 50px 0 0 0;
+    height: 200px;
+    width: 700px;
+    top: -640px;
+    left: -560px;
+}
+
+.userContent_profilePic{
+    left:10px;
+    top:10px;
+    position:absolute;
+    width: 150;
+    height: 150;
+    border-radius: 50%;
+    z-index: 1;
+}
+
+.follow_button{
+    position: absolute;
+    background-color: #ff0055;
+    border-radius: 50%;
+    width: 50;
+    height: 50;
+    color:white;
+    text-align: center;
+    z-index: 2;
+}
+
+.userContent_name{
+    color: #FFFFFF;
+    position: absolute;
+    top: 160px;
+    left: 10px;
+}
+
+.userContent_stats{
+    color: #FFFFFF;
+    position: absolute;
+    left: 500px;
+    top:20px;
+    border-bottom: 2px solid #ff0055;
+
+        
+}
+.userContent_statList{
+    color: #FFFFFF;
+    list-style-type: none;
+    position: absolute;
+    left: 500px;
+    top: 70px;
+}
+
+.userContent_recipes{
+    height: 1000px;
+    width: 700px;
+    top: -390px;
+    left: -560px;
+    overflow:scroll;
+}
+
+.userContent_friends{
+    left: 210px;
+    height: 1260px;
+    width: 360px;
+    top: -640px;
+    position: absolute;
+    z-index: 0;
+    display: block;
+    border-radius: 5px;
+}
+
+.friend_card{
+    height: 150px;
+    width:100%;
+    background-color: #e6e6e6aa;
+    margin-bottom: 20px;
+    border-radius: 5px;
+}
+
+.card_image{
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    margin-top:10px;
+}
+
+.card_name{
+    font-weight: 700;
+    margin-left:10px;
+    font-size: 24px;
+    margin-top: 8px;
+} 
+
+
+.card_circle{
+    background-color: #ff0055;
+    border-radius: 50%;
+    width:75;
+    height: 75;
+    color:white;
+    text-align: center;
+}
+
+.card_followers{
+    margin-left: 110;
+    margin-top: -110;
+}
+
+.followers_text{
+    font-size: 15px;
+    position: absolute;
+    margin-top: 24px;
+    margin-left: 5px;
+}
+
+.followers_count{
+    font-size: 20px;
+    position: absolute;
+    margin-top: 40;
+    margin-left: 25px;
+}
+
+.card_recipes{
+    margin-left: 210;
+    margin-top: -75;
+}
+
+.recipes_text{
+    font-size: 15px;
+    position: absolute;
+    margin-top: 24px;
+    margin-left: 10px;
+}
+
+.recipes_count{
+    font-size: 20px;
+    position: absolute;
+    margin-top: 40;
+    margin-left: 25px;
+}
+
+.main_search{
+    margin-top: 0;
+    z-index: 1;
+}
+
+.isUser{
+    display:block;
+}
+
+
+
+@media only screen and (max-width: 800px){
+    .main_search{
+        position: relative;
+        height:60px;
+        top:-20px;
+    }
+    .search_option{
+        height:100%;
+    }
+    .utilBar_search{
+        height:100%;
+    }
+    .utilBar_submitButton{
+        height: 100%;
+    }
+    
+    .userContent_statscont{
+        top:-980px;
+        left:-250px;
+        width: 500px;
+    }
+    
+    .userContent_recipes{
+        top: -730px;
+        left:-250px;
+        width: 500px;
+        word-wrap: break-word;
+        overflow: scroll;
+    }
+    
+    .userContent_stats{
+        left: 380px;
+        top:20px;
+    }
+    
+    .userContent_statList{
+        left: 390px;
+    }
+    
+    .userContent_friends{
+        left: -250px;
+        height: 1260px;
+        width: 500px;
+        top: 320px;
+        position: absolute;
+        z-index: 0;
+        display: block;
+        border-radius: 5px; 
+    }
+}
+
+@media only screen and (max-width: 1000px) and (min-width:800px){
+    
+    .main_search{
+        position: relative;
+        height:60px;
+        top:-30px;
+    }
+    .search_option{
+        height:100%;
+    }
+    .utilBar_search{
+        height:100%;
+    }
+    .utilBar_submitButton{
+        height: 100%;
+    }
+    
+    .userContent_statscont{
+        top:-980px;
+        left:-300px;
+        width: 600px;
+    }
+    
+    .userContent_recipes{
+        top: -730px;
+        left:-300px;
+        width: 600px;
+        word-wrap: break-word;
+        overflow: scroll;
+    }
+    
+    .userContent_stats{
+        left: 380px;
+        top:20px;
+    }
+    
+    .userContent_statList{
+        left: 390px;
+    }
+    
+    .userContent_friends{
+        left: -250px;
+        /*keep an eye on this*/
+        height: 200px;
+        width: 500px;
+        top: 320px;
+        position: absolute;
+        z-index: 0;
+        display:block;
+        border-radius: 5px; 
+    }
+}
+
+@media only screen and (max-width: 1400px) and (min-width:1000px){
+     
+    .main_search{
+        position: relative;
+        height:60px;
+        top:-20px;
+        left:0;
+    }
+    .search_option{
+        height:100%;
+    }
+    .utilBar_search{
+        height:100%;
+    }
+    .utilBar_submitButton{
+        height: 100%;
+    }
+    
+    .userContent_statscont{
+        top: -690px;
+        left:-475px;
+        width: 550px;
+    }
+    
+    .userContent_recipes{
+        top: -420px;
+        left:-475px;
+        width: 550px;
+        height: 800px;
+        word-wrap: break-word;
+        overflow: scroll;
+        
+    }
+    
+    .userContent_stats{
+        left: 380px;
+        top:20px;
+    }
+    
+    .userContent_statList{
+        left: 390px;
+    }
+    
+    .userContent_friends{
+        left: 100px;
+        height: 200px;
+        width: 380px;
+        top: -690px;
+        position: absolute;
+        z-index: 0;
+        display:block;
+        border-radius: 5px; 
+    }
+
+}
+

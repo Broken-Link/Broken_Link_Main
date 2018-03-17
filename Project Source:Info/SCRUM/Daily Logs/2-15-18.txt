@@ -1,6 +1,0 @@
-Jason: N/A
-Chris: Logo Design
-Erik: Recipe Dump Design
-James: Database issues need to be sorted out
-Pedro: Search Bar only displays by name
-Matthew: Learning Django Forms

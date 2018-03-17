@@ -1,6 +1,0 @@
-Jason: Continuing Account Page adjustments
-Chris: Creating a small widget for displaying recipes
-Erik: Index Modifications
-James: modifications to database
-Pedro: Still work on Search Bar
-Matthew: Login Functions! Now for register users

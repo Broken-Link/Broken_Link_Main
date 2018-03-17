@@ -1,5 +1,0 @@
-Jason: Page Cleanup
-Chris: Adding Django interactions to recipe display widget
-Erik: Finalize all pages
-James: Adding Recipes
-Pedro: Ensure all functionalities work

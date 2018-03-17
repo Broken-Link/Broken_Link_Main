@@ -1,6 +1,0 @@
-Jason Overall Site Design Change
-Chris: Overall Site Design Change
-Erik: Overall Site design change
-James: renaming the database
-Pedro: displaying information from the recipes to another page formatted correctly
-Matthew: Bring Site online

@@ -1,6 +1,0 @@
-Jason: cotinuing social media search
-Chris: Continuing work on recepie web displays
-Erik: Creating SRS and Updating Broken Link Website
-James: James is working on the feed page
-Pedro: Updating data base
-Matthew: Looking up Recipes for database

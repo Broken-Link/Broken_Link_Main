@@ -1,6 +1,0 @@
-Jason Login Page Design
-Chris: Account Page Modifications
-Erik: Register Account Page Design
-James: modifications to database
-Pedro: Search Bar
-Matthew: Adding Recipe creation page beginning

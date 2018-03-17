@@ -1,6 +1,0 @@
-Jason HTML/CSS
-Chris: Looking small widgets for displaying images
-Erik: Index Page
-James: modifications to database
-Pedro: Search Bar
-Matthew: Login authentication in Django

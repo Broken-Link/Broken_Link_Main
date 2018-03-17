@@ -1,6 +1,0 @@
-Jason: looking at different ways to set it up social media interaction
-Chris: working on recipe results, picture for each recipe. Will make suggested search for tomorrow
-Erik: Creating a Python Web crawler to automatically find recipies
-James: James is working on the feed page
-Pedro: Working on the database implementation with Django and using json files to make changes
-Matthew: Working on setting up user interaction to create recipies

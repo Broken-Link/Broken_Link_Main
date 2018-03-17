@@ -1,6 +1,0 @@
-Jason: Overall Page Adjustments
-Chris: Still Adjusting widget/sizing issues
-Erik: Recipe Results Page Modifications
-James: Work on Recipe Creation Page not saving
-Pedro: Recipe Creation page not saving working on fixing it
-Matthew: Recipe Creation page not saving working on fixing it

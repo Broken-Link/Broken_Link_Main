@@ -1,6 +1,0 @@
-Jason: Overall Page Adjustments
-Chris: Recipe display fine tuning
-Erik: Begin Modifications on page
-James: Create follow user table, and comments table
-Pedro: Account Display Page to display amount of recipes
-Matthew: Recipe Creation page more bugs

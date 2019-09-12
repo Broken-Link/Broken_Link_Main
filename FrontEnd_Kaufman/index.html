@@ -1,0 +1,78 @@
+<!doctype html>
+<html style="height: 100%">
+    <head>
+        <meta charset="utf-8">
+        <title>Account Page</title>
+
+        <style>
+            body 
+            {
+                margin:0;
+                height: 100%
+            }
+
+            .topnav 
+            {
+                overflow: hidden;
+                background-color: #382313;
+            }
+
+            .topnav a 
+            {
+                float: left;
+                color: #F1EED9;
+                text-align: center;
+                padding: 14px 16px;
+                text-decoration: none;
+                font-size: 17px;
+            }
+
+            .topnav a:hover 
+            {
+                background-color: #2E221F;
+                color: black;
+            }
+
+            .topnav a.active 
+            {
+                background-color: #58351A;
+                color: ghostwhite;
+            }
+        </style>
+    </head>
+
+    <body>
+        <!-- Top navigation bar -->
+        <div class="topnav">
+            <a href="#home">Home</a>
+            <a class="active" href="#account">Your Page</a>
+        </div>
+
+        <!-- Will display user information to the user of the account -->
+        <div style="float: left; height: 80%; width: 10%">
+            <h1>Account Info</h1>
+            
+            <h3>Personal Information</h3>
+            <p>Username: Temp</p>
+            <p>E-mail: Temp@temp.com</p>
+            <hr>
+            
+            <h3>Other Information</h3>
+            <p>Number of posts: 999</p>
+            <p>Number of comments: 999</p>
+            <hr>
+        </div>
+
+        <!-- Target for the search function to display search results -->
+        <div style="float:left; padding-left: 16px; height: 100%; width: 65%;">
+            <h1>Search Results</h1>
+            <iframe src="index.html" style="height: 80%; width: 100%;" name="searchresults"></iframe>
+        </div>
+
+        <!-- Target for the activity feed to update user on activity from friends and self -->
+        <div style="float: right; height: 80%; width: 20%;">
+            <h1>Activity Feed</h1>
+            <iframe src="index.html" style="height: 100%; width: 95%;" name="activityfeed"></iframe>
+        </div>
+    </body>
+</html>
